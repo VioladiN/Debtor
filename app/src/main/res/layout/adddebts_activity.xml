@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:stretchColumns="1"
+    android:layout_margin="20dp">
+
+    <TableRow>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/check"
+            android:layout_column="0"/>
+        <EditText
+            android:id="@+id/bebts_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_span="2"/>
+    </TableRow>
+    <TableRow>
+        <CheckBox
+            android:id="@+id/cb_me_too"
+            android:text="@string/checkbox"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_column="0"
+            />
+        <Button
+            android:id="@+id/add_depts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/adding_debts"
+            android:textAllCaps="false"
+            android:layout_column="2"/>
+    </TableRow>
+    <TableRow>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list_add_debt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </androidx.recyclerview.widget.RecyclerView>
+    </TableRow>
+</TableLayout>

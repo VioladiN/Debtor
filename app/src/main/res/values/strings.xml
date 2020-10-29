@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Debtorpit</string>
+
+    <string name="list">List</string>
+    <string name="add_person">Add person</string>
+    <string name="add_debt">Add debts</string>
+    <string name="remove_debt">Remove Debts</string>
+
+    <string name="btn_debt_add">Add debt</string>
+    <string name="btn_debt_remove">Remove debt</string>
+
+    <string name="first_name">First name:</string>
+    <string name="last_name">Last name:</string>
+    <string name="debts">Debt(rubles):</string>
+
+    <string name="check">Check(rubles):</string>
+    <string name="checkbox">Share on me too</string>
+    <string name="adding_debts">Add debts</string>
+</resources>
