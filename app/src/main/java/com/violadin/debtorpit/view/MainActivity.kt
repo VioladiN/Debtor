@@ -9,6 +9,10 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.violadin.debtorpit.R
 import com.violadin.debtorpit.fragments.FirstFragment
+import com.violadin.debtorpit.model.AppDataBase
+import com.violadin.debtorpit.model.Person
+import java.lang.Appendable
+import kotlinx.coroutines.*
 
 
 class MainActivity() : AppCompatActivity() {
