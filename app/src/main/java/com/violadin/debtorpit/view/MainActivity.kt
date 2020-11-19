@@ -1,18 +1,14 @@
 package com.violadin.debtorpit.view
 
 import android.os.Bundle
-import android.view.MenuItem
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.violadin.debtorpit.R
-import com.violadin.debtorpit.fragments.FirstFragment
-import com.violadin.debtorpit.model.AppDataBase
-import com.violadin.debtorpit.model.Person
-import java.lang.Appendable
-import kotlinx.coroutines.*
+import com.violadin.debtorpit.fragments.AddDebtsFragment
+import com.violadin.debtorpit.fragments.AddPersonFragment
+import com.violadin.debtorpit.fragments.ListFragment
 
 
 class MainActivity() : AppCompatActivity() {
@@ -27,14 +23,13 @@ class MainActivity() : AppCompatActivity() {
         bottomNavigationView.setOnNavigationItemSelectedListener {
                 when (it.itemId) {
                     R.id.page1 -> {
-                        Toast.makeText(this, "page 1", Toast.LENGTH_SHORT).show()
-                        openFragment(FirstFragment.newInstance())
+                        openFragment(ListFragment.newInstance())
                     }
                     R.id.page2 -> {
-                        Toast.makeText(this, "page 2", Toast.LENGTH_SHORT).show()
+                        openFragment(AddPersonFragment.newInstance())
                     }
                     R.id.page3 -> {
-                        Toast.makeText(this, "page 3", Toast.LENGTH_SHORT).show()
+                        openFragment(AddDebtsFragment.newInstance())
                     }
                 }
             true
