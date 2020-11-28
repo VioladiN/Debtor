@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.violadin.debtorpit.R
 import com.violadin.debtorpit.database.AppDataBase
@@ -37,10 +38,14 @@ class AddPersonFragment: Fragment() {
 
         addPersonButton.setOnClickListener {
            GlobalScope.launch {
-               db.insertPerson(Person(firstName = "321", lastName = "123", debt = 100.0))
+               db.insertPerson(Person(firstName = firstName.text.toString(),
+                       lastName = lastName.text.toString(),
+                       debt = debt.text.toString().toDouble()))
            }
+            Toast.makeText(view.context,
+                    "Person added successfully",
+                    Toast.LENGTH_LONG).show()
         }
-
         return view
     }
 
