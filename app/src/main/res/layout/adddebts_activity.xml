@@ -35,11 +35,14 @@
             android:textAllCaps="false"
             android:layout_column="2"/>
     </TableRow>
+
     <TableRow>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/list_add_debt"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_span="3">
 
         </androidx.recyclerview.widget.RecyclerView>
     </TableRow>
