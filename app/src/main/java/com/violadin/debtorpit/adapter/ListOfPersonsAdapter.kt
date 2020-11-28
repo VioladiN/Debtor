@@ -1,0 +1,37 @@
+package com.violadin.debtorpit.adapter
+
+import android.annotation.SuppressLint
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import com.violadin.debtorpit.R
+import com.violadin.debtorpit.model.Person
+
+class ListOfPersonsAdapter(private var persons: List<Person>):
+        RecyclerView.Adapter<ListOfPersonsAdapter.ViewHolder>() {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(parent.context).
+        inflate(R.layout.recyclerview_row_list, parent, false)
+        return ViewHolder(view)
+    }
+
+    @SuppressLint("SetTextI18n")
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.name.text = persons[position].firstName.toString() +
+                " " + persons[position].lastName.toString()
+        holder.debt.text = persons[position].debt.toString()
+    }
+
+    override fun getItemCount(): Int {
+        return persons.size
+    }
+
+    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+
+        val name = itemView.findViewById<TextView>(R.id.tv_name)
+        val debt = itemView.findViewById<TextView>(R.id.tv_dept)
+    }
+}
