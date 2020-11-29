@@ -17,4 +17,8 @@ class PersonViewModel(application: Application): AndroidViewModel(application) {
     fun delete(person: Person) {
         db.deletePerson(person)
     }
+
+    fun update(person: Person, debt: Double) {
+        person.firstName?.let { person.lastName?.let { it1 -> db.updatePerson(it, it1, debt) } }
+    }
 }

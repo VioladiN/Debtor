@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.ItemTouchHelper.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.violadin.debtorpit.R
 import com.violadin.debtorpit.adapter.ListOfPersonsAdapter
 import com.violadin.debtorpit.viewmodel.PersonViewModel
@@ -40,10 +42,10 @@ class ListFragment: Fragment() {
                 RecyclerView.VERTICAL, false)
         recyclerView.layoutManager = linearLayoutManager
         model.allPersons.observe(viewLifecycleOwner, Observer {
-            persons -> recyclerView.adapter = ListOfPersonsAdapter(persons)
+            persons -> recyclerView.adapter = ListOfPersonsAdapter(persons, view.context)
         })
 
-        val itemTouchHelper1 =
+        val itemTouchHelperRecyclerView =
                 object :
                         ItemTouchHelper.SimpleCallback(0,
                                 ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
@@ -62,12 +64,12 @@ class ListFragment: Fragment() {
                 }
                 Toast.makeText(
                         view.context,
-                        recyclerView.adapter?.itemCount.toString(),
+                        "Person has been deleted",
                         Toast.LENGTH_SHORT
                 ).show()
             }
         }
-        val itemTouchHelper = ItemTouchHelper(itemTouchHelper1)
+        val itemTouchHelper = ItemTouchHelper(itemTouchHelperRecyclerView)
         itemTouchHelper.attachToRecyclerView(recyclerView)
 
         return view
