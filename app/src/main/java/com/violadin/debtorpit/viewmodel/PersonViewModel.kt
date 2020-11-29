@@ -13,4 +13,8 @@ class PersonViewModel(application: Application): AndroidViewModel(application) {
     fun insert(person: Person) {
         db.insertPerson(person)
     }
+
+    fun delete(person: Person) {
+        db.deletePerson(person)
+    }
 }
