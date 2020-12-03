@@ -1,27 +1,20 @@
 package com.violadin.debtorpit.adapter
 
 import android.annotation.SuppressLint
-import android.app.AlertDialog
 import android.content.Context
-import android.content.DialogInterface
 import android.text.InputType
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.violadin.debtorpit.R
 import com.violadin.debtorpit.database.AppDataBase
-import com.violadin.debtorpit.fragments.ListFragment
 import com.violadin.debtorpit.model.Person
-import com.violadin.debtorpit.viewmodel.PersonViewModel
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import java.lang.Appendable
 
 class ListOfPersonsAdapter(private var persons: List<Person>, private var context: Context):
         RecyclerView.Adapter<ListOfPersonsAdapter.ViewHolder>() {
@@ -40,15 +33,9 @@ class ListOfPersonsAdapter(private var persons: List<Person>, private var contex
 
         holder.buttonAddDebt.setOnClickListener {
             showDialog(persons[position], "add")
-            Toast.makeText(context, "Debt successfully added to: " +
-                    persons[position].firstName +
-                    " " + persons[position].lastName, Toast.LENGTH_LONG).show()
         }
         holder.buttonRemoveDebt.setOnClickListener {
             showDialog(persons[position], "remove")
-            Toast.makeText(context, "Debt successfully removed from: " +
-                    persons[position].firstName +
-                    " " + persons[position].lastName, Toast.LENGTH_LONG).show()
         }
     }
 
@@ -85,7 +72,10 @@ class ListOfPersonsAdapter(private var persons: List<Person>, private var contex
         alertDialog.setView(editText)
 
         alertDialog.setPositiveButton("Confirm") {dialog, which ->
-            updatePerson(person, editText.text.toString().toDouble(), event)
+            if (editText.text.toString() != "")
+                updatePerson(person, editText.text.toString().toDouble(), event)
+            else
+                dialog.cancel()
         }
         alertDialog.setNegativeButton("Cancel") {dialog, which ->
             dialog.cancel()

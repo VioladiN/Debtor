@@ -8,7 +8,7 @@ import com.violadin.debtorpit.database.dao.PersonDao
 import com.violadin.debtorpit.model.Person
 import java.util.concurrent.Executors
 
-@Database(entities = arrayOf(Person::class), version = 4)
+@Database(entities = [Person::class], version = 4)
 abstract class AppDataBase : RoomDatabase() {
     abstract fun personDao(): PersonDao
 

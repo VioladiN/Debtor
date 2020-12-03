@@ -4,16 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.ItemTouchHelper.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.violadin.debtorpit.R
 import com.violadin.debtorpit.adapter.ListOfPersonsAdapter
 import com.violadin.debtorpit.viewmodel.PersonViewModel
@@ -62,11 +58,6 @@ class ListFragment: Fragment() {
                     model.allPersons.value?.
                     get(viewHolder.adapterPosition)?.let { model.delete(it) }
                 }
-                Toast.makeText(
-                        view.context,
-                        "Person has been deleted",
-                        Toast.LENGTH_SHORT
-                ).show()
             }
         }
         val itemTouchHelper = ItemTouchHelper(itemTouchHelperRecyclerView)
