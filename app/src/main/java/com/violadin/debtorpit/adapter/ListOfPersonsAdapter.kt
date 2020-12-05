@@ -48,8 +48,10 @@ class ListOfPersonsAdapter(private var persons: List<Person>, private var contex
         var newDebt = 0.0
         if (event.equals("add")) {
             newDebt = person.debt!! + debt
+            newDebt = String.format("%.2f", newDebt).toDouble()
         } else if (event.equals("remove")) {
             newDebt = person.debt!! - debt
+            newDebt = String.format("%.2f", newDebt).toDouble()
             if (newDebt < 0) newDebt = 0.0
         }
         GlobalScope.launch {

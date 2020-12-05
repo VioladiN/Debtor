@@ -68,7 +68,8 @@ class AddDebtsFragment : Fragment() {
 
                 for (i in checked!!.indices) {
                     if (checked?.get(i) == true) {
-                        val newDebt = debt + model.allPersons.value!![i].debt!!
+                        var newDebt = debt + model.allPersons.value!![i].debt!!
+                        newDebt = String.format("%.2f", newDebt).toDouble()
                         GlobalScope.launch {
                             model.allPersons.value?.let { it1 -> model.update(it1[i], newDebt) }
                         }

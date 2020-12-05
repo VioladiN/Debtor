@@ -40,7 +40,6 @@ class MainActivity() : AppCompatActivity() {
     fun openFragment(fragment: Fragment) {
         val transition = supportFragmentManager.beginTransaction()
         transition.replace(R.id.container, fragment)
-        transition.addToBackStack(null)
         transition.commit()
     }
 }
