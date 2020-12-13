@@ -73,6 +73,12 @@ class ListOfPersonsAdapter(private var persons: List<Person>, private var contex
         editText.layoutParams = lp
         alertDialog.setView(editText)
 
+        if (event == "remove") {
+            alertDialog.setNeutralButton("Zero debt") { dialog, which ->
+                updatePerson(person, 0.0, "zero")
+            }
+        }
+
         alertDialog.setPositiveButton("Confirm") {dialog, which ->
             if (editText.text.toString() != "")
                 updatePerson(person, editText.text.toString().toDouble(), event)
