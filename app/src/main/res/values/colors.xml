@@ -18,4 +18,8 @@
     <color name="black_dark">#FF000000</color>
     <color name="gray_dark">#4D4D4D</color>
     <color name="moregray_dark">#303030</color>
+    <color name="text_uppercase">#C3D8FF</color>
+    <color name="input_base">#F1F4FA</color>
+    <color name="base_UI">#00bbff</color>
+    <color name="base_UI_mute">#6600bbff</color>
 </resources>

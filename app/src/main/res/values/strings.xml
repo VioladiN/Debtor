@@ -1,19 +1,34 @@
 <resources>
-    <string name="app_name">Debtorpit</string>
+    <string name="app_name">Debtor</string>
 
-    <string name="list">List</string>
-    <string name="add_person">Add person</string>
-    <string name="add_debt">Add debts</string>
-    <string name="remove_debt">Remove Debts</string>
+    <string name="rybl">\u20bd</string>
+
+    <string name="debt_for_me">Должники</string>
+    <string name="multi_debt">Распределить</string>
+    <string name="my_debt">Мои долги</string>
 
     <string name="btn_debt_add">Add debt</string>
     <string name="btn_debt_remove">Remove debt</string>
 
-    <string name="first_name">First name:</string>
-    <string name="last_name">Last name:</string>
-    <string name="debts">Debt(rubles):</string>
+    <string name="first_name">Имя:</string>
+    <string name="last_name">Фамилия:</string>
 
     <string name="check">Check(rubles):</string>
-    <string name="checkbox">Share on me too</string>
-    <string name="adding_debts">Add debts</string>
+    <string name="checkbox">Распределить на меня</string>
+    <string name="adding_debts">Распределить</string>
+
+    <string name="first_page">Должники</string>
+    <string name="second_page">Распределение долга</string>
+    <string name="third_page">Мои долги</string>
+
+    <string name="list_is_empty">Список пуст</string>
+
+    <string name="add_person">Добавить должника</string>
+
+    <string name="first_name_hint">Имя</string>
+    <string name="last_name_hint">Фамилия</string>
+    <string name="debt_hint">Размер долга</string>
+
+    <string name="empty_field">Поле "Размер долга" должно быть заполнено</string>
+
 </resources>
