@@ -9,4 +9,6 @@ import kotlinx.coroutines.launch
 
 class PersonViewModel(application: Application) : AndroidViewModel(application) {
 
+    private val appDataBase = AppDataBase.getInstance(application.applicationContext)
+
 }

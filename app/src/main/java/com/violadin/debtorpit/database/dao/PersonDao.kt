@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.violadin.debtorpit.domain.model.Person
 
+
 @Dao
 interface PersonDao {
 
@@ -22,7 +23,7 @@ interface PersonDao {
     @Query("SELECT * FROM persons WHERE first_name LIKE :first AND last_name LIKE :last")
     fun findByName(first: String, last: String): Person
 
-    @Query("SELECT * FROM persons WHERE id LIKE :id")
+    @Query("SELECT * FROM persons WHERE id = :id")
     fun findById(id: Int): Person
 
     @Query("UPDATE persons SET debt = :debt WHERE first_name LIKE :first AND last_name LIKE :last")
