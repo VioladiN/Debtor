@@ -1,8 +1,8 @@
 package com.violadin.debtorpit.database.dao
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.violadin.debtorpit.domain.model.Person
+import io.reactivex.Flowable
 
 
 @Dao
@@ -18,7 +18,7 @@ interface PersonDao {
     fun deletePerson(person: Person)
 
     @Query("SELECT * FROM persons")
-    fun getAllPersons(): LiveData<List<Person>>
+    fun getAllPersons(): Flowable<List<Person>>
 
     @Query("SELECT * FROM persons WHERE first_name LIKE :first AND last_name LIKE :last")
     fun findByName(first: String, last: String): Person

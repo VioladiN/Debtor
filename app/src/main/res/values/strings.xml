@@ -31,4 +31,6 @@
 
     <string name="empty_field">Поле "Размер долга" должно быть заполнено</string>
 
+    <string name="person_added">Должник добавлен</string>
+
 </resources>
