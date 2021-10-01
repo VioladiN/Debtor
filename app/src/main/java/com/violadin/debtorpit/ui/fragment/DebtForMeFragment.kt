@@ -17,6 +17,8 @@ import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.debt_for_me_fragment.*
+import kotlinx.android.synthetic.main.fragment_header.view.*
+import kotlinx.android.synthetic.main.my_debt_fragment.view.*
 
 class DebtForMeFragment: Fragment() {
 
@@ -29,6 +31,7 @@ class DebtForMeFragment: Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.debt_for_me_fragment, container, false)
         viewModel = ViewModelProvider(this).get(PersonViewModel::class.java)
+        view.header_text.text = R.string.first_page.toString()
         return view
     }
 

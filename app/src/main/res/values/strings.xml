@@ -12,6 +12,8 @@
 
     <string name="first_name">Имя:</string>
     <string name="last_name">Фамилия:</string>
+    <string name="debt">Долг:</string>
+    <string name="phone">Телефон:</string>
 
     <string name="check">Check(rubles):</string>
     <string name="checkbox">Распределить на меня</string>
@@ -20,6 +22,7 @@
     <string name="first_page">Должники</string>
     <string name="second_page">Распределение долга</string>
     <string name="third_page">Мои долги</string>
+    <string name="add_debtor">Добавить должника</string>
 
     <string name="list_is_empty">Список пуст</string>
 
@@ -28,6 +31,7 @@
     <string name="first_name_hint">Имя</string>
     <string name="last_name_hint">Фамилия</string>
     <string name="debt_hint">Размер долга</string>
+    <string name="phone_hint">Телефон</string>
 
     <string name="empty_field">Поле "Размер долга" должно быть заполнено</string>
 
