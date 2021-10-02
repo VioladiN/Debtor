@@ -10,7 +10,7 @@
     <string name="btn_debt_add">Add debt</string>
     <string name="btn_debt_remove">Remove debt</string>
 
-    <string name="first_name">Имя:</string>
+    <string name="first_name">*Имя:</string>
     <string name="last_name">Фамилия:</string>
     <string name="debt">Долг:</string>
     <string name="phone">Телефон:</string>
@@ -33,7 +33,8 @@
     <string name="debt_hint">Размер долга</string>
     <string name="phone_hint">Телефон</string>
 
-    <string name="empty_field">Поле "Размер долга" должно быть заполнено</string>
+    <string name="empty_field_first_name">Поле "Имя" должно быть заполнено</string>
+    <string name="wrong_filed_debt">Поле "Долг" заполнено некорректно</string>
 
     <string name="person_added">Должник добавлен</string>
 

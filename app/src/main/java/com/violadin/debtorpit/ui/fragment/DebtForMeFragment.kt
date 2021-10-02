@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.violadin.debtorpit.R
@@ -16,6 +18,7 @@ import com.violadin.debtorpit.ui.adapter.DebtForMeAdapter
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.bottom_sheet_create_debtor_fragment.*
 import kotlinx.android.synthetic.main.debt_for_me_fragment.*
 import kotlinx.android.synthetic.main.fragment_header.view.*
 import kotlinx.android.synthetic.main.my_debt_fragment.view.*
@@ -41,9 +44,9 @@ class DebtForMeFragment: Fragment() {
         getAllPersons()
 
         add_person.setOnClickListener {
-            addPerson(Person(firstName = "Vlad", lastName = "Kiselev", debt = 10.0))
+            val createDebtorFragment = BottomSheetCreateDebtorFragment(viewModel)
+            createDebtorFragment.show(requireActivity().supportFragmentManager, null)
         }
-
     }
 
     @SuppressLint("CheckResult")
