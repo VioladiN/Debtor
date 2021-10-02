@@ -22,4 +22,6 @@
     <color name="input_base">#F1F4FA</color>
     <color name="base_UI">#00bbff</color>
     <color name="base_UI_mute">#6600bbff</color>
+    <color name="gray_base">#F1F4FA</color>
+    <color name="red_base">#f00</color>
 </resources>

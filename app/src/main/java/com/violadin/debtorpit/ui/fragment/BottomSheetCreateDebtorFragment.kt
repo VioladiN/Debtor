@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.violadin.debtorpit.R
 import com.violadin.debtorpit.domain.model.Person
@@ -17,11 +16,7 @@ import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.bottom_sheet_create_debtor_fragment.*
-import kotlinx.android.synthetic.main.bottom_sheet_header.*
-import androidx.core.content.ContextCompat.getSystemService
-import androidx.core.content.ContextCompat.getSystemService
-
-
+import kotlinx.android.synthetic.main.bottom_sheet_header_add_person.*
 
 
 class BottomSheetCreateDebtorFragment(val viewModel: PersonViewModel): BottomSheetDialogFragment() {

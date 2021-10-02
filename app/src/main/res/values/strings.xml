@@ -27,6 +27,7 @@
     <string name="list_is_empty">Список пуст</string>
 
     <string name="add_person">Добавить должника</string>
+    <string name="edit_debt">Изменить долг</string>
 
     <string name="first_name_hint">Имя</string>
     <string name="last_name_hint">Фамилия</string>
@@ -37,7 +38,18 @@
     <string name="wrong_filed_debt">Поле "Долг" заполнено некорректно</string>
 
     <string name="person_added">Должник добавлен</string>
+    <string name="person_deleted">Должник удален</string>
+    <string name="debt_changed">Долг изменен</string>
 
     <string name="add">Готово</string>
+
+    <string name="deleting_message">Вы действительно хотите удалить должника?</string>
+    <string name="cancel">Закрыть</string>
+    <string name="delete">Удалить</string>
+
+    <string name="debt_add">Добавить</string>
+    <string name="debt_remove">Списать</string>
+
+    <string name="change_debt_title">Изменение долга</string>
 
 </resources>

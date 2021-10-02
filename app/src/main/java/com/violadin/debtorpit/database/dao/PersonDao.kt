@@ -26,6 +26,6 @@ interface PersonDao {
     @Query("SELECT * FROM persons WHERE id = :id")
     fun findById(id: Int): Person
 
-    @Query("UPDATE persons SET debt = :debt WHERE first_name LIKE :first AND last_name LIKE :last")
-    fun updatePerson(first: String, last: String, debt: Double)
+    @Query("UPDATE persons SET debt = :debt WHERE id = :id")
+    fun updatePerson(id: Int, debt: Double)
 }

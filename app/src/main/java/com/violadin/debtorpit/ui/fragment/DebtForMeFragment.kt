@@ -60,17 +60,8 @@ class DebtForMeFragment: Fragment() {
                 else {
                     list_is_empty_tv.visibility = View.GONE
                     list_item.layoutManager = LinearLayoutManager(requireContext())
-                    list_item.adapter = DebtForMeAdapter(list, requireContext())
+                    list_item.adapter = DebtForMeAdapter(list, requireContext(), viewModel)
                 }
             }
-    }
-
-    @SuppressLint("CheckResult")
-    private fun addPerson(person: Person) {
-        Flowable.fromCallable {
-            viewModel.addPerson(person)
-        }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe {
-            Toast.makeText(context, R.string.person_added, Toast.LENGTH_SHORT).show()
-        }
     }
 }

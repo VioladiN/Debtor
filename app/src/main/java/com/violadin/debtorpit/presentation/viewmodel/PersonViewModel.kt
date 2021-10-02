@@ -18,6 +18,14 @@ class PersonViewModel(application: Application) : AndroidViewModel(application) 
         dao.insertPerson(person)
     }
 
+    fun deletePerson(person: Person) {
+        dao.deletePerson(person)
+    }
+
+    fun updatePerson(id: Int, newDebt: Double) {
+        dao.updatePerson(id, newDebt)
+    }
+
     private fun closeDb() {
         appDataBase.close()
     }
