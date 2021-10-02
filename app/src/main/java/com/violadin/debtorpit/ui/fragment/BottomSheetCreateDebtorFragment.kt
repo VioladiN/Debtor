@@ -48,6 +48,16 @@ class BottomSheetCreateDebtorFragment(val viewModel: PersonViewModel): BottomShe
             )
         }
 
+        tv_add.setOnClickListener {
+            addPerson(
+                Person(
+                    firstName = edit_first_name.text.toString(),
+                    lastName = edit_last_name.text.toString(),
+                    debt = if (edit_debt.text.isEmpty()) 0.0 else edit_debt.text.toString().toDouble()
+                )
+            )
+        }
+
         button_cancel.setOnClickListener {
             dismiss()
         }
