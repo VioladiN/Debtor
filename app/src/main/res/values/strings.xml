@@ -36,10 +36,12 @@
 
     <string name="empty_field_first_name">Поле "Имя" должно быть заполнено</string>
     <string name="wrong_filed_debt">Поле "Долг" заполнено некорректно</string>
+    <string name="wrong_filed_debt_count">Поле "Размер Долга" должно быть заполнено</string>
 
     <string name="person_added">Должник добавлен</string>
     <string name="person_deleted">Должник удален</string>
     <string name="debt_changed">Долг изменен</string>
+    <string name="debts_changed">Долги распределены</string>
 
     <string name="add">Готово</string>
 

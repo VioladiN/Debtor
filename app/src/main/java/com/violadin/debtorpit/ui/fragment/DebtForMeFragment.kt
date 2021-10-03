@@ -17,6 +17,7 @@ import com.violadin.debtorpit.presentation.viewmodel.PersonViewModel
 import com.violadin.debtorpit.ui.adapter.DebtForMeAdapter
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.bottom_sheet_create_debtor_fragment.*
 import kotlinx.android.synthetic.main.debt_for_me_fragment.*
@@ -26,6 +27,7 @@ import kotlinx.android.synthetic.main.my_debt_fragment.view.*
 class DebtForMeFragment: Fragment() {
 
     private lateinit var viewModel: PersonViewModel
+    private val compositeDisposable = CompositeDisposable()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,17 +53,25 @@ class DebtForMeFragment: Fragment() {
 
     @SuppressLint("CheckResult")
     private fun getAllPersons() {
-        viewModel.getAllPersons()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { list ->
-                if (list.isEmpty())
-                    list_is_empty_tv.visibility = View.VISIBLE
-                else {
-                    list_is_empty_tv.visibility = View.GONE
-                    list_item.layoutManager = LinearLayoutManager(requireContext())
-                    list_item.adapter = DebtForMeAdapter(list, requireContext(), viewModel)
+        compositeDisposable.add(
+            viewModel.getAllPersons()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { list ->
+                    if (list.isEmpty())
+                        list_is_empty_tv.visibility = View.VISIBLE
+                    else {
+                        list_is_empty_tv.visibility = View.GONE
+                        list_item.layoutManager = LinearLayoutManager(requireContext())
+                        list_item.adapter = DebtForMeAdapter(list, requireContext(), viewModel)
+                    }
                 }
-            }
+        )
     }
+
+    override fun onPause() {
+        compositeDisposable.clear()
+        super.onPause()
+    }
+
 }

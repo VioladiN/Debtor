@@ -32,6 +32,6 @@ class PersonViewModel(application: Application) : AndroidViewModel(application) 
 
     override fun onCleared() {
         super.onCleared()
-        closeDb()
+//        closeDb()
     }
 }
