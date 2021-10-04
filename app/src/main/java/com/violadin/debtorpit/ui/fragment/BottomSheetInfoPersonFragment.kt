@@ -59,8 +59,22 @@ class BottomSheetInfoPersonFragment(
             showDeleteDialog()
         }
 
+        drop_debt_button.setOnClickListener {
+            updateDebtOfPerson(0.0)
+        }
+
         button_cancel.setOnClickListener {
             dismiss()
+        }
+    }
+
+    @SuppressLint("CheckResult")
+    private fun updateDebtOfPerson(debt: Double) {
+        Flowable.fromCallable {
+            viewModel.updatePerson(person!!.id!!, debt)
+        }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe {
+            debt_count.text = debt.toString()
+            person!!.debt = debt
         }
     }
 
@@ -77,29 +91,19 @@ class BottomSheetInfoPersonFragment(
         val dialog = AlertDialog.Builder(context)
             .setTitle(R.string.change_debt_title)
             .setPositiveButton(R.string.debt_add) { dialog, which ->
-                Flowable.fromCallable {
-                    if (input.text.isNotEmpty()) {
-                        val newDebt = person!!.debt!! + input.text.toString().toDouble()
-                        viewModel.updatePerson(person!!.id!!, newDebt)
-                    }
-                }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe {
-                    Toast.makeText(context, R.string.debt_changed, Toast.LENGTH_SHORT).show()
-                    dismiss()
+                if (input.text.isNotEmpty()) {
+                    val newDebt = person!!.debt!! + input.text.toString().toDouble()
+                    updateDebtOfPerson(newDebt)
+                    dialog.cancel()
                 }
-                dialog.cancel()
             }
             .setNegativeButton(R.string.debt_remove) { dialog, which ->
-                Flowable.fromCallable {
-                    if (input.text.isNotEmpty()) {
-                        val newDebt = person!!.debt!! - input.text.toString().toDouble()
-                        if (newDebt < 0.0)
-                            viewModel.updatePerson(person!!.id!!, 0.0)
-                        else
-                            viewModel.updatePerson(person!!.id!!, newDebt)
-                    }
-                }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe {
-                    Toast.makeText(context, R.string.debt_changed, Toast.LENGTH_SHORT).show()
-                    dismiss()
+                if (input.text.isNotEmpty()) {
+                    val newDebt = person!!.debt!! - input.text.toString().toDouble()
+                    if (newDebt < 0.0)
+                        updateDebtOfPerson(0.0)
+                    else
+                        updateDebtOfPerson(newDebt)
                 }
                 dialog.cancel()
             }
@@ -123,7 +127,6 @@ class BottomSheetInfoPersonFragment(
                 Flowable.fromCallable {
                         viewModel.deletePerson(person!!)
                 }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe {
-                    Toast.makeText(context, R.string.person_deleted, Toast.LENGTH_SHORT).show()
                     dismiss()
                 }
                 dialog.cancel()

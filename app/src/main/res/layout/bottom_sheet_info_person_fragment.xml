@@ -71,16 +71,30 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/last_name_text" />
 
+    <Button
+        android:id="@+id/drop_debt_button"
+        style="@style/ButtonMainStyle.BlueButton"
+        android:text="@string/drop_debt"
+        android:layout_marginTop="10dp"
+        android:layout_width="0dp"
+        android:textAllCaps="false"
+        android:textSize="17sp"
+        android:stateListAnimator="@null"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/delete_person_button"
+        app:layout_constraintTop_toBottomOf="@id/edit_debt_button" />
+
     <ImageButton
         android:id="@+id/delete_person_button"
         style="@style/ButtonMainStyle.RedButton"
         android:layout_marginTop="10dp"
+        android:layout_width="120dp"
         android:textAllCaps="false"
         android:textSize="17sp"
         android:stateListAnimator="@null"
         android:src="@drawable/ic_trash"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/drop_debt_button"
         app:layout_constraintTop_toBottomOf="@id/edit_debt_button" />
 
     <ImageView

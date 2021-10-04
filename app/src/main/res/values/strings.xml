@@ -28,6 +28,7 @@
 
     <string name="add_person">Добавить должника</string>
     <string name="edit_debt">Изменить долг</string>
+    <string name="drop_debt">Сбросить долг</string>
 
     <string name="first_name_hint">Имя</string>
     <string name="last_name_hint">Фамилия</string>

@@ -1,10 +1,12 @@
 package com.violadin.debtorpit.ui.fragment
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -71,7 +73,11 @@ class MultiDebtFragment : Fragment() {
                 viewModel.updatePerson(id, newDebt)
             }
         }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe {
-            Toast.makeText(context, R.string.debts_changed, Toast.LENGTH_SHORT).show()
+            val imm: InputMethodManager? =
+                requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
+            imm?.hideSoftInputFromWindow(debt_ed.windowToken, 0)
+            debt_ed.text.clear()
+            debt_ed.clearFocus()
         }
     }
 
