@@ -5,6 +5,7 @@ import androidx.lifecycle.*
 import com.violadin.debtorpit.database.AppDataBase
 import com.violadin.debtorpit.domain.model.Person
 import io.reactivex.Flowable
+import java.math.RoundingMode
 
 class PersonViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -23,7 +24,7 @@ class PersonViewModel(application: Application) : AndroidViewModel(application) 
     }
 
     fun updatePerson(id: Int, newDebt: Double) {
-        dao.updatePerson(id, newDebt)
+        dao.updatePerson(id, newDebt.toBigDecimal().setScale(2, RoundingMode.UP).toDouble())
     }
 
     private fun closeDb() {
