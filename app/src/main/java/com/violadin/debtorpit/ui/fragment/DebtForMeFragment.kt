@@ -70,7 +70,7 @@ class DebtForMeFragment: Fragment() {
     }
 
     override fun onPause() {
-        compositeDisposable.clear()
+        compositeDisposable.dispose()
         super.onPause()
     }
 
