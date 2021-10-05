@@ -10,7 +10,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.violadin.debtorpit.R
-import com.violadin.debtorpit.domain.model.Person
+import com.violadin.debtorpit.domain.model.MyDebtPerson
 import com.violadin.debtorpit.presentation.viewmodel.PersonViewModel
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -18,8 +18,9 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.bottom_sheet_create_debtor_fragment.*
 import kotlinx.android.synthetic.main.bottom_sheet_header_add_person.*
 
-
-class BottomSheetCreateDebtorFragment(val viewModel: PersonViewModel): BottomSheetDialogFragment() {
+class BottomSheetCreateMyDebtPersonFragment(
+    val viewModel: PersonViewModel
+): BottomSheetDialogFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,25 +33,24 @@ class BottomSheetCreateDebtorFragment(val viewModel: PersonViewModel): BottomShe
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        edit_phone.visibility = View.GONE
 
         create_debtor.setOnClickListener {
-            addPerson(
-                Person(
+            insertPersonMyDebt(
+                MyDebtPerson(
                     firstName = edit_first_name.text.toString(),
                     lastName = edit_last_name.text.toString(),
-                    debt = if (edit_debt.text.isEmpty()) 0.0 else edit_debt.text.toString().toDouble(),
-                    phone = edit_phone.text.toString()
+                    debt = if (edit_debt.text.isEmpty()) 0.0 else edit_debt.text.toString().toDouble()
                 )
             )
         }
 
         tv_add.setOnClickListener {
-            addPerson(
-                Person(
+            insertPersonMyDebt(
+                MyDebtPerson(
                     firstName = edit_first_name.text.toString(),
                     lastName = edit_last_name.text.toString(),
-                    debt = if (edit_debt.text.isEmpty()) 0.0 else edit_debt.text.toString().toDouble(),
-                    phone = edit_phone.text.toString()
+                    debt = if (edit_debt.text.isEmpty()) 0.0 else edit_debt.text.toString().toDouble()
                 )
             )
         }
@@ -67,10 +67,10 @@ class BottomSheetCreateDebtorFragment(val viewModel: PersonViewModel): BottomShe
     }
 
     @SuppressLint("CheckResult")
-    private fun addPerson(person: Person) {
+    private fun insertPersonMyDebt(person: MyDebtPerson) {
         Flowable.fromCallable {
             if (!person.firstName.isNullOrEmpty())
-                viewModel.addPerson(person)
+                viewModel.insertPersonMyDebt(person)
         }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe {
             if (!person.firstName.isNullOrEmpty()) {
                 Toast.makeText(context, R.string.person_added, Toast.LENGTH_SHORT).show()

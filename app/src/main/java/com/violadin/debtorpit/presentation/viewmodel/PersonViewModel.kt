@@ -3,6 +3,7 @@ package com.violadin.debtorpit.presentation.viewmodel
 import android.app.Application
 import androidx.lifecycle.*
 import com.violadin.debtorpit.database.AppDataBase
+import com.violadin.debtorpit.domain.model.MyDebtPerson
 import com.violadin.debtorpit.domain.model.Person
 import io.reactivex.Flowable
 import java.math.RoundingMode
@@ -25,6 +26,21 @@ class PersonViewModel(application: Application) : AndroidViewModel(application) 
 
     fun updatePerson(id: Int, newDebt: Double) {
         dao.updatePerson(id, newDebt.toBigDecimal().setScale(2, RoundingMode.UP).toDouble())
+    }
+
+    fun insertPersonMyDebt(person: MyDebtPerson) {
+        dao.insertPersonMyDebt(person)
+    }
+
+    fun getAllPersonMyDebt():Flowable<List<MyDebtPerson>> =
+        dao.getAllPersonsMyDebt()
+
+    fun updatePersonMyDebt(id: Int, newDebt: Double) {
+        dao.updatePersonMyDebt(id, newDebt.toBigDecimal().setScale(2, RoundingMode.UP).toDouble())
+    }
+
+    fun deletePersonMyDebt(person: MyDebtPerson) {
+        dao.deletePersonMyDebt(person)
     }
 
     private fun closeDb() {
