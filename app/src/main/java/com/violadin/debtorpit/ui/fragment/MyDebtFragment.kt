@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.violadin.debtorpit.R
 import com.violadin.debtorpit.domain.model.MyDebtPerson
 import com.violadin.debtorpit.domain.model.Person
@@ -48,6 +49,21 @@ class MyDebtFragment : Fragment() {
             val createDebtorFragment = BottomSheetCreateMyDebtPersonFragment(viewModel)
             createDebtorFragment.show(requireActivity().supportFragmentManager, null)
         }
+
+        list_item.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                if (dy > 0 || dy < 0 && add_person.isShown)
+                    add_person.hide()
+            }
+
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+
+                if (newState == RecyclerView.SCROLL_STATE_IDLE)
+                    add_person.show()
+
+                super.onScrollStateChanged(recyclerView, newState)
+            }
+        })
 
     }
 

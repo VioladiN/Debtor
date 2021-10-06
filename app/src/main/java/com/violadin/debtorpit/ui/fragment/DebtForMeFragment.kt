@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.violadin.debtorpit.R
 import com.violadin.debtorpit.domain.model.Person
 import com.violadin.debtorpit.presentation.viewmodel.PersonViewModel
@@ -49,6 +50,21 @@ class DebtForMeFragment: Fragment() {
             val createDebtorFragment = BottomSheetCreateDebtorFragment(viewModel)
             createDebtorFragment.show(requireActivity().supportFragmentManager, null)
         }
+
+        list_item.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                if (dy > 0 || dy < 0 && add_person.isShown)
+                    add_person.hide()
+            }
+
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+
+                if (newState == RecyclerView.SCROLL_STATE_IDLE)
+                    add_person.show()
+
+                super.onScrollStateChanged(recyclerView, newState)
+            }
+        })
     }
 
     @SuppressLint("CheckResult")
