@@ -61,7 +61,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/list_item"
-            android:paddingBottom="100dp"
+            android:paddingBottom="270dp"
             android:clipToPadding="false"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
