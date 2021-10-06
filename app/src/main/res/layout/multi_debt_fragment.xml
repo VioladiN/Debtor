@@ -16,13 +16,14 @@
 
         <EditText
             android:id="@+id/debt_ed"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="@string/debt_hint"
             android:inputType="number"
-            android:layout_marginHorizontal="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginVertical="10dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/cb_me_too"
             app:layout_constraintTop_toBottomOf="@id/header" />
 
         <CheckBox
@@ -30,17 +31,21 @@
             android:text="@string/checkbox"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:layout_margin="16dp"
-            app:layout_constraintTop_toBottomOf="@id/debt_ed"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:layout_marginHorizontal="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header"
+            app:layout_constraintBottom_toTopOf="@id/add_debts"
+            app:layout_constraintStart_toEndOf="@id/debt_ed"/>
 
         <Button
             android:id="@+id/add_debts"
+            style="@style/ButtonMainStyle.BlueButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/adding_debts"
-            android:layout_margin="16dp"
+            android:layout_margin="10dp"
             android:textAllCaps="false"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/debt_ed" />
 
@@ -58,6 +63,7 @@
             android:id="@+id/list_item"
             android:paddingBottom="100dp"
             android:clipToPadding="false"
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/add_debts" />

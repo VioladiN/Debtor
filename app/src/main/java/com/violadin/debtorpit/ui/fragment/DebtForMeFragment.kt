@@ -37,7 +37,7 @@ class DebtForMeFragment: Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.debt_for_me_fragment, container, false)
         viewModel = ViewModelProvider(this).get(PersonViewModel::class.java)
-        view.header_text.text = R.string.first_page.toString()
+        view.header_text.text = getText(R.string.first_page)
         return view
     }
 

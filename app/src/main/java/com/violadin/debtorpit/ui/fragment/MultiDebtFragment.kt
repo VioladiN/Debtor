@@ -36,7 +36,7 @@ class MultiDebtFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.multi_debt_fragment, container, false)
         viewModel = ViewModelProvider(this).get(PersonViewModel::class.java)
-        view.header_text.text = R.string.second_page.toString()
+        view.header_text.text = getText(R.string.second_page)
         return view
     }
 
