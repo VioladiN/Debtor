@@ -40,10 +40,11 @@
         <Button
             android:id="@+id/add_debts"
             style="@style/ButtonMainStyle.BlueButton"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/adding_debts"
-            android:layout_margin="10dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="10dp"
             android:textAllCaps="false"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
