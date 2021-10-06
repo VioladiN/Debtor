@@ -3,6 +3,8 @@ package com.violadin.debtorpit.ui.fragment
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.text.InputType
 import android.view.LayoutInflater
@@ -22,6 +24,8 @@ import kotlinx.android.synthetic.main.bottom_sheet_info_person_fragment.*
 import android.widget.LinearLayout
 
 import android.widget.EditText
+import kotlinx.android.synthetic.main.bottom_sheet_header_add_person.button_cancel
+import kotlinx.android.synthetic.main.bottom_sheet_header_info_person.*
 
 class BottomSheetInfoPersonFragment(
     val viewModel: PersonViewModel
@@ -43,6 +47,18 @@ class BottomSheetInfoPersonFragment(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        if (person?.phone.isNullOrEmpty()) {
+            phone_text.visibility = View.GONE
+            call_person.visibility = View.GONE
+        } else {
+            phone_text.text = person!!.phone
+            call_person.setOnClickListener {
+                val intent = Intent(Intent.ACTION_DIAL)
+                intent.data = Uri.parse("tel:${phone_text.text}")
+                startActivity(intent)
+            }
+        }
 
         first_name_text.text = person!!.firstName
         if (person?.lastName.isNullOrEmpty())
