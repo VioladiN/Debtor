@@ -9,6 +9,7 @@ import android.transition.TransitionManager
 import android.view.View
 import android.view.animation.BounceInterpolator
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.ActivityNavigator
 import com.violadin.debtorpit.R
 import kotlinx.android.synthetic.main.splash_activity.*
@@ -16,6 +17,7 @@ import kotlinx.android.synthetic.main.splash_activity.*
 class SplashActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.splash_activity)
     }
