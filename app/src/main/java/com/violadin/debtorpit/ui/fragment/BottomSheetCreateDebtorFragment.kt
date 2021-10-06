@@ -34,6 +34,7 @@ class BottomSheetCreateDebtorFragment(val viewModel: PersonViewModel): BottomShe
         super.onViewCreated(view, savedInstanceState)
 
         create_debtor.setOnClickListener {
+            it.apply { isEnabled = false; postDelayed({isEnabled = true}, 1000) }
             addPerson(
                 Person(
                     firstName = edit_first_name.text.toString(),
@@ -45,6 +46,7 @@ class BottomSheetCreateDebtorFragment(val viewModel: PersonViewModel): BottomShe
         }
 
         tv_add.setOnClickListener {
+            it.apply { isEnabled = false; postDelayed({isEnabled = true}, 1000) }
             addPerson(
                 Person(
                     firstName = edit_first_name.text.toString(),
@@ -56,6 +58,7 @@ class BottomSheetCreateDebtorFragment(val viewModel: PersonViewModel): BottomShe
         }
 
         button_cancel.setOnClickListener {
+            it.apply { isEnabled = false; postDelayed({isEnabled = true}, 1000) }
             dismiss()
         }
 

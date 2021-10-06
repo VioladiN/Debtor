@@ -37,6 +37,7 @@ class MyDebtAdapter(
 
         init {
             view.setOnClickListener {
+                it.apply { isEnabled = false; postDelayed({isEnabled = true}, 1000) }
                 val createDebtorFragment = BottomSheetInfoPersonMyDebtFragment(viewModel)
                 val bundle = Bundle()
                 bundle.putSerializable("person", personMyDebt[bindingAdapterPosition])

@@ -36,6 +36,7 @@ class BottomSheetCreateMyDebtPersonFragment(
         edit_phone.visibility = View.GONE
 
         create_debtor.setOnClickListener {
+            it.apply { isEnabled = false; postDelayed({isEnabled = true}, 1000) }
             insertPersonMyDebt(
                 MyDebtPerson(
                     firstName = edit_first_name.text.toString(),
@@ -46,6 +47,7 @@ class BottomSheetCreateMyDebtPersonFragment(
         }
 
         tv_add.setOnClickListener {
+            it.apply { isEnabled = false; postDelayed({isEnabled = true}, 1000) }
             insertPersonMyDebt(
                 MyDebtPerson(
                     firstName = edit_first_name.text.toString(),
@@ -56,6 +58,7 @@ class BottomSheetCreateMyDebtPersonFragment(
         }
 
         button_cancel.setOnClickListener {
+            it.apply { isEnabled = false; postDelayed({isEnabled = true}, 1000) }
             dismiss()
         }
 

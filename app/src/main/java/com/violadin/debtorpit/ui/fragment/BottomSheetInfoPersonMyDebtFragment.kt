@@ -15,6 +15,8 @@ import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.bottom_sheet_header_add_person.*
+import kotlinx.android.synthetic.main.bottom_sheet_header_add_person.button_cancel
+import kotlinx.android.synthetic.main.bottom_sheet_header_info_person.*
 import kotlinx.android.synthetic.main.bottom_sheet_info_person_fragment.*
 
 class BottomSheetInfoPersonMyDebtFragment(
@@ -39,6 +41,8 @@ class BottomSheetInfoPersonMyDebtFragment(
         super.onViewCreated(view, savedInstanceState)
 
         edit_debt_button.visibility = View.GONE
+        call_person.visibility = View.GONE
+        phone_text.visibility=View.GONE
 
         first_name_text.text = person!!.firstName
         if (person?.lastName.isNullOrEmpty())
@@ -48,14 +52,17 @@ class BottomSheetInfoPersonMyDebtFragment(
         debt_count.text = person!!.debt.toString()
 
         drop_debt_button.setOnClickListener {
+            it.apply { isEnabled = false; postDelayed({isEnabled = true}, 1000) }
             updateDebtOfPerson(0.0)
         }
 
         delete_person_button.setOnClickListener {
+            it.apply { isEnabled = false; postDelayed({isEnabled = true}, 1000) }
             showDeleteDialog()
         }
 
         button_cancel.setOnClickListener {
+            it.apply { isEnabled = false; postDelayed({isEnabled = true}, 1000) }
             dismiss()
         }
     }

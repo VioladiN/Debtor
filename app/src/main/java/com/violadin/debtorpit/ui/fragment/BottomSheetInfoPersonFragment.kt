@@ -54,6 +54,7 @@ class BottomSheetInfoPersonFragment(
         } else {
             phone_text.text = person!!.phone
             call_person.setOnClickListener {
+                it.apply { isEnabled = false; postDelayed({isEnabled = true}, 1000) }
                 val intent = Intent(Intent.ACTION_DIAL)
                 intent.data = Uri.parse("tel:${phone_text.text}")
                 startActivity(intent)
@@ -68,18 +69,22 @@ class BottomSheetInfoPersonFragment(
         debt_count.text = person!!.debt.toString()
 
         edit_debt_button.setOnClickListener {
+            it.apply { isEnabled = false; postDelayed({isEnabled = true}, 1000) }
             showEditDebtDialog()
         }
 
         delete_person_button.setOnClickListener {
+            it.apply { isEnabled = false; postDelayed({isEnabled = true}, 1000) }
             showDeleteDialog()
         }
 
         drop_debt_button.setOnClickListener {
+            it.apply { isEnabled = false; postDelayed({isEnabled = true}, 1000) }
             updateDebtOfPerson(0.0)
         }
 
         button_cancel.setOnClickListener {
+            it.apply { isEnabled = false; postDelayed({isEnabled = true}, 1000) }
             dismiss()
         }
     }
