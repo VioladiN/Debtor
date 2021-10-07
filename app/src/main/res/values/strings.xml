@@ -10,10 +10,10 @@
     <string name="btn_debt_add">Add debt</string>
     <string name="btn_debt_remove">Remove debt</string>
 
-    <string name="first_name">*Имя:</string>
-    <string name="last_name">Фамилия:</string>
-    <string name="debt">Долг:</string>
-    <string name="phone">Телефон:</string>
+    <string name="first_name">Имя*</string>
+    <string name="last_name">Фамилия</string>
+    <string name="debt">Долг</string>
+    <string name="phone">Телефон</string>
 
     <string name="check">Check(rubles):</string>
     <string name="checkbox">Распределить на меня</string>
@@ -30,10 +30,10 @@
     <string name="edit_debt">Изменить долг</string>
     <string name="drop_debt">Сбросить долг</string>
 
-    <string name="first_name_hint">Имя</string>
-    <string name="last_name_hint">Фамилия</string>
-    <string name="debt_hint">Размер долга</string>
-    <string name="phone_hint">Телефон</string>
+    <string name="first_name_hint">Иван</string>
+    <string name="last_name_hint">Иванов</string>
+    <string name="debt_hint">100</string>
+    <string name="phone_hint">+79995555555</string>
 
     <string name="empty_field_first_name">Поле "Имя" должно быть заполнено</string>
     <string name="wrong_filed_debt">Поле "Долг" заполнено некорректно</string>
