@@ -24,6 +24,7 @@ import kotlinx.android.synthetic.main.bottom_sheet_info_person_fragment.*
 import android.widget.LinearLayout
 
 import android.widget.EditText
+import androidx.core.view.marginStart
 import kotlinx.android.synthetic.main.bottom_sheet_header_add_person.button_cancel
 import kotlinx.android.synthetic.main.bottom_sheet_header_info_person.*
 
@@ -108,7 +109,7 @@ class BottomSheetInfoPersonFragment(
         )
         input.layoutParams = lp
         input.inputType = InputType.TYPE_CLASS_NUMBER
-        input.hint = R.string.debt_hint.toString()
+        input.hint = requireContext().getString(R.string.debt_hint)
         val dialog = AlertDialog.Builder(context)
             .setTitle(R.string.change_debt_title)
             .setPositiveButton(R.string.debt_add) { dialog, which ->
