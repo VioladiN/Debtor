@@ -5,8 +5,8 @@
     <solid
         android:color="@color/base_UI"/>
     <corners
-        android:radius="18dp"/>
+        android:radius="25dp"/>
     <size
-        android:width="360dp"
-        android:height="55dp"/>
+        android:width="100dp"
+        android:height="20dp"/>
 </shape>

@@ -7,6 +7,6 @@
       android:scaleY="0.5625">
     <path
         android:pathData="M0,0h192v192h-192z"
-        android:fillColor="#20233D"/>
+        android:fillColor="#00bbff"/>
   </group>
 </vector>
