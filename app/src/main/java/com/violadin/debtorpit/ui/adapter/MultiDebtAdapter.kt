@@ -1,5 +1,8 @@
 package com.violadin.debtorpit.ui.adapter
 
+import android.animation.ArgbEvaluator
+import android.animation.ValueAnimator
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.TypedValue
 import android.view.LayoutInflater
@@ -43,10 +46,12 @@ class MultiDebtAdapter(
                     selectedPersons.remove(persons[absoluteAdapterPosition].id!!)
                     val typedValue = TypedValue()
                     context.theme.resolveAttribute(R.attr.colorOnPrimary, typedValue, true)
-                    view.setBackgroundColor(typedValue.data)
+                    changeColor(view, context.getColor(R.color.selected_base), typedValue.data)
                 } else {
                     selectedPersons.add(persons[absoluteAdapterPosition].id!!)
-                    view.setBackgroundColor(context.getColor(R.color.selected_base))
+                    val typedValue = TypedValue()
+                    context.theme.resolveAttribute(R.attr.colorOnPrimary, typedValue, true)
+                    changeColor(view, typedValue.data, context.getColor(R.color.selected_base))
                 }
                 clickSubject.onNext(selectedPersons)
             }
@@ -64,6 +69,16 @@ class MultiDebtAdapter(
             context.theme.resolveAttribute(R.attr.colorOnPrimary, typedValue, true)
             viewHolder.itemView.setBackgroundColor(typedValue.data)
         }
+    }
+
+    @SuppressLint("Recycle")
+    private fun changeColor(view: View, colorFrom: Int, colorTo: Int) {
+        val colorAnimation = ValueAnimator.ofObject(ArgbEvaluator(), colorFrom, colorTo)
+        colorAnimation.duration = 300
+        colorAnimation.addUpdateListener {
+            view.setBackgroundColor(it.animatedValue as Int)
+        }
+        colorAnimation.start()
     }
 
     override fun getItemCount(): Int =

@@ -67,7 +67,8 @@
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/add_debts" />
+            app:layout_constraintTop_toBottomOf="@id/add_debts"
+            tools:listitem="@layout/recyclerview_row_debt_for_me"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
