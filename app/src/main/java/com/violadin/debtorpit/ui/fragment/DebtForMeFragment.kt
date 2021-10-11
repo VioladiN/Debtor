@@ -72,9 +72,11 @@ class DebtForMeFragment: Fragment() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { list ->
-                    if (list.isEmpty())
+                    if (list.isEmpty()) {
                         list_is_empty_tv.visibility = View.VISIBLE
-                    else {
+                        list_item.layoutManager = LinearLayoutManager(requireContext())
+                        list_item.adapter = DebtForMeAdapter(list, requireContext(), viewModel)
+                    } else {
                         list_is_empty_tv.visibility = View.GONE
                         list_item.layoutManager = LinearLayoutManager(requireContext())
                         list_item.adapter = DebtForMeAdapter(list, requireContext(), viewModel)

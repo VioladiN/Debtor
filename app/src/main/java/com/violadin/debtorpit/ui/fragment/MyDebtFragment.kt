@@ -73,6 +73,8 @@ class MyDebtFragment : Fragment() {
                 .subscribe { list ->
                     if (list.isEmpty()) {
                         list_is_empty_tv.visibility = View.VISIBLE
+                        list_item.layoutManager = LinearLayoutManager(requireContext())
+                        list_item.adapter = MyDebtAdapter(list, requireContext(), viewModel)
                     } else {
                         list_is_empty_tv.visibility = View.GONE
                         list_item.layoutManager = LinearLayoutManager(requireContext())
