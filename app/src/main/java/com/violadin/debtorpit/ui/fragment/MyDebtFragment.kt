@@ -71,21 +71,23 @@ class MyDebtFragment : Fragment() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { list ->
-                    if (list.isEmpty()) {
-                        list_is_empty_tv.visibility = View.VISIBLE
-                        list_item.layoutManager = LinearLayoutManager(requireContext())
-                        list_item.adapter = MyDebtAdapter(list, requireContext(), viewModel)
-                    } else {
-                        list_is_empty_tv.visibility = View.GONE
-                        list_item.layoutManager = LinearLayoutManager(requireContext())
-                        list_item.adapter = MyDebtAdapter(list, requireContext(), viewModel)
-                    }
+                    try {
+                        if (list.isEmpty()) {
+                            list_is_empty_tv.visibility = View.VISIBLE
+                            list_item.layoutManager = LinearLayoutManager(requireContext())
+                            list_item.adapter = MyDebtAdapter(list, requireContext(), viewModel)
+                        } else {
+                            list_is_empty_tv.visibility = View.GONE
+                            list_item.layoutManager = LinearLayoutManager(requireContext())
+                            list_item.adapter = MyDebtAdapter(list, requireContext(), viewModel)
+                        }
+                    } catch (e: Exception) {}
                 }
         )
     }
 
-    override fun onPause() {
+    override fun onDestroy() {
         compositeDisposable.dispose()
-        super.onPause()
+        super.onDestroy()
     }
 }

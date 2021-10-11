@@ -87,25 +87,27 @@ class MultiDebtFragment : Fragment() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { list ->
-                    persons = list
-                    if (list.isEmpty())
-                        list_empty_tv.visibility = View.VISIBLE
-                    else {
-                        list_empty_tv.visibility = View.GONE
-                        list_item.layoutManager = LinearLayoutManager(requireContext())
-                        val adapter = MultiDebtAdapter(list, requireContext())
-                        adapter.clickEvent.subscribe {
-                            idsPersons = it as ArrayList<Int>
+                    try {
+                        persons = list
+                        if (list.isEmpty())
+                            list_empty_tv.visibility = View.VISIBLE
+                        else {
+                            list_empty_tv.visibility = View.GONE
+                            list_item.layoutManager = LinearLayoutManager(requireContext())
+                            val adapter = MultiDebtAdapter(list, requireContext())
+                            adapter.clickEvent.subscribe {
+                                idsPersons = it as ArrayList<Int>
+                            }
+                            list_item.adapter = adapter
                         }
-                        list_item.adapter = adapter
-                    }
+                    } catch (e: Exception) {}
                 }
         )
     }
 
-    override fun onPause() {
+    override fun onDestroy() {
         compositeDisposable.dispose()
-        super.onPause()
+        super.onDestroy()
     }
 
 }
