@@ -43,12 +43,7 @@ class PersonViewModel(application: Application) : AndroidViewModel(application) 
         dao.deletePersonMyDebt(person)
     }
 
-    private fun closeDb() {
+    fun closeDb() {
         appDataBase.close()
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-//        closeDb()
     }
 }

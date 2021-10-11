@@ -3,11 +3,13 @@ package com.violadin.debtorpit.ui.activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.violadin.debtorpit.R
+import com.violadin.debtorpit.presentation.viewmodel.PersonViewModel
 import com.violadin.debtorpit.ui.fragment.MyDebtFragment
 import com.violadin.debtorpit.ui.fragment.MultiDebtFragment
 import com.violadin.debtorpit.ui.fragment.DebtForMeFragment
@@ -16,9 +18,13 @@ import kotlinx.android.synthetic.main.bottom_nav_menu_activity.*
 
 class BottomNavBarActivity : AppCompatActivity() {
 
+    private lateinit var viewModel: PersonViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.bottom_nav_menu_activity)
+
+        viewModel = ViewModelProvider(this).get(PersonViewModel::class.java)
 
         val bottomAppBarBackground = bottom_navigation.background as MaterialShapeDrawable
         bottomAppBarBackground.shapeAppearanceModel =
@@ -42,4 +48,10 @@ class BottomNavBarActivity : AppCompatActivity() {
         NavigationUI.setupWithNavController(
             bottom_navigation, navHostFragment.navController)
     }
+
+    override fun onDestroy() {
+        viewModel.closeDb()
+        super.onDestroy()
+    }
+
 }
