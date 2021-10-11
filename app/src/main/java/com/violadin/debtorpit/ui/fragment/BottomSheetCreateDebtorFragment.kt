@@ -25,8 +25,9 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.bottom_sheet_create_debtor_fragment.*
 import kotlinx.android.synthetic.main.bottom_sheet_header_add_person.*
 
-
-class BottomSheetCreateDebtorFragment(val viewModel: PersonViewModel): BottomSheetDialogFragment() {
+class BottomSheetCreateDebtorFragment(
+    val viewModel: PersonViewModel
+): BottomSheetDialogFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -75,15 +76,14 @@ class BottomSheetCreateDebtorFragment(val viewModel: PersonViewModel): BottomShe
 
     @SuppressLint("CheckResult")
     private fun addPerson(person: Person) {
+        if (person.firstName.isNullOrEmpty()) {
+            Toast.makeText(context, R.string.empty_field_first_name, Toast.LENGTH_SHORT).show()
+            return
+        }
         Flowable.fromCallable {
-            if (!person.firstName.isNullOrEmpty())
-                viewModel.addPerson(person)
+            viewModel.addPerson(person)
         }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe {
-            if (!person.firstName.isNullOrEmpty()) {
-                Toast.makeText(context, R.string.person_added, Toast.LENGTH_SHORT).show()
-                dismiss()
-            } else
-                Toast.makeText(context, R.string.empty_field_first_name, Toast.LENGTH_SHORT).show()
+            dismiss()
         }
     }
 

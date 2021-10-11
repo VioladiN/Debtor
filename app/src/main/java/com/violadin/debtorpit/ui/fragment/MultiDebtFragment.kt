@@ -53,8 +53,7 @@ class MultiDebtFragment : Fragment() {
                 if (cb_me_too.isChecked)
                     ++count
                 count += idsPersons.size
-                var newDebt = debt_ed.text.toString().toDouble() / count
-                updatePersons(newDebt)
+                updatePersons((debt_ed.text.toString().toDouble() / count))
             }
         }
     }
@@ -99,7 +98,6 @@ class MultiDebtFragment : Fragment() {
                             idsPersons = it as ArrayList<Int>
                         }
                         list_item.adapter = adapter
-
                     }
                 }
         )

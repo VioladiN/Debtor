@@ -74,7 +74,7 @@ class MultiDebtAdapter(
     @SuppressLint("Recycle")
     private fun changeColor(view: View, colorFrom: Int, colorTo: Int) {
         val colorAnimation = ValueAnimator.ofObject(ArgbEvaluator(), colorFrom, colorTo)
-        colorAnimation.duration = 300
+        colorAnimation.duration = 400
         colorAnimation.addUpdateListener {
             view.setBackgroundColor(it.animatedValue as Int)
         }

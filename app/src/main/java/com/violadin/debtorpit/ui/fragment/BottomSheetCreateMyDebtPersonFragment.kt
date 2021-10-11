@@ -74,15 +74,14 @@ class BottomSheetCreateMyDebtPersonFragment(
 
     @SuppressLint("CheckResult")
     private fun insertPersonMyDebt(person: MyDebtPerson) {
+        if (person.firstName.isNullOrEmpty()) {
+            Toast.makeText(context, R.string.empty_field_first_name, Toast.LENGTH_SHORT).show()
+            return
+        }
         Flowable.fromCallable {
-            if (!person.firstName.isNullOrEmpty())
-                viewModel.insertPersonMyDebt(person)
+            viewModel.insertPersonMyDebt(person)
         }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe {
-            if (!person.firstName.isNullOrEmpty()) {
-                Toast.makeText(context, R.string.person_added, Toast.LENGTH_SHORT).show()
-                dismiss()
-            } else
-                Toast.makeText(context, R.string.empty_field_first_name, Toast.LENGTH_SHORT).show()
+            dismiss()
         }
     }
 

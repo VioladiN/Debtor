@@ -57,10 +57,8 @@ class MyDebtFragment : Fragment() {
             }
 
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-
                 if (newState == RecyclerView.SCROLL_STATE_IDLE)
                     add_person.show()
-
                 super.onScrollStateChanged(recyclerView, newState)
             }
         })
