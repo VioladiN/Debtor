@@ -47,6 +47,7 @@ class BottomSheetCreateMyDebtPersonFragment(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        header_text.text = resources.getString(R.string.add_person_my_debt)
         ll_phone.visibility = View.GONE
 
         create_debtor.setOnClickListener {

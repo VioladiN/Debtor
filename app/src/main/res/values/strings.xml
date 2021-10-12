@@ -27,6 +27,7 @@
     <string name="list_is_empty">Список пуст</string>
 
     <string name="add_person">Добавить должника</string>
+    <string name="add_person_my_debt">Добавить займодателя</string>
     <string name="edit_debt">Изменить долг</string>
     <string name="drop_debt">Сбросить долг</string>
 
