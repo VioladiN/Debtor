@@ -62,6 +62,18 @@ class BottomSheetCreateDebtorFragment(
             )
         }
 
+        button_done.setOnClickListener {
+            it.apply { isEnabled = false; postDelayed({isEnabled = true}, 1000) }
+            addPerson(
+                Person(
+                    firstName = edit_first_name.text.toString(),
+                    lastName = edit_last_name.text.toString(),
+                    debt = if (edit_debt.text.isEmpty()) 0.0 else edit_debt.text.toString().toDouble(),
+                    phone = edit_phone.text.toString()
+                )
+            )
+        }
+
         button_cancel.setOnClickListener {
             it.apply { isEnabled = false; postDelayed({isEnabled = true}, 1000) }
             dismiss()
