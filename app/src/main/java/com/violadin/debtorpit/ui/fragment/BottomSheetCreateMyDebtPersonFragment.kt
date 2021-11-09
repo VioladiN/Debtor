@@ -40,7 +40,7 @@ class BottomSheetCreateMyDebtPersonFragment(
                 val bottomSheet = d.findViewById<FrameLayout>(R.id.design_bottom_sheet)
                 val bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet!!)
                 bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
-            }, 0)
+            }, 100)
         }
         return view
     }
