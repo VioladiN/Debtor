@@ -50,7 +50,7 @@
         <item name="android:layout_marginStart">22dp</item>
         <item name="android:layout_marginEnd">22dp</item>
         <item name="android:background">@drawable/background_10dp_rectangle</item>
-        <item name="android:backgroundTint">@color/input_base</item>
+        <item name="android:backgroundTint">?attr/colorSecondaryVariant</item>
         <item name="android:padding">19dp</item>
     </style>
 

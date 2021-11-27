@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="66dp"
     android:background="@drawable/background_bottom_sheet_fragment"
-    android:backgroundTint="@color/gray_base">
+    android:backgroundTint="?attr/colorSecondaryVariant">
 
     <ImageButton
         android:id="@+id/button_cancel"

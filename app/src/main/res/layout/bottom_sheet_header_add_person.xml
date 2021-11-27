@@ -23,6 +23,7 @@
         android:layout_width="wrap_content"
         android:text="@string/add_debtor"
         android:textAllCaps="false"
+        android:textColor="?attr/textFillColor"
         android:textSize="23dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"

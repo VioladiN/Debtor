@@ -28,6 +28,7 @@
         android:id="@+id/list_is_empty_tv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:textColor="?attr/textFillColor"
         android:text="@string/list_is_empty"
         android:gravity="center"/>
 
