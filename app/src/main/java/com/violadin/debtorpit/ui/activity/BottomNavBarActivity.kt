@@ -14,6 +14,7 @@ import com.violadin.debtorpit.ui.fragment.MyDebtFragment
 import com.violadin.debtorpit.ui.fragment.MultiDebtFragment
 import com.violadin.debtorpit.ui.fragment.DebtForMeFragment
 import kotlinx.android.synthetic.main.bottom_nav_menu_activity.*
+import kotlinx.android.synthetic.main.fragment_header.*
 
 
 class BottomNavBarActivity : AppCompatActivity() {
@@ -47,6 +48,10 @@ class BottomNavBarActivity : AppCompatActivity() {
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         NavigationUI.setupWithNavController(
             bottom_navigation, navHostFragment.navController)
+    }
+
+    fun changeHeader(string: Int) {
+        header_text.setText(string)
     }
 
     override fun onDestroy() {

@@ -13,6 +13,7 @@ import com.violadin.debtorpit.R
 import com.violadin.debtorpit.domain.model.MyDebtPerson
 import com.violadin.debtorpit.domain.model.Person
 import com.violadin.debtorpit.presentation.viewmodel.PersonViewModel
+import com.violadin.debtorpit.ui.activity.BottomNavBarActivity
 import com.violadin.debtorpit.ui.adapter.DebtForMeAdapter
 import com.violadin.debtorpit.ui.adapter.MyDebtAdapter
 import io.reactivex.Flowable
@@ -36,7 +37,7 @@ class MyDebtFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.my_debt_fragment, container, false)
         viewModel = ViewModelProvider(this).get(PersonViewModel::class.java)
-        view.header_text.text = getText(R.string.third_page)
+        (activity as BottomNavBarActivity).changeHeader(R.string.third_page)
         return view
     }
 

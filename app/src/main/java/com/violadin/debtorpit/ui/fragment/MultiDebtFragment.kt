@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.violadin.debtorpit.R
 import com.violadin.debtorpit.domain.model.Person
 import com.violadin.debtorpit.presentation.viewmodel.PersonViewModel
+import com.violadin.debtorpit.ui.activity.BottomNavBarActivity
 import com.violadin.debtorpit.ui.adapter.MultiDebtAdapter
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -36,7 +37,7 @@ class MultiDebtFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.multi_debt_fragment, container, false)
         viewModel = ViewModelProvider(this).get(PersonViewModel::class.java)
-        view.header_text.text = getText(R.string.second_page)
+        (activity as BottomNavBarActivity).changeHeader(R.string.second_page)
         return view
     }
 
