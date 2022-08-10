@@ -16,16 +16,16 @@ import com.violadin.debtorpit.ui.fragment.DebtForMeFragment
 import kotlinx.android.synthetic.main.bottom_nav_menu_activity.*
 import kotlinx.android.synthetic.main.fragment_header.*
 
-
 class BottomNavBarActivity : AppCompatActivity() {
 
     private lateinit var viewModel: PersonViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.Theme_Debtorpit)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.bottom_nav_menu_activity)
 
-        viewModel = ViewModelProvider(this).get(PersonViewModel::class.java)
+        viewModel = ViewModelProvider(this)[PersonViewModel::class.java]
 
         val bottomAppBarBackground = bottom_navigation.background as MaterialShapeDrawable
         bottomAppBarBackground.shapeAppearanceModel =
