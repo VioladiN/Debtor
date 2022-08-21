@@ -36,8 +36,7 @@ class MultiDebtAdapter(
     inner class ViewHolder(
         view: View
     ) : RecyclerView.ViewHolder(view) {
-        val firstName = view.first_name_text
-        val lastName = view.last_name_text
+        val name = view.debtor_name_text
         val debt = view.debt_count
 
         init {
@@ -58,9 +57,9 @@ class MultiDebtAdapter(
         }
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        viewHolder.firstName.text = persons[position].firstName
-        viewHolder.lastName.text = persons[position].lastName
+        viewHolder.name.text = "${persons[position].lastName} ${persons[position].firstName}"
         viewHolder.debt.text = persons[position].debt.toString()
         if (selectedPersons.contains(persons[position].id)) {
             viewHolder.itemView.setBackgroundColor(context.getColor(R.color.selected_base))

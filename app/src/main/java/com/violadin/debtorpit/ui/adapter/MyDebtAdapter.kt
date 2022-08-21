@@ -1,5 +1,6 @@
 package com.violadin.debtorpit.ui.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -31,8 +32,7 @@ class MyDebtAdapter(
     inner class ViewHolder(
         view: View
     ) : RecyclerView.ViewHolder(view) {
-        val firstName = view.first_name_text
-        val lastName = view.last_name_text
+        val name = view.debtor_name_text
         val debt = view.debt_count
 
         init {
@@ -49,9 +49,9 @@ class MyDebtAdapter(
         }
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        viewHolder.firstName.text = personMyDebt[position].firstName
-        viewHolder.lastName.text = personMyDebt[position].lastName
+        viewHolder.name.text = "${personMyDebt[position].lastName} ${personMyDebt[position].firstName}"
         viewHolder.debt.text = personMyDebt[position].debt.toString()
     }
 

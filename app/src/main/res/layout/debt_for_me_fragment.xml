@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:splitMotionEvents="false"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.activity.BottomNavBarActivity">
+    tools:context=".ui.BottomNavBarActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -38,8 +38,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:src="@drawable/ic_plus"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="70dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="43dp"
+        app:maxImageSize="30dp"
         app:fabCustomSize="60dp"
         app:tint="@color/white"/>
 

@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Debtorpit">
-        <activity android:name="com.violadin.debtorpit.ui.activity.BottomNavBarActivity"
+        <activity android:name="com.violadin.debtorpit.ui.BottomNavBarActivity"
             android:theme="@style/SplashTheme"
             android:exported="true">
             <intent-filter>

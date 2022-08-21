@@ -5,26 +5,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.violadin.debtorpit.R
-import com.violadin.debtorpit.domain.model.Person
 import com.violadin.debtorpit.presentation.viewmodel.PersonViewModel
-import com.violadin.debtorpit.ui.activity.BottomNavBarActivity
+import com.violadin.debtorpit.ui.BottomNavBarActivity
 import com.violadin.debtorpit.ui.adapter.DebtForMeAdapter
-import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.bottom_sheet_create_debtor_fragment.*
 import kotlinx.android.synthetic.main.debt_for_me_fragment.*
-import kotlinx.android.synthetic.main.fragment_header.view.*
-import kotlinx.android.synthetic.main.my_debt_fragment.view.*
 
 class DebtForMeFragment: Fragment() {
 

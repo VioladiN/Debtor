@@ -14,13 +14,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.violadin.debtorpit.R
 import com.violadin.debtorpit.domain.model.Person
 import com.violadin.debtorpit.presentation.viewmodel.PersonViewModel
-import com.violadin.debtorpit.ui.activity.BottomNavBarActivity
+import com.violadin.debtorpit.ui.BottomNavBarActivity
 import com.violadin.debtorpit.ui.adapter.MultiDebtAdapter
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.fragment_header.view.*
 import kotlinx.android.synthetic.main.multi_debt_fragment.*
 
 class MultiDebtFragment : Fragment() {

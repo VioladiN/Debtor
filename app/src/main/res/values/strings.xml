@@ -3,9 +3,9 @@
 
     <string name="rybl">\u20bd</string>
 
-    <string name="debt_for_me">Должники</string>
-    <string name="multi_debt">Распределить</string>
-    <string name="my_debt">Мои долги</string>
+    <string name="debt_for_me">Мне\nдолжны</string>
+    <string name="multi_debt">Я должен</string>
+    <string name="my_debt">Разделить\nдолг</string>
 
     <string name="btn_debt_add">Add debt</string>
     <string name="btn_debt_remove">Remove debt</string>
@@ -24,7 +24,7 @@
     <string name="third_page">Мои долги</string>
     <string name="add_debtor">Добавить должника</string>
 
-    <string name="list_is_empty">Список пуст</string>
+    <string name="list_is_empty">Список должников пуст</string>
 
     <string name="add_person">Добавить должника</string>
     <string name="add_person_my_debt">Добавить займодателя</string>

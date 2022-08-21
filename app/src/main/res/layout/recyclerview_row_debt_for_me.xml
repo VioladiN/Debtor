@@ -2,68 +2,93 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="?attr/colorOnPrimary"
     android:layout_height="wrap_content"
     android:layout_width="match_parent">
 
-    <ImageView
-        android:id="@+id/icon_person"
-        android:layout_height="70dp"
-        android:layout_width="70dp"
-        android:layout_margin="8dp"
-        android:src="@drawable/ic_person"
-        android:backgroundTint="?attr/colorSecondaryVariant"
-        android:background="@drawable/background_8dp_rectangle"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
-
-    <TextView
-        android:id="@+id/first_name_text"
-        android:text="testasdasd"
-        android:textSize="17sp"
-        android:textColor="?attr/textFillColor"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/icon_border_card_view"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:cardCornerRadius="25dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
-        android:layout_marginStart="10dp"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="?attr/colorSecondaryVariant"
+        android:layout_marginBottom="14dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <ImageView
+            android:id="@+id/icon_person"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:src="@drawable/ic_person"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/debtor_name_text"
+        android:text="Иванов Иван"
+        android:textSize="18sp"
+        android:textColor="?attr/textFillColor"
+        android:fontFamily="@font/roboto_medium"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/icon_person"/>
+        app:layout_constraintStart_toEndOf="@id/icon_border_card_view"/>
 
     <TextView
-        android:id="@+id/last_name_text"
-        android:text="testasdasddfgdfg"
-        android:textSize="17sp"
-        android:textColor="?attr/textFillColor"
-        android:layout_marginStart="10dp"
+        android:id="@+id/debtor_caurse_text"
+        android:text="Бар"
+        android:textColor="@color/gray_dark"
+        android:fontFamily="@font/roboto_light"
+        android:layout_marginStart="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/first_name_text"
-        app:layout_constraintStart_toEndOf="@id/icon_person"/>
+        app:layout_constraintTop_toBottomOf="@id/debtor_name_text"
+        app:layout_constraintStart_toEndOf="@id/icon_border_card_view"/>
+
+    <TextView
+        android:id="@+id/debtor_date_text"
+        android:text="21 марта 2021"
+        android:textColor="@color/gray_dark"
+        android:layout_marginStart="15dp"
+        android:fontFamily="@font/roboto_light"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/debtor_caurse_text"
+        app:layout_constraintStart_toEndOf="@id/icon_border_card_view"/>
 
     <TextView
         android:id="@+id/debt_count"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/background_30dp_rectangle"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/background_10dp_rectangle"
+        android:backgroundTint="@color/base_UI_mute"
         android:gravity="center"
         android:textColor="@color/white"
         android:text="123123123"
         android:textSize="16sp"
-        android:paddingHorizontal="26dp"
-        app:layout_constraintBottom_toTopOf="@id/divider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/last_name_text"/>
+        android:paddingHorizontal="11dp"
+        app:layout_constraintTop_toTopOf="@id/image_arrow"
+        app:layout_constraintBottom_toBottomOf="@id/image_arrow"
+        app:layout_constraintEnd_toStartOf="@id/image_arrow"
+        app:layout_constraintTop_toBottomOf="@id/debtor_name_text"/>
 
-    <View
-        android:id="@+id/divider"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+    <ImageView
+        android:id="@+id/image_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_arrow_right"
+        android:layout_marginEnd="26dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
