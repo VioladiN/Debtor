@@ -3,15 +3,12 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="yellow_dark">#FFD500</color>
-    <color name="black_dark">#FF000000</color>
     <color name="gray_dark">#8C8C8C</color>
-    <color name="moregray_dark">#303030</color>
     <color name="text_uppercase">#C3D8FF</color>
-    <color name="input_base">#F1F4FA</color>
     <color name="base_UI">#06BF69</color>
     <color name="base_UI_mute">#ACF2D1</color>
     <color name="gray_base">#F1F4FA</color>
     <color name="red_base">#f00</color>
     <color name="selected_base">#6600bbff</color>
+    <color name="base_text">#262626</color>
 </resources>

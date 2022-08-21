@@ -9,12 +9,10 @@ import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.violadin.debtorpit.R
 import com.violadin.debtorpit.domain.model.MyDebtPerson
-import com.violadin.debtorpit.domain.model.Person
 import com.violadin.debtorpit.presentation.viewmodel.PersonViewModel
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.bottom_sheet_header_add_person.*
 import kotlinx.android.synthetic.main.bottom_sheet_header_add_person.button_cancel
 import kotlinx.android.synthetic.main.bottom_sheet_header_info_person.*
 import kotlinx.android.synthetic.main.bottom_sheet_info_person_fragment.*

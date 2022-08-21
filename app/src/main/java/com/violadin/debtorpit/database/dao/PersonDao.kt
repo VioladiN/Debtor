@@ -30,7 +30,6 @@ interface PersonDao {
     @Query("UPDATE persons SET debt = :debt WHERE id = :id")
     fun updatePerson(id: Int, debt: Double)
 
-
     @Query("SELECT * FROM my_debts")
     fun getAllPersonsMyDebt(): Flowable<List<MyDebtPerson>>
 

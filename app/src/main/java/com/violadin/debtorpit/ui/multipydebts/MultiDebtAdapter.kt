@@ -1,4 +1,4 @@
-package com.violadin.debtorpit.ui.adapter
+package com.violadin.debtorpit.ui.multipydebts
 
 import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
@@ -8,12 +8,9 @@ import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.violadin.debtorpit.R
 import com.violadin.debtorpit.domain.model.Person
-import com.violadin.debtorpit.presentation.viewmodel.PersonViewModel
-import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
 import kotlinx.android.synthetic.main.recyclerview_row_debt_for_me.view.*

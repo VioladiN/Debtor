@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:splitMotionEvents="false"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.BottomNavBarActivity">
-
     <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:splitMotionEvents="false"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
@@ -18,30 +13,29 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/recyclerview_row_debt_for_me"
-        />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/list_is_empty_tv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textColor="?attr/textFillColor"
-        android:text="@string/list_is_empty"
+        android:textColor="@color/base_UI_mute"
+        android:fontFamily="@font/roboto_300"
+        android:textSize="20sp"
+        android:text="@string/debtors_empty"
         android:gravity="center"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_person"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
         android:src="@drawable/ic_plus"
         android:layout_marginEnd="25dp"
         android:layout_marginBottom="43dp"
+        android:contentDescription="@string/add_debtors"
         app:maxImageSize="30dp"
         app:fabCustomSize="60dp"
-        app:tint="@color/white"/>
-
-</FrameLayout>
+        app:tint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

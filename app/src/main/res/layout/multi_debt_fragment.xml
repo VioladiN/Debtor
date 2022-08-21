@@ -1,73 +1,167 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.BottomNavBarActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="16dp"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="16dp" />
 
-        <EditText
-            android:id="@+id/debt_ed"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="@string/debt_hint"
-            android:inputType="number"
-            android:layout_marginStart="10dp"
-            android:layout_marginVertical="10dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/cb_me_too"
-            app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="16dp"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="16dp" />
 
-        <CheckBox
-            android:id="@+id/cb_me_too"
-            android:text="@string/checkbox"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/add_debts"
-            app:layout_constraintStart_toEndOf="@id/debt_ed"/>
+    <TextView
+        android:id="@+id/text_date_of_debt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textSize="12sp"
+        android:fontFamily="@font/roboto_300"
+        android:text="@string/date_setting_debt"
+        android:textColor="@color/gray_dark"
+        app:layout_constraintStart_toEndOf="@id/guideline_left"
+        app:layout_constraintEnd_toStartOf="@id/guideline_right"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/add_debts"
-            style="@style/ButtonMainStyle.BlueButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/adding_debts"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="10dp"
-            android:textAllCaps="false"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/debt_ed" />
+    <TextView
+        android:id="@+id/text_peek_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:fontFamily="@font/roboto_300"
+        android:text="10.04.2022"
+        android:textColor="@color/base_UI"
+        android:drawablePadding="10dp"
+        app:layout_constraintStart_toEndOf="@id/guideline_left"
+        app:layout_constraintEnd_toStartOf="@id/guideline_right"
+        app:layout_constraintTop_toBottomOf="@id/text_date_of_debt"
+        app:drawableLeftCompat="@drawable/ic_peek_date" />
 
-        <TextView
-            android:id="@+id/list_empty_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/list_is_empty"
-            android:textColor="?attr/textFillColor"
-            android:layout_marginTop="100dp"
-            app:layout_constraintTop_toBottomOf="@id/add_debts"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+    <EditText
+        android:id="@+id/debt_ed"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:hint="@string/debt_hint"
+        android:textSize="18sp"
+        android:paddingHorizontal="25dp"
+        android:fontFamily="@font/roboto_300"
+        android:paddingVertical="12dp"
+        android:textColorHint="@color/base_UI_mute"
+        android:background="@drawable/background_10dp_rectangle_transperent"
+        android:inputType="number"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="35dp"
+        app:layout_constraintEnd_toStartOf="@id/text_currency"
+        app:layout_constraintTop_toBottomOf="@id/text_peek_date"
+        app:layout_constraintStart_toEndOf="@id/guideline_left" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/list_item"
-            android:paddingBottom="270dp"
-            android:clipToPadding="false"
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/add_debts"
-            tools:listitem="@layout/recyclerview_row_debt_for_me"/>
+    <TextView
+        android:id="@+id/text_currency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:fontFamily="@font/roboto_300"
+        android:text="RUB"
+        android:textColor="@color/gray_dark"
+        android:drawablePadding="13dp"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintEnd_toStartOf="@id/guideline_right"
+        app:layout_constraintTop_toTopOf="@id/debt_ed"
+        app:layout_constraintBottom_toBottomOf="@id/debt_ed"
+        app:drawableRightCompat="@drawable/ic_arrow_down" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <EditText
+        android:id="@+id/description_ed"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:hint="@string/description_debt_hint"
+        android:textSize="18sp"
+        android:paddingHorizontal="25dp"
+        android:fontFamily="@font/roboto_300"
+        android:paddingVertical="12dp"
+        android:textColorHint="@color/base_UI_mute"
+        android:background="@drawable/background_10dp_rectangle_transperent"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toStartOf="@id/guideline_right"
+        app:layout_constraintTop_toBottomOf="@id/debt_ed"
+        app:layout_constraintStart_toEndOf="@id/guideline_left" />
 
-</FrameLayout>
+    <RadioButton
+        android:id="@+id/radio_on_me_too"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/debt_on_me"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:paddingStart="5dp"
+        android:textSize="16sp"
+        android:layout_marginTop="18dp"
+        android:layout_marginStart="6dp"
+        android:fontFamily="@font/roboto_300"
+        android:buttonTint="@color/base_UI"
+        android:textColor="@color/base_text"
+        app:layout_constraintTop_toBottomOf="@id/description_ed"
+        app:layout_constraintStart_toEndOf="@id/guideline_left" />
+
+    <TextView
+        android:id="@+id/text_add_debtors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:fontFamily="@font/roboto_300"
+        android:padding="8dp"
+        android:layout_marginStart="6dp"
+        android:text="@string/add_debtors"
+        android:drawablePadding="8dp"
+        android:textColor="@color/base_text"
+        app:layout_constraintStart_toEndOf="@id/guideline_left"
+        app:layout_constraintTop_toBottomOf="@id/radio_on_me_too"
+        app:drawableLeftCompat="@drawable/ic_add_debtor" />
+
+    <TextView
+        android:id="@+id/text_added_persons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_100"
+        android:textColor="@color/gray_dark"
+        android:visibility="gone"
+        android:textSize="12sp"
+        android:layout_marginStart="42dp"
+        app:layout_constraintEnd_toStartOf="@id/guideline_right"
+        app:layout_constraintStart_toEndOf="@id/guideline_left"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintTop_toBottomOf="@id/text_add_debtors" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/add_debts"
+        android:background="@drawable/button_background_10dp"
+        android:textAllCaps="false"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="20dp"
+        android:textColor="?attr/colorOnPrimary"
+        android:text="@string/adding_debts"
+        android:textSize="22sp"
+        android:letterSpacing="0.0"
+        android:fontFamily="@font/roboto_500"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_added_persons" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
