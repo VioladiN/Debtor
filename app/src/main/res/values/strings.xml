@@ -4,8 +4,8 @@
     <string name="rybl">\u20bd</string>
 
     <string name="debt_for_me">Мне должны</string>
-    <string name="multi_debt">Я должен</string>
-    <string name="my_debt">Разделить долг</string>
+    <string name="my_debt">Я должен</string>
+    <string name="multi_debt">Разделить долг</string>
 
     <string name="first_name">Имя*</string>
     <string name="last_name">Фамилия</string>
@@ -32,7 +32,10 @@
     <string name="first_name_hint">Иван</string>
     <string name="last_name_hint">Иванов</string>
     <string name="debt_hint">Сумма долга</string>
+    <string name="debt_hint_two">Сумма</string>
+    <string name="fio_hint">ФИО</string>
     <string name="description_debt_hint">Описание долга</string>
+    <string name="description_debt_hint_two">Описание</string>
     <string name="phone_hint">+79995555555</string>
 
     <string name="empty_field_first_name">Поле "Имя" должно быть заполнено</string>
@@ -58,5 +61,8 @@
     <string name="date_setting_debt">дата распределения долга</string>
     <string name="debt_on_me">Распределить на меня</string>
     <string name="add_debtors">Добавить должников</string>
+
+    <string name="new_debtor">Новый должник</string>
+    <string name="new_debt">Новый долг</string>
 
 </resources>

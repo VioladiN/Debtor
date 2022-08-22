@@ -11,4 +11,7 @@
     <color name="red_base">#f00</color>
     <color name="selected_base">#6600bbff</color>
     <color name="base_text">#262626</color>
+
+    <color name="color_divider">#032859</color>
+
 </resources>
