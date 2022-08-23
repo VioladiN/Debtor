@@ -65,4 +65,8 @@
     <string name="new_debtor">Новый должник</string>
     <string name="new_debt">Новый долг</string>
 
+    <string name="debt_date">Дата создания контакта</string>
+    <string name="global_debt_amount">Общая сумма долга</string>
+    <string name="debts_history">История долгов:</string>
+
 </resources>
