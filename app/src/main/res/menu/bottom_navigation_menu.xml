@@ -7,9 +7,9 @@
     <item
         android:id="@+id/page2"
         android:enabled="true"
-        android:title="@string/multi_debt"/>
+        android:title="@string/my_debt"/>
     <item
         android:id="@+id/page3"
         android:enabled="true"
-        android:title="@string/my_debt"/>
+        android:title="@string/multi_debt"/>
 </menu>

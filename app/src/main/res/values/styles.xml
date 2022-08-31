@@ -62,4 +62,9 @@
         <item name="android:padding">19dp</item>
     </style>
 
+    <style name="BottomNavigationStyle">
+        <item name="android:gravity">center</item>
+        <item name="android:lines">2</item>
+        <item name="android:fontFamily">@font/roboto_400</item>
+    </style>
 </resources>

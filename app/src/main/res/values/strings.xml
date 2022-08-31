@@ -3,9 +3,9 @@
 
     <string name="rybl">\u20bd</string>
 
-    <string name="debt_for_me">Мне должны</string>
+    <string name="debt_for_me">Мне\nдолжны</string>
     <string name="my_debt">Я должен</string>
-    <string name="multi_debt">Разделить долг</string>
+    <string name="multi_debt">Разделить\nдолг</string>
 
     <string name="first_name">Имя*</string>
     <string name="last_name">Фамилия</string>
