@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.violadin.debtorpit.R
 import com.violadin.debtorpit.domain.model.Person
 import com.violadin.debtorpit.presentation.viewmodel.PersonViewModel
-import com.violadin.debtorpit.ui.BottomNavBarActivity
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.multi_debt_fragment.*
 

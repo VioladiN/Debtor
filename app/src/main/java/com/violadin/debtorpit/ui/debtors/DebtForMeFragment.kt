@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.violadin.debtorpit.R
 import com.violadin.debtorpit.presentation.viewmodel.PersonViewModel
-import com.violadin.debtorpit.ui.BottomNavBarActivity
 import com.violadin.debtorpit.ui.fragment.BottomSheetCreateDebtorFragment
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable

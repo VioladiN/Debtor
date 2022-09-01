@@ -18,4 +18,8 @@ class MainActivity : AppCompatActivity() {
         navController.initActivityController(this)
     }
 
+    override fun onDestroy() {
+        // todo close db via appDataBase.close()
+        super.onDestroy()
+    }
 }
