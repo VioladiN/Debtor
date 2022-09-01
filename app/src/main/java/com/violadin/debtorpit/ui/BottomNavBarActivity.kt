@@ -23,18 +23,6 @@ class BottomNavBarActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this)[PersonViewModel::class.java]
 
-//        val bottomAppBarBackground = bottom_navigation.background as MaterialShapeDrawable
-//        bottomAppBarBackground.shapeAppearanceModel =
-//            bottomAppBarBackground.shapeAppearanceModel
-//                .toBuilder()
-//                .setTopRightCorner(
-//                    CornerFamily.ROUNDED,
-//                    resources.getDimension(R.dimen.bottom_app_bar_corners))
-//                .setTopLeftCorner(
-//                    CornerFamily.ROUNDED,
-//                    resources.getDimension(R.dimen.bottom_app_bar_corners))
-//                .build()
-
         setUpNavigation()
     }
 
