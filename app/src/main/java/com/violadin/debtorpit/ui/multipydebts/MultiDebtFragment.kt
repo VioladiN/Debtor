@@ -28,7 +28,7 @@ class MultiDebtFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.multi_debt_fragment, container, false)
         viewModel = ViewModelProvider(this).get(PersonViewModel::class.java)
-        (activity as BottomNavBarActivity).changeHeader(R.string.second_page)
+//        (activity as BottomNavBarActivity).changeHeader(R.string.second_page)
         return view
     }
 

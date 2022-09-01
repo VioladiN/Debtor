@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/bottom_nav_fragment">
+
+    <fragment
+        android:id="@+id/bottom_nav_fragment"
+        android:name="com.violadin.debtorpit.ui.bottombar.BottomBarFragment"
+        tools:layout="@layout/bottom_nav_bar_fragment" />
+
+<!--    <fragment-->
+<!--        android:id="@+id/page1"-->
+<!--        android:name="com.violadin.debtorpit.ui.debtors.DebtForMeFragment"-->
+<!--        tools:layout="@layout/debt_for_me_fragment">-->
+<!--    </fragment>-->
+
+<!--    <fragment-->
+<!--        android:id="@+id/page2"-->
+<!--        android:name="com.violadin.debtorpit.ui.mydebts.MyDebtFragment"-->
+<!--        tools:layout="@layout/my_debt_fragment">-->
+<!--    </fragment>-->
+
+<!--    <fragment-->
+<!--        android:id="@+id/page3"-->
+<!--        android:name="com.violadin.debtorpit.ui.multipydebts.MultiDebtFragment"-->
+<!--        tools:layout="@layout/multi_debt_fragment">-->
+<!--    </fragment>-->
+
+</navigation>

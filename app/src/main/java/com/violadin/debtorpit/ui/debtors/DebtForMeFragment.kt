@@ -29,8 +29,8 @@ class DebtForMeFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.debt_for_me_fragment, container, false)
-        viewModel = ViewModelProvider(this).get(PersonViewModel::class.java)
-        (activity as BottomNavBarActivity).changeHeader(R.string.first_page)
+        viewModel = ViewModelProvider(this)[PersonViewModel::class.java]
+//        (activity as BottomNavBarActivity).changeHeader(R.string.first_page)
         return view
     }
 

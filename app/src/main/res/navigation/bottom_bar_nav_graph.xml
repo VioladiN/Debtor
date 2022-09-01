@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottom_bar_nav_graph"
+    app:startDestination="@id/debt_for_me_nav_graph">
+
+    <include app:graph="@navigation/debt_for_me_nav_graph" />
+    <include app:graph="@navigation/my_debt_nav_graph" />
+    <include app:graph="@navigation/multi_debt_nav_graph" />
+
+</navigation>
