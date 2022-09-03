@@ -229,7 +229,7 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/add_debtor"
-        android:background="@drawable/button_background_10dp"
+        android:background="@drawable/button_background_10dp_gradient"
         android:textAllCaps="false"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

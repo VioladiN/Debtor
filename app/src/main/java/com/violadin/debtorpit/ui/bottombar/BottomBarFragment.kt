@@ -18,13 +18,11 @@ class BottomBarFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.bottom_nav_bar_fragment, container, false)
-
         val navHostFragment = childFragmentManager.findFragmentById(R.id.bottom_bar_container) as NavHostFragment
         val navController = navHostFragment.navController.apply {
             graph = navInflater.inflate(R.navigation.bottom_bar_nav_graph)
         }
         view.bottom_navigation.setupWithNavController(navController)
-
         return view
     }
 

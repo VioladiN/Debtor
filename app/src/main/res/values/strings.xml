@@ -69,4 +69,7 @@
     <string name="global_debt_amount">Общая сумма долга</string>
     <string name="debts_history">История долгов:</string>
 
+    <string name="increase_debt_text">Увеличить</string>
+    <string name="decrease_debt_text">Списать</string>
+
 </resources>
