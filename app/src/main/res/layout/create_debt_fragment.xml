@@ -97,7 +97,7 @@
             android:id="@+id/radio_debt_for_me"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/debt_for_me"
+            android:text="@string/debt_for_me_one_line"
             android:minHeight="0dp"
             android:minWidth="0dp"
             android:paddingStart="5dp"

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.violadin.debtorpit.R
@@ -40,8 +41,9 @@ class MyDebtFragment : Fragment() {
         getAllPersonsMyDebt()
 
         add_person.setOnClickListener {
-            val createDebtorFragment = BottomSheetCreateMyDebtPersonFragment(viewModel)
-            createDebtorFragment.show(requireActivity().supportFragmentManager, null)
+            it.findNavController().navigate(R.id.my_debt_fragment_to_create_debt_fragment)
+//            val createDebtorFragment = BottomSheetCreateMyDebtPersonFragment(viewModel)
+//            createDebtorFragment.show(requireActivity().supportFragmentManager, null)
         }
 
         list_item.addOnScrollListener(object : RecyclerView.OnScrollListener() {

@@ -8,6 +8,33 @@
     <fragment
         android:id="@+id/debt_for_me_fragment"
         android:name="com.violadin.debtorpit.ui.debtors.DebtForMeFragment"
-        tools:layout="@layout/debt_for_me_fragment" />
+        tools:layout="@layout/debt_for_me_fragment">
+        <action
+            android:id="@+id/debt_for_me_fragment_to_info_about_debtor_fragment"
+            app:destination="@id/info_about_debtor_fragment">
+            <argument
+                android:name="type"
+                android:defaultValue=""
+                app:argType="string" />
+        </action>
+        <action
+            android:id="@+id/debt_for_me_fragment_to_create_debt_fragment"
+            app:destination="@id/create_debt_fragment">
+            <argument
+                android:name="type"
+                android:defaultValue=""
+                app:argType="string" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/create_debt_fragment"
+        android:name="com.violadin.debtorpit.ui.createdebt.CreateDebtFragment"
+        tools:layout="@layout/create_debt_fragment" />
+
+    <fragment
+        android:id="@+id/info_about_debtor_fragment"
+        android:name="com.violadin.debtorpit.ui.infoaboutdebt.InfoAboutDebtFragment"
+        tools:layout="@layout/info_about_debt_fragment" />
 
 </navigation>
