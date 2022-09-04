@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.findFragment
 import androidx.recyclerview.widget.RecyclerView
 import com.violadin.debtorpit.R
-import com.violadin.debtorpit.domain.model.Person
+import com.violadin.debtorpit.database.tables.Person
 import com.violadin.debtorpit.presentation.viewmodel.PersonViewModel
 import com.violadin.debtorpit.ui.fragment.BottomSheetInfoPersonFragment
 import kotlinx.android.synthetic.main.recyclerview_row_debt_for_me.view.*
@@ -35,7 +35,7 @@ class DebtForMeAdapter(
         init {
             view.setOnClickListener {
                 it.apply { isEnabled = false; postDelayed({isEnabled = true}, 1000) }
-                val createDebtorFragment = BottomSheetInfoPersonFragment(viewModel)
+                val createDebtorFragment = BottomSheetInfoPersonFragment()
                 val bundle = Bundle()
                 bundle.putSerializable("person", persons[bindingAdapterPosition])
                 createDebtorFragment.arguments = bundle

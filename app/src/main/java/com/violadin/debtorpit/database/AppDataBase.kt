@@ -5,8 +5,8 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.violadin.debtorpit.database.dao.PersonDao
-import com.violadin.debtorpit.domain.model.MyDebtPerson
-import com.violadin.debtorpit.domain.model.Person
+import com.violadin.debtorpit.database.tables.MyDebtPerson
+import com.violadin.debtorpit.database.tables.Person
 
 @Database(entities = [Person::class, MyDebtPerson::class], version = 6)
 abstract class AppDataBase : RoomDatabase() {

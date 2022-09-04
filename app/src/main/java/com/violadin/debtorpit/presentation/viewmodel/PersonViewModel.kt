@@ -3,8 +3,8 @@ package com.violadin.debtorpit.presentation.viewmodel
 import android.app.Application
 import androidx.lifecycle.*
 import com.violadin.debtorpit.database.AppDataBase
-import com.violadin.debtorpit.domain.model.MyDebtPerson
-import com.violadin.debtorpit.domain.model.Person
+import com.violadin.debtorpit.database.tables.MyDebtPerson
+import com.violadin.debtorpit.database.tables.Person
 import io.reactivex.Flowable
 import java.math.RoundingMode
 

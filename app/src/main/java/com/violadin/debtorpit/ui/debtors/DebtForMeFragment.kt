@@ -7,14 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.violadin.debtorpit.R
 import com.violadin.debtorpit.navigation.NavigationManager
 import com.violadin.debtorpit.presentation.viewmodel.PersonViewModel
-import com.violadin.debtorpit.ui.fragment.BottomSheetCreateDebtorFragment
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable

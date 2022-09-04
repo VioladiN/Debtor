@@ -10,7 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.violadin.debtorpit.R
-import com.violadin.debtorpit.domain.model.Person
+import com.violadin.debtorpit.database.tables.Person
 import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
 import kotlinx.android.synthetic.main.recyclerview_row_debt_for_me.view.*

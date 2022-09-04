@@ -25,7 +25,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MyDebtFragment : Fragment() {
 
-    private lateinit var viewModel: PersonViewModel
+//    private lateinit var viewModel: PersonViewModel
     private val compositeDisposable = CompositeDisposable()
 
     @Inject
@@ -37,7 +37,7 @@ class MyDebtFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.my_debt_fragment, container, false)
-        viewModel = ViewModelProvider(this)[PersonViewModel::class.java]
+//        viewModel = ViewModelProvider(this)[PersonViewModel::class.java]
 //        (activity as BottomNavBarActivity).changeHeader(R.string.third_page)
         return view
     }
@@ -45,7 +45,7 @@ class MyDebtFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        getAllPersonsMyDebt()
+//        getAllPersonsMyDebt()
 
         add_person.setOnClickListener {
             it.findNavController().navigate(R.id.my_debt_fragment_to_create_debt_fragment)
@@ -68,26 +68,26 @@ class MyDebtFragment : Fragment() {
 
     }
 
-    private fun getAllPersonsMyDebt() {
-        compositeDisposable.add(
-            viewModel.getAllPersonMyDebt()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { list ->
-                    try {
-                        if (list.isEmpty()) {
-                            list_is_empty_tv.visibility = View.VISIBLE
-                            list_item.layoutManager = LinearLayoutManager(requireContext())
-                            list_item.adapter = MyDebtAdapter(list, requireContext(), viewModel)
-                        } else {
-                            list_is_empty_tv.visibility = View.GONE
-                            list_item.layoutManager = LinearLayoutManager(requireContext())
-                            list_item.adapter = MyDebtAdapter(list, requireContext(), viewModel)
-                        }
-                    } catch (e: Exception) {}
-                }
-        )
-    }
+//    private fun getAllPersonsMyDebt() {
+//        compositeDisposable.add(
+//            viewModel.getAllPersonMyDebt()
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe { list ->
+//                    try {
+//                        if (list.isEmpty()) {
+//                            list_is_empty_tv.visibility = View.VISIBLE
+//                            list_item.layoutManager = LinearLayoutManager(requireContext())
+//                            list_item.adapter = MyDebtAdapter(list, requireContext(), viewModel)
+//                        } else {
+//                            list_is_empty_tv.visibility = View.GONE
+//                            list_item.layoutManager = LinearLayoutManager(requireContext())
+//                            list_item.adapter = MyDebtAdapter(list, requireContext(), viewModel)
+//                        }
+//                    } catch (e: Exception) {}
+//                }
+//        )
+//    }
 
     override fun onDestroy() {
         compositeDisposable.dispose()

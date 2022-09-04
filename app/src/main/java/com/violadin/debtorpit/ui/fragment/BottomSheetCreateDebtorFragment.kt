@@ -1,7 +1,6 @@
 package com.violadin.debtorpit.ui.fragment
 
 import android.annotation.SuppressLint
-import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
@@ -12,12 +11,11 @@ import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.FrameLayout
 import android.widget.Toast
-import androidx.fragment.app.DialogFragment
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.violadin.debtorpit.R
-import com.violadin.debtorpit.domain.model.Person
+import com.violadin.debtorpit.database.tables.Person
 import com.violadin.debtorpit.presentation.viewmodel.PersonViewModel
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -25,9 +23,7 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.bottom_sheet_create_debtor_fragment.*
 import kotlinx.android.synthetic.main.bottom_sheet_header_add_person.*
 
-class BottomSheetCreateDebtorFragment(
-    val viewModel: PersonViewModel
-): BottomSheetDialogFragment() {
+class BottomSheetCreateDebtorFragment(): BottomSheetDialogFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,26 +48,26 @@ class BottomSheetCreateDebtorFragment(
 
         create_debtor.setOnClickListener {
             it.apply { isEnabled = false; postDelayed({isEnabled = true}, 1000) }
-            addPerson(
-                Person(
-                    firstName = edit_first_name.text.toString(),
-                    lastName = edit_last_name.text.toString(),
-                    debt = if (edit_debt.text.isEmpty()) 0.0 else edit_debt.text.toString().toDouble(),
-                    phone = edit_phone.text.toString()
-                )
-            )
+//            addPerson(
+//                Person(
+//                    firstName = edit_first_name.text.toString(),
+//                    lastName = edit_last_name.text.toString(),
+//                    debt = if (edit_debt.text.isEmpty()) 0.0 else edit_debt.text.toString().toDouble(),
+//                    phone = edit_phone.text.toString()
+//                )
+//            )
         }
 
         button_done.setOnClickListener {
             it.apply { isEnabled = false; postDelayed({isEnabled = true}, 1000) }
-            addPerson(
-                Person(
-                    firstName = edit_first_name.text.toString(),
-                    lastName = edit_last_name.text.toString(),
-                    debt = if (edit_debt.text.isEmpty()) 0.0 else edit_debt.text.toString().toDouble(),
-                    phone = edit_phone.text.toString()
-                )
-            )
+//            addPerson(
+//                Person(
+//                    firstName = edit_first_name.text.toString(),
+//                    lastName = edit_last_name.text.toString(),
+//                    debt = if (edit_debt.text.isEmpty()) 0.0 else edit_debt.text.toString().toDouble(),
+//                    phone = edit_phone.text.toString()
+//                )
+//            )
         }
 
         button_cancel.setOnClickListener {
@@ -86,18 +82,18 @@ class BottomSheetCreateDebtorFragment(
         }, 100)
     }
 
-    @SuppressLint("CheckResult")
-    private fun addPerson(person: Person) {
-        if (person.firstName.isNullOrEmpty()) {
-            Toast.makeText(context, R.string.empty_field_first_name, Toast.LENGTH_SHORT).show()
-            return
-        }
-        Flowable.fromCallable {
-            viewModel.addPerson(person)
-        }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe {
-            dismiss()
-        }
-    }
+//    @SuppressLint("CheckResult")
+//    private fun addPerson(person: Person) {
+//        if (person.firstName.isNullOrEmpty()) {
+//            Toast.makeText(context, R.string.empty_field_first_name, Toast.LENGTH_SHORT).show()
+//            return
+//        }
+//        Flowable.fromCallable {
+//            viewModel.addPerson(person)
+//        }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe {
+//            dismiss()
+//        }
+//    }
 
     override fun getTheme(): Int =
         R.style.AppBottomSheetDialogTheme

@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.violadin.debtorpit.R
-import com.violadin.debtorpit.domain.model.Person
+import com.violadin.debtorpit.database.tables.Person
 import com.violadin.debtorpit.presentation.viewmodel.PersonViewModel
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.multi_debt_fragment.*
@@ -26,7 +26,7 @@ class MultiDebtFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.multi_debt_fragment, container, false)
-        viewModel = ViewModelProvider(this).get(PersonViewModel::class.java)
+//        viewModel = ViewModelProvider(this).get(PersonViewModel::class.java)
 //        (activity as BottomNavBarActivity).changeHeader(R.string.second_page)
         return view
     }

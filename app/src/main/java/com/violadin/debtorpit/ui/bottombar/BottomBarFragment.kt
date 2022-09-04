@@ -28,5 +28,4 @@ class BottomBarFragment : Fragment() {
         view.bottom_navigation.setupWithNavController(navController.initBottomBarController(this))
         return view
     }
-
 }

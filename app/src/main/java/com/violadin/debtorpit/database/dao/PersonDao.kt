@@ -1,8 +1,8 @@
 package com.violadin.debtorpit.database.dao
 
 import androidx.room.*
-import com.violadin.debtorpit.domain.model.MyDebtPerson
-import com.violadin.debtorpit.domain.model.Person
+import com.violadin.debtorpit.database.tables.MyDebtPerson
+import com.violadin.debtorpit.database.tables.Person
 import io.reactivex.Flowable
 
 

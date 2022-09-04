@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.violadin.debtorpit.R
-import com.violadin.debtorpit.domain.model.MyDebtPerson
+import com.violadin.debtorpit.database.tables.MyDebtPerson
 import com.violadin.debtorpit.presentation.viewmodel.PersonViewModel
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -17,9 +17,7 @@ import kotlinx.android.synthetic.main.bottom_sheet_header_add_person.button_canc
 import kotlinx.android.synthetic.main.bottom_sheet_header_info_person.*
 import kotlinx.android.synthetic.main.bottom_sheet_info_person_fragment.*
 
-class BottomSheetInfoPersonMyDebtFragment(
-    val viewModel: PersonViewModel
-) : BottomSheetDialogFragment() {
+class BottomSheetInfoPersonMyDebtFragment() : BottomSheetDialogFragment() {
 
     private var person: MyDebtPerson? = null
 
@@ -51,12 +49,12 @@ class BottomSheetInfoPersonMyDebtFragment(
 
         drop_debt_button.setOnClickListener {
             it.apply { isEnabled = false; postDelayed({isEnabled = true}, 1000) }
-            updateDebtOfPerson(0.0)
+//            updateDebtOfPerson(0.0)
         }
 
         delete_person_button.setOnClickListener {
             it.apply { isEnabled = false; postDelayed({isEnabled = true}, 1000) }
-            showDeleteDialog()
+//            showDeleteDialog()
         }
 
         button_cancel.setOnClickListener {
@@ -65,34 +63,34 @@ class BottomSheetInfoPersonMyDebtFragment(
         }
     }
 
-    @SuppressLint("CheckResult")
-    private fun updateDebtOfPerson(debt: Double) {
-        Flowable.fromCallable {
-            viewModel.updatePersonMyDebt(person!!.id!!, debt)
-        }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe {
-            debt_count.text = debt.toString()
-            person!!.debt = debt
-        }
-    }
+//    @SuppressLint("CheckResult")
+//    private fun updateDebtOfPerson(debt: Double) {
+//        Flowable.fromCallable {
+//            viewModel.updatePersonMyDebt(person!!.id!!, debt)
+//        }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe {
+//            debt_count.text = debt.toString()
+//            person!!.debt = debt
+//        }
+//    }
 
-    @SuppressLint("CheckResult")
-    private fun showDeleteDialog() {
-        val dialog = AlertDialog.Builder(context)
-            .setMessage(R.string.deleting_message)
-            .setPositiveButton(R.string.delete) { dialog, which ->
-                Flowable.fromCallable {
-                    viewModel.deletePersonMyDebt(person!!)
-                }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe {
-                    dismiss()
-                }
-                dialog.cancel()
-            }
-            .setNegativeButton(R.string.cancel) { dialog, which ->
-                dialog.cancel()
-            }
-            .show()
-        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(requireContext().getColor(R.color.red_base))
-    }
+//    @SuppressLint("CheckResult")
+//    private fun showDeleteDialog() {
+//        val dialog = AlertDialog.Builder(context)
+//            .setMessage(R.string.deleting_message)
+//            .setPositiveButton(R.string.delete) { dialog, which ->
+//                Flowable.fromCallable {
+//                    viewModel.deletePersonMyDebt(person!!)
+//                }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe {
+//                    dismiss()
+//                }
+//                dialog.cancel()
+//            }
+//            .setNegativeButton(R.string.cancel) { dialog, which ->
+//                dialog.cancel()
+//            }
+//            .show()
+//        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(requireContext().getColor(R.color.red_base))
+//    }
 
     override fun getTheme(): Int =
         R.style.AppBottomSheetDialogTheme

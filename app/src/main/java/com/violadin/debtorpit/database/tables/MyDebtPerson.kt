@@ -1,4 +1,4 @@
-package com.violadin.debtorpit.domain.model
+package com.violadin.debtorpit.database.tables
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
