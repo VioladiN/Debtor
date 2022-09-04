@@ -9,13 +9,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.findFragment
 import androidx.recyclerview.widget.RecyclerView
 import com.violadin.debtorpit.R
-import com.violadin.debtorpit.database.tables.MyDebtPerson
+import com.violadin.debtorpit.database.tables.Person
 import com.violadin.debtorpit.presentation.viewmodel.PersonViewModel
 import com.violadin.debtorpit.ui.fragment.BottomSheetInfoPersonMyDebtFragment
 import kotlinx.android.synthetic.main.recyclerview_row_debt_for_me.view.*
 
 class MyDebtAdapter(
-    val personMyDebt: List<MyDebtPerson>,
+    val personMyDebt: List<Person>,
     val context: Context,
     val viewModel: PersonViewModel
 ) : RecyclerView.Adapter<MyDebtAdapter.ViewHolder>() {

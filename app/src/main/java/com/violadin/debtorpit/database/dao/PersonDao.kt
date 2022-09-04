@@ -1,7 +1,6 @@
 package com.violadin.debtorpit.database.dao
 
 import androidx.room.*
-import com.violadin.debtorpit.database.tables.MyDebtPerson
 import com.violadin.debtorpit.database.tables.Person
 import io.reactivex.Flowable
 
@@ -30,15 +29,15 @@ interface PersonDao {
     @Query("UPDATE persons SET debt = :debt WHERE id = :id")
     fun updatePerson(id: Int, debt: Double)
 
-    @Query("SELECT * FROM my_debts")
-    fun getAllPersonsMyDebt(): Flowable<List<MyDebtPerson>>
-
-    @Query("UPDATE my_debts SET debt = :debt WHERE id = :id")
-    fun updatePersonMyDebt(id: Int, debt: Double)
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertPersonMyDebt(person: MyDebtPerson)
-
-    @Delete
-    fun deletePersonMyDebt(person: MyDebtPerson)
+//    @Query("SELECT * FROM my_debts")
+//    fun getAllPersonsMyDebt(): Flowable<List<MyDebtPerson>>
+//
+//    @Query("UPDATE my_debts SET debt = :debt WHERE id = :id")
+//    fun updatePersonMyDebt(id: Int, debt: Double)
+//
+//    @Insert(onConflict = OnConflictStrategy.REPLACE)
+//    fun insertPersonMyDebt(person: MyDebtPerson)
+//
+//    @Delete
+//    fun deletePersonMyDebt(person: MyDebtPerson)
 }

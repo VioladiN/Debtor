@@ -10,6 +10,8 @@ data class Person(
     @PrimaryKey(autoGenerate = true) val id: Int? = null,
     @ColumnInfo(name = "first_name") val firstName: String?,
     @ColumnInfo(name = "last_name") val lastName: String?,
-    @ColumnInfo(name = "debt") var debt: Double?,
-    @ColumnInfo(name = "phone") var phone: String?
+    @ColumnInfo(name = "debt") val debt: Double?,
+    @ColumnInfo(name = "phone") val phone: String?,
+    @ColumnInfo(name = "created_time") val created_time: String?,
+    @ColumnInfo(name = "type") val type: String?
 ): Serializable
