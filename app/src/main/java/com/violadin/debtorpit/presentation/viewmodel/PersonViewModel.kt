@@ -12,7 +12,7 @@ class PersonViewModel(application: Application) : AndroidViewModel(application) 
     private val appDataBase = AppDataBase.getInstance(application.applicationContext)
     private val dao = appDataBase.personDao()
 
-    fun getAllPersons(): Flowable<List<Person>> =
+    fun getAllPersons(): List<Person> =
         dao.getAllPersons()
 
     fun addPerson(person: Person) {

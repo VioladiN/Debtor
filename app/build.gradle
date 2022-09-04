@@ -60,9 +60,7 @@ dependencies {
     //room
     kapt "androidx.room:room-compiler:2.4.3"
     implementation "androidx.room:room-ktx:2.4.3"
-    testImplementation "androidx.room:room-testing:2.4.3"
     implementation "androidx.room:room-runtime:2.4.3"
-    implementation "androidx.room:room-rxjava2:2.4.3"
 
     //Fragment support
     implementation "androidx.fragment:fragment-ktx:1.5.2"

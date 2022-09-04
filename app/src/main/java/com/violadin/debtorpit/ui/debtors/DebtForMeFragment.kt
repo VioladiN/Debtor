@@ -43,7 +43,7 @@ class DebtForMeFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        getAllPersons()
+//        getAllPersons()
 
         add_person.setOnClickListener {
             it.findNavController().navigate(R.id.debt_for_me_fragment_to_create_debt_fragment)
@@ -65,27 +65,27 @@ class DebtForMeFragment: Fragment() {
         })
     }
 
-    @SuppressLint("CheckResult")
-    private fun getAllPersons() {
-        compositeDisposable.add(
-            viewModel.getAllPersons()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { list ->
-                    try {
-                        if (list.isEmpty()) {
-                            list_is_empty_tv.visibility = View.VISIBLE
-                            list_item.layoutManager = LinearLayoutManager(requireContext())
-                            list_item.adapter = DebtForMeAdapter(list, requireContext(), viewModel)
-                        } else {
-                            list_is_empty_tv.visibility = View.GONE
-                            list_item.layoutManager = LinearLayoutManager(requireContext())
-                            list_item.adapter = DebtForMeAdapter(list, requireContext(), viewModel)
-                        }
-                    } catch (e: Exception) {}
-                }
-        )
-    }
+//    @SuppressLint("CheckResult")
+//    private fun getAllPersons() {
+//        compositeDisposable.add(
+//            viewModel.getAllPersons()
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe { list ->
+//                    try {
+//                        if (list.isEmpty()) {
+//                            list_is_empty_tv.visibility = View.VISIBLE
+//                            list_item.layoutManager = LinearLayoutManager(requireContext())
+//                            list_item.adapter = DebtForMeAdapter(list, requireContext(), viewModel)
+//                        } else {
+//                            list_is_empty_tv.visibility = View.GONE
+//                            list_item.layoutManager = LinearLayoutManager(requireContext())
+//                            list_item.adapter = DebtForMeAdapter(list, requireContext(), viewModel)
+//                        }
+//                    } catch (e: Exception) {}
+//                }
+//        )
+//    }
 
     override fun onDestroy() {
         compositeDisposable.dispose()
