@@ -12,17 +12,24 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.violadin.debtorpit.R
+import com.violadin.debtorpit.navigation.NavigationManager
 import com.violadin.debtorpit.presentation.viewmodel.PersonViewModel
 import com.violadin.debtorpit.ui.fragment.BottomSheetCreateDebtorFragment
+import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.debt_for_me_fragment.*
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class DebtForMeFragment: Fragment() {
 
     private lateinit var viewModel: PersonViewModel
     private val compositeDisposable = CompositeDisposable()
+
+    @Inject
+    lateinit var navigationManager: NavigationManager
 
     override fun onCreateView(
         inflater: LayoutInflater,

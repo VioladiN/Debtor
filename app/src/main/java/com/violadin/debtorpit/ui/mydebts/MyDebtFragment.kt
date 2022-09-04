@@ -10,19 +10,26 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.violadin.debtorpit.R
+import com.violadin.debtorpit.navigation.NavigationManager
 import com.violadin.debtorpit.presentation.viewmodel.PersonViewModel
 import com.violadin.debtorpit.ui.fragment.BottomSheetCreateMyDebtPersonFragment
+import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.my_debt_fragment.add_person
 import kotlinx.android.synthetic.main.my_debt_fragment.list_is_empty_tv
 import kotlinx.android.synthetic.main.my_debt_fragment.list_item
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MyDebtFragment : Fragment() {
 
     private lateinit var viewModel: PersonViewModel
     private val compositeDisposable = CompositeDisposable()
+
+    @Inject
+    lateinit var navigationManager: NavigationManager
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,7 +37,7 @@ class MyDebtFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.my_debt_fragment, container, false)
-        viewModel = ViewModelProvider(this).get(PersonViewModel::class.java)
+        viewModel = ViewModelProvider(this)[PersonViewModel::class.java]
 //        (activity as BottomNavBarActivity).changeHeader(R.string.third_page)
         return view
     }
