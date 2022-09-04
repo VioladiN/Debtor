@@ -8,9 +8,6 @@ import io.reactivex.Flowable
 @Dao
 interface PersonDao {
 
-    @Insert
-    fun insertAllPersons(persons: List<Person>)
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertPerson(person: Person)
 
