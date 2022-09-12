@@ -9,7 +9,7 @@ import com.violadin.debtorpit.R
 
 class NavigationManager {
 
-    private var mainActivity: Activity? = null
+    var mainActivity: Activity? = null
     var bottomBarFragment: Fragment? = null
 
     var mainActivityController: NavController? = null

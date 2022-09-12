@@ -2,9 +2,11 @@ package com.violadin.debtorpit.database.dao
 
 import androidx.room.*
 import com.violadin.debtorpit.database.tables.Person
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface PersonDao {
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertPerson(person: Person)
 

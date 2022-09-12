@@ -1,33 +1,30 @@
 package com.violadin.debtorpit.ui.debtors
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.violadin.debtorpit.R
 import com.violadin.debtorpit.navigation.NavigationManager
-import com.violadin.debtorpit.presentation.viewmodel.PersonViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.debt_for_me_fragment.*
+import kotlinx.android.synthetic.main.debt_for_me_fragment.view.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class DebtForMeFragment: Fragment() {
 
-    private lateinit var viewModel: PersonViewModel
-    private val compositeDisposable = CompositeDisposable()
-
     @Inject
     lateinit var navigationManager: NavigationManager
+
+    private var recyclerAdapter: DebtForMeAdapter? = null
+    private val viewModel: DebtForMeFragmentVM by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,23 +32,32 @@ class DebtForMeFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.debt_for_me_fragment, container, false)
-        viewModel = ViewModelProvider(this)[PersonViewModel::class.java]
-//        (activity as BottomNavBarActivity).changeHeader(R.string.first_page)
+        initRecyclerList(view)
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        getAllPersons()
+        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+            viewModel.persons.collect { persons ->
+                recyclerAdapter?.let { adapter ->
+                    if (persons.isEmpty()) {
+                        list_is_empty_tv.visibility = View.VISIBLE
+                        adapter.submitList(persons)
+                    } else {
+                        list_is_empty_tv.visibility = View.GONE
+                        adapter.submitList(persons)
+                    }
+                }
+            }
+        }
 
         add_person.setOnClickListener {
             it.findNavController().navigate(R.id.debt_for_me_fragment_to_create_debt_fragment)
-//            val createDebtorFragment = BottomSheetCreateDebtorFragment(viewModel)
-//            createDebtorFragment.show(requireActivity().supportFragmentManager, null)
         }
 
-        list_item.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        recycler_view_persons.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 if (dy > 0 || dy < 0 && add_person.isShown)
                     add_person.hide()
@@ -65,31 +71,9 @@ class DebtForMeFragment: Fragment() {
         })
     }
 
-//    @SuppressLint("CheckResult")
-//    private fun getAllPersons() {
-//        compositeDisposable.add(
-//            viewModel.getAllPersons()
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe { list ->
-//                    try {
-//                        if (list.isEmpty()) {
-//                            list_is_empty_tv.visibility = View.VISIBLE
-//                            list_item.layoutManager = LinearLayoutManager(requireContext())
-//                            list_item.adapter = DebtForMeAdapter(list, requireContext(), viewModel)
-//                        } else {
-//                            list_is_empty_tv.visibility = View.GONE
-//                            list_item.layoutManager = LinearLayoutManager(requireContext())
-//                            list_item.adapter = DebtForMeAdapter(list, requireContext(), viewModel)
-//                        }
-//                    } catch (e: Exception) {}
-//                }
-//        )
-//    }
-
-    override fun onDestroy() {
-        compositeDisposable.dispose()
-        super.onDestroy()
+    private fun initRecyclerList(parentView: View) {
+        parentView.recycler_view_persons.layoutManager = LinearLayoutManager(requireContext())
+        recyclerAdapter = DebtForMeAdapter()
+        parentView.recycler_view_persons.adapter = recyclerAdapter
     }
-
 }

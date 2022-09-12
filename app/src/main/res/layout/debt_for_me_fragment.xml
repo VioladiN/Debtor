@@ -7,20 +7,20 @@
     android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list_item"
+        android:id="@+id/recycler_view_persons"
         android:paddingBottom="150dp"
         android:clipToPadding="false"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/recyclerview_row_debt_for_me"
-        />
+        tools:listitem="@layout/recyclerview_row_debt_for_me" />
 
     <TextView
         android:id="@+id/list_is_empty_tv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="invisible"
         android:textColor="@color/base_UI_mute"
         android:fontFamily="@font/roboto_300"
         android:textSize="20sp"

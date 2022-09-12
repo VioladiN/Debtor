@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.violadin.debtorpit.R
+import kotlinx.android.synthetic.main.create_debt_fragment.*
 
 class CreateDebtFragment : Fragment() {
 
@@ -16,6 +17,14 @@ class CreateDebtFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.create_debt_fragment, container, false)
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        add_debtor.setOnClickListener {
+
+        }
     }
 
 }

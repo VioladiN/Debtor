@@ -9,23 +9,23 @@ import java.math.RoundingMode
 
 class PersonViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val appDataBase = AppDataBase.getInstance(application.applicationContext)
-    private val dao = appDataBase.personDao()
-
-    fun getAllPersons(): List<Person> =
-        dao.getAllPersons()
-
-    fun addPerson(person: Person) {
-        dao.insertPerson(person)
-    }
-
-    fun deletePerson(person: Person) {
-        dao.deletePerson(person)
-    }
-
-    fun updatePerson(id: Int, newDebt: Double) {
-        dao.updatePerson(id, newDebt.toBigDecimal().setScale(2, RoundingMode.UP).toDouble())
-    }
+//    private val appDataBase = AppDataBase.getInstance(application.applicationContext)
+//    private val dao = appDataBase.personDao()
+//
+//    fun getAllPersons(): List<Person> =
+//        dao.getAllPersons()
+//
+//    fun addPerson(person: Person) {
+//        dao.insertPerson(person)
+//    }
+//
+//    fun deletePerson(person: Person) {
+//        dao.deletePerson(person)
+//    }
+//
+//    fun updatePerson(id: Int, newDebt: Double) {
+//        dao.updatePerson(id, newDebt.toBigDecimal().setScale(2, RoundingMode.UP).toDouble())
+//    }
 
 //    fun insertPersonMyDebt(person: Person) {
 //        dao.insertPersonMyDebt(person)
@@ -42,7 +42,7 @@ class PersonViewModel(application: Application) : AndroidViewModel(application) 
 //        dao.deletePersonMyDebt(person)
 //    }
 
-    fun closeDb() {
-        appDataBase.close()
-    }
+//    fun closeDb() {
+//        appDataBase.close()
+//    }
 }
