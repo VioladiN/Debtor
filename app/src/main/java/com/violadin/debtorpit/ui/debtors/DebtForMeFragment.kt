@@ -11,6 +11,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.violadin.debtorpit.R
+import com.violadin.debtorpit.enums.PersonType
 import com.violadin.debtorpit.navigation.NavigationManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.debt_for_me_fragment.*
@@ -54,7 +55,10 @@ class DebtForMeFragment: Fragment() {
         }
 
         add_person.setOnClickListener {
-            it.findNavController().navigate(R.id.debt_for_me_fragment_to_create_debt_fragment)
+            val bundle = Bundle().apply {
+                putString("type", PersonType.DEBT_FOR_ME_PERSON.type)
+            }
+            it.findNavController().navigate(R.id.debt_for_me_fragment_to_create_debt_fragment, bundle)
         }
 
         recycler_view_persons.addOnScrollListener(object : RecyclerView.OnScrollListener() {

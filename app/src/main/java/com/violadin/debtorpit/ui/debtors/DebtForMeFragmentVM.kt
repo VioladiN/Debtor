@@ -8,6 +8,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -25,7 +27,9 @@ class DebtForMeFragmentVM @Inject constructor(
 
     private fun getDebtForMePersons() {
         viewModelScope.launch(Dispatchers.IO) {
-            _persons.value = personDao.getAllPersons()
+            personDao.getAllPersons().collect {
+                _persons.value = it
+            }
         }
     }
 }

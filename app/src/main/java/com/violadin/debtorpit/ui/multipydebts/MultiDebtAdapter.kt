@@ -56,7 +56,7 @@ class MultiDebtAdapter(
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        viewHolder.name.text = "${persons[position].lastName} ${persons[position].firstName}"
+        viewHolder.name.text = persons[position].fio
         viewHolder.debt.text = persons[position].debt.toString()
         if (selectedPersons.contains(persons[position].id)) {
             viewHolder.itemView.setBackgroundColor(context.getColor(R.color.selected_base))

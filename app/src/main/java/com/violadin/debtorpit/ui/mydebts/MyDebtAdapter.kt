@@ -48,7 +48,7 @@ class MyDebtAdapter(
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        viewHolder.name.text = "${personMyDebt[position].lastName} ${personMyDebt[position].firstName}"
+        viewHolder.name.text = personMyDebt[position].fio
         viewHolder.debt.text = personMyDebt[position].debt.toString()
     }
 

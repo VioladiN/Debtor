@@ -34,12 +34,12 @@ class BottomSheetInfoPersonMyDebtFragment() : BottomSheetDialogFragment() {
         call_person.visibility = View.GONE
         phone_text.visibility=View.GONE
 
-        first_name_text.text = person!!.firstName
-        if (person?.lastName.isNullOrEmpty())
-            last_name_text.visibility = View.GONE
-        else
-            last_name_text.text = person!!.lastName
-        debt_count.text = person!!.debt.toString()
+//        first_name_text.text = person!!.firstName
+//        if (person?.lastName.isNullOrEmpty())
+//            last_name_text.visibility = View.GONE
+//        else
+//            last_name_text.text = person!!.lastName
+//        debt_count.text = person!!.debt.toString()
 
         drop_debt_button.setOnClickListener {
             it.apply { isEnabled = false; postDelayed({isEnabled = true}, 1000) }

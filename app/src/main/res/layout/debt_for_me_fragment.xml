@@ -8,8 +8,6 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_persons"
-        android:paddingBottom="150dp"
-        android:clipToPadding="false"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"

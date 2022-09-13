@@ -41,7 +41,7 @@ class DebtForMeAdapter(
         @SuppressLint("SetTextI18n")
         fun bind(item: Person) {
 
-            view.debtor_name_text.text = "${item.lastName} ${item.firstName}"
+            view.debtor_name_text.text = item.fio
             view.debt_count.text = item.debt.toString()
 
             view.setOnClickListener {

@@ -19,5 +19,10 @@ class CreateDebtFragmentVM @Inject constructor(
     private val personDao: PersonDao
 ) : ViewModel() {
 
+    fun createPerson(person: Person) {
+        viewModelScope.launch(Dispatchers.IO) {
+            personDao.insertPerson(person)
+        }
+    }
 
 }

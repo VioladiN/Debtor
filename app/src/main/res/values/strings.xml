@@ -40,7 +40,9 @@
     <string name="phone_hint">+79995555555</string>
 
     <string name="empty_field_first_name">Поле "Имя" должно быть заполнено</string>
-    <string name="wrong_filed_debt">Поле "Долг" заполнено некорректно</string>
+    <string name="empty_field_fio">Заполните поле "ФИО"</string>
+    <string name="missing_person_type">Выберите тип долга</string>
+    <string name="wrong_filed_debt">Поле "Сумма" заполнено некорректно</string>
     <string name="wrong_filed_debt_count">Поле "Размер Долга" должно быть заполнено</string>
 
     <string name="person_added">Должник добавлен</string>

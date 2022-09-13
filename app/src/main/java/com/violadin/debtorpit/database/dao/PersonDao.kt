@@ -14,7 +14,7 @@ interface PersonDao {
     fun deletePerson(person: Person)
 
     @Query("SELECT * FROM persons")
-    fun getAllPersons(): List<Person>
+    fun getAllPersons(): Flow<List<Person>>
 
 //    @Query("SELECT * FROM persons WHERE first_name LIKE :first AND last_name LIKE :last")
 //    fun findByName(first: String, last: String): Person
