@@ -29,7 +29,6 @@ class DebtForMeAdapter(
         return ViewHolder(v)
     }
 
-    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         viewHolder.bind(getItem(position))
     }
