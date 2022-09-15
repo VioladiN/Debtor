@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.violadin.debtorpit.R
@@ -77,7 +78,12 @@ class DebtForMeFragment: Fragment() {
 
     private fun initRecyclerList(parentView: View) {
         parentView.recycler_view_persons.layoutManager = LinearLayoutManager(requireContext())
-        recyclerAdapter = DebtForMeAdapter()
+        recyclerAdapter = DebtForMeAdapter {
+            val bundle = Bundle().apply {
+                putParcelable("person", it)
+            }
+            findNavController().navigate(R.id.debt_for_me_fragment_to_info_about_debtor_fragment, bundle)
+        }
         parentView.recycler_view_persons.adapter = recyclerAdapter
     }
 }

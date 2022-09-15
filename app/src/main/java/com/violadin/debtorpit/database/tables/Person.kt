@@ -1,10 +1,12 @@
 package com.violadin.debtorpit.database.tables
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.io.Serializable
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 @Entity(tableName = "persons")
 data class Person(
     @PrimaryKey(autoGenerate = true) val id: Int? = null,
@@ -13,4 +15,4 @@ data class Person(
     @ColumnInfo(name = "phone") val phone: String?,
     @ColumnInfo(name = "created_time") val created_time: String?,
     @ColumnInfo(name = "type") val type: String?
-): Serializable
+): Parcelable

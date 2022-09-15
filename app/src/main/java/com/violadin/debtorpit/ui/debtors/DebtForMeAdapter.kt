@@ -12,7 +12,7 @@ import com.violadin.debtorpit.database.tables.Person
 import kotlinx.android.synthetic.main.recyclerview_row_debt_for_me.view.*
 
 class DebtForMeAdapter(
-
+    private val clickListener: (person: Person) -> Unit
 ) : ListAdapter<Person, DebtForMeAdapter.ViewHolder>(object : DiffUtil.ItemCallback<Person>() {
     override fun areItemsTheSame(oldItem: Person, newItem: Person): Boolean {
         return oldItem.id == newItem.id
@@ -44,14 +44,7 @@ class DebtForMeAdapter(
             view.debt_count.text = item.debt.toString()
 
             view.setOnClickListener {
-//                it.apply { isEnabled = false; postDelayed({isEnabled = true}, 1000) }
-//                val createDebtorFragment = BottomSheetInfoPersonFragment()
-//                val bundle = Bundle()
-//                bundle.putSerializable("person", persons[bindingAdapterPosition])
-//                createDebtorFragment.arguments = bundle
-//                view.findFragment<DebtForMeFragment>().activity?.let { activity ->
-//                    createDebtorFragment.show(activity.supportFragmentManager, null)
-//                }
+                clickListener(item)
             }
         }
     }
