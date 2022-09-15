@@ -1,6 +1,7 @@
 package com.violadin.debtorpit.ui
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import com.violadin.debtorpit.R
@@ -13,6 +14,7 @@ class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var navController: NavigationManager
+    private val viewModel: MainActivityVM by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_Debtorpit)
@@ -22,7 +24,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        // todo close db via appDataBase.close()
+        viewModel.appDataBase.close()
         super.onDestroy()
     }
 }
