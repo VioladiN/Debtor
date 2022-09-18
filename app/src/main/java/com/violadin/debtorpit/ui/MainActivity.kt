@@ -3,7 +3,6 @@ package com.violadin.debtorpit.ui
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.NavController
 import com.violadin.debtorpit.R
 import com.violadin.debtorpit.navigation.NavigationManager
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,6 +20,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         navController.initActivityController(this)
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onBackPressed() {
+        navController.bottomBarController?.let {
+            when (it.currentDestination!!.id) {
+                R.id.debt_for_me_fragment, R.id.my_debt_fragment, R.id.multi_debt_fragment -> {
+                    finish()
+                }
+            }
+        }
+        super.onBackPressed()
     }
 
     override fun onDestroy() {

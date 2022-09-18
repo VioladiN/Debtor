@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.violadin.debtorpit.R
 import com.violadin.debtorpit.navigation.NavigationManager
@@ -27,5 +26,9 @@ class BottomBarFragment : Fragment() {
         val view = inflater.inflate(R.layout.bottom_nav_bar_fragment, container, false)
         view.bottom_navigation.setupWithNavController(navController.initBottomBarController(this))
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
     }
 }
