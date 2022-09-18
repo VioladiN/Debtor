@@ -1,20 +1,14 @@
 package com.violadin.debtorpit.ui.mydebts
 
 import android.annotation.SuppressLint
-import android.content.Context
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.findFragment
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.violadin.debtorpit.R
 import com.violadin.debtorpit.database.tables.Person
-import com.violadin.debtorpit.presentation.viewmodel.PersonViewModel
-import com.violadin.debtorpit.ui.debtors.DebtForMeAdapter
-import com.violadin.debtorpit.ui.fragment.BottomSheetInfoPersonMyDebtFragment
 import kotlinx.android.synthetic.main.recyclerview_row_debt_for_me.view.*
 
 class MyDebtAdapter(
@@ -48,6 +42,7 @@ class MyDebtAdapter(
 
             view.debtor_name_text.text = item.fio
             view.debt_count.text = item.debt.toString()
+            view.debtor_date_text.text = item.created_time
 
             view.setOnClickListener {
                 clickListener(item)

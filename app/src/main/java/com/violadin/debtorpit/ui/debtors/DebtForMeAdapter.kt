@@ -42,6 +42,7 @@ class DebtForMeAdapter(
 
             view.debtor_name_text.text = item.fio
             view.debt_count.text = item.debt.toString()
+            view.debtor_date_text.text = item.created_time
 
             view.setOnClickListener {
                 clickListener(item)
