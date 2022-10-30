@@ -56,6 +56,7 @@
         android:layout_marginVertical="10dp"
         android:hint="@string/debt_hint"
         android:textSize="18sp"
+        android:maxLength="10"
         android:paddingHorizontal="25dp"
         android:fontFamily="@font/roboto_300"
         android:paddingVertical="12dp"
@@ -96,6 +97,7 @@
         android:textColorHint="@color/base_UI_mute"
         android:background="@drawable/background_10dp_rectangle_coloronprimary"
         android:layout_marginTop="20dp"
+        android:inputType="text"
         app:layout_constraintEnd_toStartOf="@id/guideline_right"
         app:layout_constraintTop_toBottomOf="@id/debt_ed"
         app:layout_constraintStart_toEndOf="@id/guideline_left" />

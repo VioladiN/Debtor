@@ -1,82 +1,58 @@
 package com.violadin.debtorpit.ui.multipydebts
 
-import android.animation.ArgbEvaluator
-import android.animation.ValueAnimator
-import android.annotation.SuppressLint
-import android.content.Context
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.violadin.debtorpit.R
-import com.violadin.debtorpit.database.tables.Person
-import io.reactivex.Observable
-import io.reactivex.subjects.PublishSubject
-import kotlinx.android.synthetic.main.recyclerview_row_debt_for_me.view.*
+import kotlinx.android.synthetic.main.recyclerview_row_choose_person.view.*
 
 class MultiDebtAdapter(
-    val persons: List<Person>,
-    val context: Context
-) : RecyclerView.Adapter<MultiDebtAdapter.ViewHolder>() {
+    private val personsIdsHashSet: HashSet<Int>
+) : ListAdapter<ChoosePersonModel, MultiDebtAdapter.ViewHolder>(object :
+    DiffUtil.ItemCallback<ChoosePersonModel>() {
+    override fun areItemsTheSame(oldItem: ChoosePersonModel, newItem: ChoosePersonModel): Boolean {
+        return oldItem.person.id == newItem.person.id
+    }
 
-    val selectedPersons = arrayListOf<Int>()
-    private val clickSubject = PublishSubject.create<List<Int>>()
-    val clickEvent: Observable<List<Int>> = clickSubject
+    override fun areContentsTheSame(
+        oldItem: ChoosePersonModel,
+        newItem: ChoosePersonModel
+    ): Boolean {
+        return oldItem == newItem
+    }
+}) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context)
-            .inflate(R.layout.recyclerview_row_debt_for_me, parent, false)
+            .inflate(R.layout.recyclerview_row_choose_person, parent, false)
         return ViewHolder(v)
     }
 
-    inner class ViewHolder(
-        view: View
-    ) : RecyclerView.ViewHolder(view) {
-        val name = view.debtor_name_text
-        val debt = view.debt_count
+    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
+        viewHolder.bind(getItem(position))
+    }
 
-        init {
+    inner class ViewHolder(
+        private val view: View
+    ) : RecyclerView.ViewHolder(view) {
+
+        fun bind(person: ChoosePersonModel) {
+            view.radio_selected.isChecked = person.isChecked
+            view.debtor_name_text.text = person.person.fio
+            view.debtor_date_text.text = person.person.created_time
+            view.debt_count.text = person.person.debt.toString()
             view.setOnClickListener {
-                if (selectedPersons.contains(persons[absoluteAdapterPosition].id!!)) {
-                    selectedPersons.remove(persons[absoluteAdapterPosition].id!!)
-                    val typedValue = TypedValue()
-                    context.theme.resolveAttribute(R.attr.colorOnPrimary, typedValue, true)
-                    changeColor(view, context.getColor(R.color.selected_base), typedValue.data)
+                if (personsIdsHashSet.contains(person.person.id)) {
+                    view.radio_selected.isChecked = false
+                    personsIdsHashSet.remove(person.person.id!!)
                 } else {
-                    selectedPersons.add(persons[absoluteAdapterPosition].id!!)
-                    val typedValue = TypedValue()
-                    context.theme.resolveAttribute(R.attr.colorOnPrimary, typedValue, true)
-                    changeColor(view, typedValue.data, context.getColor(R.color.selected_base))
+                    view.radio_selected.isChecked = true
+                    personsIdsHashSet.add(person.person.id!!)
                 }
-                clickSubject.onNext(selectedPersons)
             }
         }
     }
-
-    @SuppressLint("SetTextI18n")
-    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        viewHolder.name.text = persons[position].fio
-        viewHolder.debt.text = persons[position].debt.toString()
-        if (selectedPersons.contains(persons[position].id)) {
-            viewHolder.itemView.setBackgroundColor(context.getColor(R.color.selected_base))
-        } else {
-            val typedValue = TypedValue()
-            context.theme.resolveAttribute(R.attr.colorOnPrimary, typedValue, true)
-            viewHolder.itemView.setBackgroundColor(typedValue.data)
-        }
-    }
-
-    @SuppressLint("Recycle")
-    private fun changeColor(view: View, colorFrom: Int, colorTo: Int) {
-        val colorAnimation = ValueAnimator.ofObject(ArgbEvaluator(), colorFrom, colorTo)
-        colorAnimation.duration = 400
-        colorAnimation.addUpdateListener {
-            view.setBackgroundColor(it.animatedValue as Int)
-        }
-        colorAnimation.start()
-    }
-
-    override fun getItemCount(): Int =
-        persons.size
 }

@@ -8,6 +8,15 @@
     <fragment
         android:id="@+id/multi_debt_fragment"
         android:name="com.violadin.debtorpit.ui.multipydebts.MultiDebtFragment"
-        tools:layout="@layout/multi_debt_fragment" />
+        tools:layout="@layout/multi_debt_fragment" >
+        <action
+            android:id="@+id/multi_debt_to_choose_persons_dialog"
+            app:destination="@id/bottom_sheet_dialog" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/bottom_sheet_dialog"
+        android:name="com.violadin.debtorpit.ui.multipydebts.MultiDebtChoosePersonsDialog"
+        tools:layout="@layout/choose_persons_dialog_fragment" />
 
 </navigation>
