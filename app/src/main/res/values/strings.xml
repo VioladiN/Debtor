@@ -45,6 +45,7 @@
     <string name="empty_field_fio">Заполните поле "ФИО"</string>
     <string name="missing_person_type">Выберите тип долга</string>
     <string name="wrong_filed_debt">Заполните поле "Сумма"</string>
+    <string name="empty_count_of_debtors">Выберите должников</string>
     <string name="wrong_filed_debt_count">Поле "Размер Долга" должно быть заполнено</string>
 
     <string name="person_added">Должник добавлен</string>

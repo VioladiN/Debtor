@@ -9,6 +9,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -18,7 +19,7 @@ class MultiDebtFragmentVM @Inject constructor(
 ) : ViewModel() {
 
     private val _persons = MutableStateFlow<List<ChoosePersonModel>>(emptyList())
-    val persons: StateFlow<List<ChoosePersonModel>> = _persons
+    val persons: StateFlow<List<ChoosePersonModel>> = _persons.asStateFlow()
 
     init {
         getMyDebtPersons()
@@ -26,13 +27,9 @@ class MultiDebtFragmentVM @Inject constructor(
 
     private fun getMyDebtPersons() {
         viewModelScope.launch(Dispatchers.IO) {
-            val result = ArrayList<ChoosePersonModel>()
             personDao.getAllPersons().collect { persons ->
-                persons.forEach { person ->
-                    if (person.type == PersonType.DEBT_FOR_ME_PERSON.type)
-                        result.add(ChoosePersonModel(person))
-                }
-                _persons.value = result
+                _persons.value = persons.filter { it.type == PersonType.DEBT_FOR_ME_PERSON.type }
+                    .map { ChoosePersonModel(it) }
             }
         }
     }

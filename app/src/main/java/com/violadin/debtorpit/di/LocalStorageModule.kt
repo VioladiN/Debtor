@@ -17,7 +17,6 @@ import javax.inject.Singleton
 class LocalStorageModule {
 
     @Provides
-    @Singleton
     fun provideAppDataBase(@ApplicationContext context: Context): AppDataBase =
         Room.databaseBuilder(
             context.applicationContext,

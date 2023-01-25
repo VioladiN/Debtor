@@ -140,7 +140,6 @@
         android:background="@drawable/background_10dp_rectangle_coloronprimary"
         android:inputType="number"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="35dp"
         app:layout_constraintEnd_toStartOf="@id/text_currency"
         app:layout_constraintTop_toBottomOf="@id/fio_ed"
         app:layout_constraintStart_toEndOf="@id/guideline_left" />
@@ -153,12 +152,11 @@
         android:fontFamily="@font/roboto_300"
         android:text="RUB"
         android:textColor="@color/gray_dark"
-        android:drawablePadding="13dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginHorizontal="20dp"
         app:layout_constraintEnd_toStartOf="@id/guideline_right"
         app:layout_constraintTop_toTopOf="@id/debt_ed"
-        app:layout_constraintBottom_toBottomOf="@id/debt_ed"
-        app:drawableRightCompat="@drawable/ic_arrow_down" />
+        app:layout_constraintStart_toEndOf="@id/debt_ed"
+        app:layout_constraintBottom_toBottomOf="@id/debt_ed" />
 
     <EditText
         android:id="@+id/phone_ed"

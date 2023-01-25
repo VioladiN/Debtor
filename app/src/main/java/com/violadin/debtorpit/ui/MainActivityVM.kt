@@ -8,6 +8,4 @@ import javax.inject.Inject
 @HiltViewModel
 class MainActivityVM @Inject constructor(
     val appDataBase: AppDataBase
-) : ViewModel() {
-
-}
+) : ViewModel()
