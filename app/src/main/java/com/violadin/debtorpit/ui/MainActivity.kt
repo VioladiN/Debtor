@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.violadin.debtorpit.R
+import com.violadin.debtorpit.databinding.ActivityMainBinding
 import com.violadin.debtorpit.navigation.NavigationManager
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -14,11 +15,13 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var navController: NavigationManager
     private val viewModel: MainActivityVM by viewModels()
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_Debtorpit)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         navController.initActivityController(this)
     }
 

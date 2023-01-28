@@ -1,13 +1,11 @@
 package com.violadin.debtorpit.ui.multipydebts
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.violadin.debtorpit.R
-import kotlinx.android.synthetic.main.recyclerview_row_choose_person.view.*
+import com.violadin.debtorpit.databinding.RecyclerviewRowChoosePersonBinding
 
 class MultiDebtAdapter(
     private val personsIdsHashSet: HashSet<Int>
@@ -26,9 +24,9 @@ class MultiDebtAdapter(
 }) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val v = LayoutInflater.from(parent.context)
-            .inflate(R.layout.recyclerview_row_choose_person, parent, false)
-        return ViewHolder(v)
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val recyclerviewRowChoosePersonBinding = RecyclerviewRowChoosePersonBinding.inflate(layoutInflater, parent, false)
+        return ViewHolder(recyclerviewRowChoosePersonBinding)
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
@@ -36,21 +34,23 @@ class MultiDebtAdapter(
     }
 
     inner class ViewHolder(
-        private val view: View
-    ) : RecyclerView.ViewHolder(view) {
+        private val binding: RecyclerviewRowChoosePersonBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(person: ChoosePersonModel) {
-            view.radio_selected.isChecked = person.isChecked
-            view.debtor_name_text.text = person.person.fio
-            view.debtor_date_text.text = person.person.created_time
-            view.debt_count.text = person.person.debt.toString()
-            view.setOnClickListener {
-                if (personsIdsHashSet.contains(person.person.id)) {
-                    view.radio_selected.isChecked = false
-                    personsIdsHashSet.remove(person.person.id!!)
-                } else {
-                    view.radio_selected.isChecked = true
-                    personsIdsHashSet.add(person.person.id!!)
+            with(binding) {
+                radioSelected.isChecked = person.isChecked
+                debtorNameText.text = person.person.fio
+                debtorDateText.text = person.person.created_time
+                debtCount.text = person.person.debt.toString()
+                root.setOnClickListener {
+                    if (personsIdsHashSet.contains(person.person.id)) {
+                        radioSelected.isChecked = false
+                        personsIdsHashSet.remove(person.person.id!!)
+                    } else {
+                        radioSelected.isChecked = true
+                        personsIdsHashSet.add(person.person.id!!)
+                    }
                 }
             }
         }

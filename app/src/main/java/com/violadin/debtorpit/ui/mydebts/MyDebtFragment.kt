@@ -12,11 +12,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.violadin.debtorpit.R
+import com.violadin.debtorpit.databinding.MyDebtFragmentBinding
 import com.violadin.debtorpit.enums.PersonType
 import com.violadin.debtorpit.navigation.NavigationManager
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.my_debt_fragment.*
-import kotlinx.android.synthetic.main.my_debt_fragment.view.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -27,63 +26,66 @@ class MyDebtFragment : Fragment() {
 
     private var recyclerAdapter: MyDebtAdapter? = null
     private val viewModel: MyDebtFragmentVM by viewModels()
+    private lateinit var binding: MyDebtFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.my_debt_fragment, container, false)
-        initRecyclerList(view)
-        return view
+    ): View {
+        binding = MyDebtFragmentBinding.inflate(inflater, container, false)
+        initRecyclerList()
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-            viewModel.persons.collect { persons ->
-                recyclerAdapter?.let { adapter ->
-                    if (persons.isEmpty()) {
-                        list_is_empty_tv.visibility = View.VISIBLE
-                        adapter.submitList(persons)
-                    } else {
-                        list_is_empty_tv.visibility = View.GONE
-                        adapter.submitList(persons)
+        with(binding) {
+            viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+                viewModel.persons.collect { persons ->
+                    recyclerAdapter?.let { adapter ->
+                        if (persons.isEmpty()) {
+                            listIsEmptyTv.visibility = View.VISIBLE
+                            adapter.submitList(persons)
+                        } else {
+                            listIsEmptyTv.visibility = View.GONE
+                            adapter.submitList(persons)
+                        }
                     }
                 }
             }
+
+            addPerson.setOnClickListener {
+                val bundle = Bundle().apply {
+                    putString("type", PersonType.MY_DEBT_PERSON.type)
+                }
+                it.findNavController().navigate(R.id.my_debt_fragment_to_create_debt_fragment, bundle)
+            }
+
+            recyclerMyDebtPersons.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    if (dy > 0 || dy < 0 && addPerson.isShown)
+                        addPerson.hide()
+                }
+
+                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                    if (newState == RecyclerView.SCROLL_STATE_IDLE)
+                        addPerson.show()
+                    super.onScrollStateChanged(recyclerView, newState)
+                }
+            })
         }
-
-        add_person.setOnClickListener {
-            val bundle = Bundle().apply {
-                putString("type", PersonType.MY_DEBT_PERSON.type)
-            }
-            it.findNavController().navigate(R.id.my_debt_fragment_to_create_debt_fragment, bundle)
-        }
-
-        recycler_my_debt_persons.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                if (dy > 0 || dy < 0 && add_person.isShown)
-                    add_person.hide()
-            }
-
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                if (newState == RecyclerView.SCROLL_STATE_IDLE)
-                    add_person.show()
-                super.onScrollStateChanged(recyclerView, newState)
-            }
-        })
     }
 
-    private fun initRecyclerList(parentView: View) {
-        parentView.recycler_my_debt_persons.layoutManager = LinearLayoutManager(requireContext())
+    private fun initRecyclerList() {
+        binding.recyclerMyDebtPersons.layoutManager = LinearLayoutManager(requireContext())
         recyclerAdapter = MyDebtAdapter {
             val bundle = Bundle().apply {
                 putParcelable("person", it)
             }
             findNavController().navigate(R.id.my_debt_fragment_to_info_about_debtor_fragment, bundle)
         }
-        parentView.recycler_my_debt_persons.adapter = recyclerAdapter
+        binding.recyclerMyDebtPersons.adapter = recyclerAdapter
     }
 }

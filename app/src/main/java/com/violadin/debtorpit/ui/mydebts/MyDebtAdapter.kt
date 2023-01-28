@@ -2,14 +2,12 @@ package com.violadin.debtorpit.ui.mydebts
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.violadin.debtorpit.R
 import com.violadin.debtorpit.database.tables.Person
-import kotlinx.android.synthetic.main.recyclerview_row_debt_for_me.view.*
+import com.violadin.debtorpit.databinding.RecyclerviewRowDebtForMeBinding
 
 class MyDebtAdapter(
     private val clickListener: (person: Person) -> Unit
@@ -24,9 +22,9 @@ class MyDebtAdapter(
 }) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val v = LayoutInflater.from(parent.context)
-            .inflate(R.layout.recyclerview_row_debt_for_me, parent, false)
-        return ViewHolder(v)
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val recyclerviewRowDebtForMeBinding = RecyclerviewRowDebtForMeBinding.inflate(layoutInflater, parent, false)
+        return ViewHolder(recyclerviewRowDebtForMeBinding)
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
@@ -34,18 +32,19 @@ class MyDebtAdapter(
     }
 
     inner class ViewHolder(
-        val view: View
-    ) : RecyclerView.ViewHolder(view) {
+        private val binding: RecyclerviewRowDebtForMeBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
 
         @SuppressLint("SetTextI18n")
         fun bind(item: Person) {
+            with(binding) {
+                debtorNameText.text = item.fio
+                debtCount.text = item.debt.toString()
+                debtorDateText.text = item.created_time
 
-            view.debtor_name_text.text = item.fio
-            view.debt_count.text = item.debt.toString()
-            view.debtor_date_text.text = item.created_time
-
-            view.setOnClickListener {
-                clickListener(item)
+                root.setOnClickListener {
+                    clickListener(item)
+                }
             }
         }
     }

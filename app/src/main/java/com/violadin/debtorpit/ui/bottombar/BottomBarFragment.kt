@@ -6,10 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.ui.setupWithNavController
-import com.violadin.debtorpit.R
+import com.violadin.debtorpit.databinding.BottomNavBarFragmentBinding
 import com.violadin.debtorpit.navigation.NavigationManager
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.bottom_nav_bar_fragment.view.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -17,15 +16,16 @@ class BottomBarFragment : Fragment() {
 
     @Inject
     lateinit var navController: NavigationManager
+    private lateinit var binding: BottomNavBarFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.bottom_nav_bar_fragment, container, false)
-        view.bottom_navigation.setupWithNavController(navController.initBottomBarController(this))
-        return view
+    ): View {
+        binding = BottomNavBarFragmentBinding.inflate(inflater, container, false)
+        binding.bottomNavigation.setupWithNavController(navController.initBottomBarController(this))
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
