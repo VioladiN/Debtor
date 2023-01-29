@@ -10,9 +10,9 @@ import kotlinx.parcelize.Parcelize
 @Entity(tableName = "persons")
 data class Person(
     @PrimaryKey(autoGenerate = true) val id: Int? = null,
-    @ColumnInfo(name = "fio") val fio: String?,
-    @ColumnInfo(name = "debt") val debt: Double?,
-    @ColumnInfo(name = "phone") val phone: String?,
-    @ColumnInfo(name = "created_time") val created_time: String?,
-    @ColumnInfo(name = "type") val type: String?
+    @ColumnInfo(name = "fio") val fio: String? = null,
+    @ColumnInfo(name = "debt") val debt: Double? = null,
+    @ColumnInfo(name = "phone") val phone: String? = null,
+    @ColumnInfo(name = "created_time") val created_time: String? = null,
+    @ColumnInfo(name = "type") val type: String? = null
 ): Parcelable

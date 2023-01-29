@@ -82,7 +82,7 @@ class MyDebtFragment : Fragment() {
         binding.recyclerMyDebtPersons.layoutManager = LinearLayoutManager(requireContext())
         recyclerAdapter = MyDebtAdapter {
             val bundle = Bundle().apply {
-                putParcelable("person", it)
+                putInt("id", it.id!!)
             }
             findNavController().navigate(R.id.my_debt_fragment_to_info_about_debtor_fragment, bundle)
         }

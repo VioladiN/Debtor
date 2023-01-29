@@ -16,11 +16,8 @@ interface PersonDao {
     @Query("SELECT * FROM persons")
     fun getAllPersons(): Flow<List<Person>>
 
-//    @Query("SELECT * FROM persons WHERE first_name LIKE :first AND last_name LIKE :last")
-//    fun findByName(first: String, last: String): Person
-
     @Query("SELECT * FROM persons WHERE id = :id")
-    fun findById(id: Int): Person
+    fun findById(id: Int): Flow<Person>
 
     @Query("UPDATE persons SET debt = :debt WHERE id = :id")
     fun updatePerson(id: Int, debt: Double)
