@@ -59,7 +59,7 @@ class CreateDebtFragment : Fragment() {
                             }
                         )
                     )
-                    navigationManager.bottomBarController?.popBackStack()
+                    navigationManager.bottomBarController?.navigateUp()
                 }
             }
         }

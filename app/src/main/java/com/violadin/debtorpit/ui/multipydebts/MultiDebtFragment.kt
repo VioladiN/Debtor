@@ -78,7 +78,7 @@ class MultiDebtFragment : Fragment() {
                         }
                     }
 
-                    textAddedPersons.setOnClickListener {
+                    textAddDebtors.setOnClickListener {
                         val bundle = Bundle().apply {
                             putParcelableArrayList("persons", persons as ArrayList<ChoosePersonModel>)
                         }

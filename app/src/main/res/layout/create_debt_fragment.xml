@@ -42,7 +42,6 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:fontFamily="@font/roboto_300"
-        android:text="10.04.2022"
         android:textColor="@color/base_UI"
         android:drawablePadding="10dp"
         app:layout_constraintStart_toEndOf="@id/guideline_left"
@@ -50,15 +49,6 @@
         app:layout_constraintTop_toBottomOf="@id/text_date_of_debt"
         app:drawableLeftCompat="@drawable/ic_peek_date" />
 
-<!--    <RadioGroup-->
-<!--        android:id="@+id/radio_group"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/text_peek_date"-->
-<!--        app:layout_constraintStart_toEndOf="@id/guideline_left"-->
-<!--        app:layout_constraintEnd_toStartOf="@id/guideline_right"-->
-<!--        android:orientation="horizontal"-->
-<!--        >-->
         <RadioButton
             android:id="@+id/radio_debt_for_me"
             android:layout_width="wrap_content"
@@ -106,7 +96,6 @@
             app:layout_constraintTop_toTopOf="@id/view_divider"
             app:layout_constraintBottom_toBottomOf="@id/view_divider"
             app:layout_constraintStart_toEndOf="@id/view_divider" />
-<!--    </RadioGroup>-->
 
     <EditText
         android:id="@+id/fio_ed"

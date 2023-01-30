@@ -65,6 +65,8 @@
     <string name="change_debt_title">Изменение долга</string>
 
     <string name="date_setting_debt">дата распределения долга</string>
+    <string name="date_adding_debt">дата добавления долга</string>
+    <string name="date_decreasing_debt">дата списания долга</string>
     <string name="debt_on_me">Распределить на меня</string>
     <string name="add_debtors">Добавить должников</string>
 
@@ -76,7 +78,9 @@
     <string name="debts_history">История долгов:</string>
 
     <string name="increase_debt_text">Увеличить</string>
+    <string name="increase_debt_title">Увеличение долга</string>
     <string name="decrease_debt_text">Списать</string>
+    <string name="decrease_debt_title">Списание долга</string>
 
     <string name="text_u_are_added">Вы добавили</string>
     <string name="form2_persons">должника</string>
