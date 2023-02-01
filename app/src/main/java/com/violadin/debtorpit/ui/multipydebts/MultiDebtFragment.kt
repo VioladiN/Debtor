@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.violadin.debtorpit.R
 import com.violadin.debtorpit.databinding.MultiDebtFragmentBinding
 import com.violadin.debtorpit.navigation.NavigationManager
+import com.violadin.debtorpit.ui.MainActivity
 import com.violadin.debtorpit.utils.pluralTextFrom
 import dagger.hilt.android.AndroidEntryPoint
 import java.lang.StringBuilder
@@ -41,6 +42,7 @@ class MultiDebtFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (activity as MainActivity).changeHeader(R.string.multi_debt_label)
 
         with(binding) {
             textPeekDate.text = currentDate.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"))

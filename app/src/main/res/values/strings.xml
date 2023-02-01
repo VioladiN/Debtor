@@ -86,4 +86,10 @@
     <string name="form2_persons">должника</string>
     <string name="form5_persons">должников</string>
 
+    <string name="create_debt_label">Создание долга</string>
+    <string name="debt_for_me_label">Мне должны</string>
+    <string name="info_about_debt_for_me_label">Должник</string>
+    <string name="info_about_my_debt_label">Мой долг</string>
+    <string name="multi_debt_label">Распределение долга</string>
+    <string name="my_debt_label">Я должен</string>
 </resources>

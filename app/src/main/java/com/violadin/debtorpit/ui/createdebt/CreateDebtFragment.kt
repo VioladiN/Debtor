@@ -12,6 +12,7 @@ import com.violadin.debtorpit.database.tables.Person
 import com.violadin.debtorpit.databinding.CreateDebtFragmentBinding
 import com.violadin.debtorpit.enums.PersonType
 import com.violadin.debtorpit.navigation.NavigationManager
+import com.violadin.debtorpit.ui.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -38,6 +39,7 @@ class CreateDebtFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (activity as MainActivity).changeHeader(R.string.create_debt_label)
 
         with(binding) {
             textPeekDate.text = currentDate.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"))

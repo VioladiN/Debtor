@@ -5,6 +5,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.violadin.debtorpit.R
 import com.violadin.debtorpit.databinding.ActivityMainBinding
+import com.violadin.debtorpit.databinding.FragmentHeaderBinding
 import com.violadin.debtorpit.navigation.NavigationManager
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -23,6 +24,12 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         navController.initActivityController(this)
+    }
+
+    fun changeHeader(textId: Int) {
+        with(binding) {
+            header.headerText.text = getString(textId)
+        }
     }
 
     @Deprecated("Deprecated in Java")

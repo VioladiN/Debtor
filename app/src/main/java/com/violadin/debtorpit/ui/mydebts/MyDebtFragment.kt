@@ -13,8 +13,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.violadin.debtorpit.R
 import com.violadin.debtorpit.databinding.MyDebtFragmentBinding
+import com.violadin.debtorpit.enums.DebtType
 import com.violadin.debtorpit.enums.PersonType
 import com.violadin.debtorpit.navigation.NavigationManager
+import com.violadin.debtorpit.ui.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -40,6 +42,7 @@ class MyDebtFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (activity as MainActivity).changeHeader(R.string.my_debt_label)
 
         with(binding) {
             viewLifecycleOwner.lifecycleScope.launchWhenCreated {
@@ -83,6 +86,7 @@ class MyDebtFragment : Fragment() {
         recyclerAdapter = MyDebtAdapter {
             val bundle = Bundle().apply {
                 putInt("id", it.id!!)
+                putString("type", PersonType.MY_DEBT_PERSON.type)
             }
             findNavController().navigate(R.id.my_debt_fragment_to_info_about_debtor_fragment, bundle)
         }

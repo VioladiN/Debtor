@@ -8,10 +8,14 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.violadin.debtorpit.R
 import com.violadin.debtorpit.databinding.InfoAboutDebtFragmentBinding
 import com.violadin.debtorpit.enums.DebtType
+import com.violadin.debtorpit.enums.PersonType
 import com.violadin.debtorpit.navigation.NavigationManager
+import com.violadin.debtorpit.ui.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
+import java.io.IOException
 import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
@@ -35,6 +39,7 @@ class InfoAboutDebtFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setTitle()
         viewModel.getPersonById(requireArguments().getInt("id"))
 
         with(binding) {
@@ -105,6 +110,18 @@ class InfoAboutDebtFragment : Fragment() {
                     viewModel.deletePerson(viewModel.person.value!!)
                 }.show()
             }
+        }
+    }
+
+    private fun setTitle() {
+        when (requireArguments().getString("type")) {
+            PersonType.MY_DEBT_PERSON.type -> {
+                (activity as MainActivity).changeHeader(R.string.info_about_my_debt_label)
+            }
+            PersonType.DEBT_FOR_ME_PERSON.type -> {
+                (activity as MainActivity).changeHeader(R.string.info_about_debt_for_me_label)
+            }
+            else -> throw IOException("Illegal state of InfoAboutDebtFragment")
         }
     }
 }
