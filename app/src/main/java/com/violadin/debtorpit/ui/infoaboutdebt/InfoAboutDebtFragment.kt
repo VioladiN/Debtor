@@ -1,5 +1,7 @@
 package com.violadin.debtorpit.ui.infoaboutdebt
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -119,6 +121,13 @@ class InfoAboutDebtFragment : Fragment() {
                         phone
                     )
                 }.show(viewModel.person.value!!.fio!!, viewModel.person.value!!.phone!!)
+            }
+
+            imageviewCall.setOnClickListener {
+                val uri = "tel:" + viewModel.person.value!!.phone!!.trim()
+                val intent = Intent(Intent.ACTION_DIAL)
+                intent.data = Uri.parse(uri)
+                startActivity(intent)
             }
         }
     }
