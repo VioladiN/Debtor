@@ -21,4 +21,7 @@ interface PersonDao {
 
     @Query("UPDATE persons SET debt = :debt WHERE id = :id")
     fun updatePerson(id: Int, debt: Double)
+
+    @Query("UPDATE persons SET fio = :fio, phone = :phone WHERE id = :id")
+    fun updatePersonInfo(id: Int, fio: String, phone: String)
 }

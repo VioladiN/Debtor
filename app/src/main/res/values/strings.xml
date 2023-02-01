@@ -10,8 +10,8 @@
 
     <string name="debt_for_me_list">Список должников</string>
 
-    <string name="first_name">Имя*</string>
-    <string name="last_name">Фамилия</string>
+    <string name="editing">Редактирование</string>
+    <string name="change">Изменить</string>
     <string name="debt">Долг</string>
     <string name="phone">Телефон</string>
 

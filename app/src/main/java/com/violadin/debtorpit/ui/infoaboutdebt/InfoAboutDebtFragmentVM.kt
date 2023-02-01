@@ -54,4 +54,12 @@ class InfoAboutDebtFragmentVM @Inject constructor(
             }
         }
     }
+
+    fun updatePersonInfo(id: Int, fio: String, phone: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            runCatching {
+                personDao.updatePersonInfo(id, fio, phone)
+            }
+        }
+    }
 }

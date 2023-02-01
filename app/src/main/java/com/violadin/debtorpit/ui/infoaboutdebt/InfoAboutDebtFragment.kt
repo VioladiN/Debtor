@@ -110,6 +110,16 @@ class InfoAboutDebtFragment : Fragment() {
                     viewModel.deletePerson(viewModel.person.value!!)
                 }.show()
             }
+
+            imageviewEdit.setOnClickListener {
+                UpdatePersonInfoDialog(requireContext()) { fio, phone ->
+                    viewModel.updatePersonInfo(
+                        viewModel.person.value!!.id!!,
+                        fio,
+                        phone
+                    )
+                }.show(viewModel.person.value!!.fio!!, viewModel.person.value!!.phone!!)
+            }
         }
     }
 
