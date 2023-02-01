@@ -16,13 +16,4 @@ interface HistoryDao {
 
     @Query("SELECT * FROM history WHERE id_person = :id")
     fun getAllHistoryById(id: Int): List<History>
-
-//    @Query("SELECT * FROM persons WHERE first_name LIKE :first AND last_name LIKE :last")
-//    fun findByName(first: String, last: String): Person
-
-//    @Query("SELECT * FROM history WHERE id_person = :id")
-//    fun findById(id: Int): History
-
-//    @Query("UPDATE persons SET debt = :debt WHERE id = :id")
-//    fun updatePerson(id: Int, debt: Double)
 }
