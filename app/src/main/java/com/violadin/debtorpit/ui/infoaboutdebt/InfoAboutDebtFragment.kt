@@ -10,12 +10,16 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.violadin.debtorpit.R
+import com.violadin.debtorpit.database.tables.History
 import com.violadin.debtorpit.databinding.InfoAboutDebtFragmentBinding
 import com.violadin.debtorpit.enums.DebtType
 import com.violadin.debtorpit.enums.PersonType
 import com.violadin.debtorpit.navigation.NavigationManager
 import com.violadin.debtorpit.ui.MainActivity
+import com.violadin.debtorpit.ui.mydebts.MyDebtAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.IOException
 import java.time.format.DateTimeFormatter
@@ -28,6 +32,7 @@ class InfoAboutDebtFragment : Fragment() {
     lateinit var navigationManager: NavigationManager
 
     private lateinit var binding: InfoAboutDebtFragmentBinding
+    private var recyclerAdapter: HistoryAdapter? = null
     private val viewModel: InfoAboutDebtFragmentVM by viewModels()
 
     override fun onCreateView(
@@ -36,6 +41,7 @@ class InfoAboutDebtFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = InfoAboutDebtFragmentBinding.inflate(inflater, container, false)
+        initHistoryList()
         return binding.root
     }
 
@@ -43,6 +49,7 @@ class InfoAboutDebtFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setTitle()
         viewModel.getPersonById(requireArguments().getInt("id"))
+        viewModel.getHistory(requireArguments().getInt("id"))
 
         with(binding) {
             viewLifecycleOwner.lifecycleScope.launchWhenResumed {
@@ -89,6 +96,11 @@ class InfoAboutDebtFragment : Fragment() {
                     }
                 }
             }
+            viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+                viewModel.history.collect {
+                    recyclerAdapter?.submitList(it)
+                }
+            }
 
             decreaseDebtButton.setOnClickListener {
                 ChangeDebtDialog(requireContext()) { debt, desctription ->
@@ -130,6 +142,12 @@ class InfoAboutDebtFragment : Fragment() {
                 startActivity(intent)
             }
         }
+    }
+
+    private fun initHistoryList() {
+        binding.profileHistory.layoutManager = LinearLayoutManager(requireContext())
+        recyclerAdapter = HistoryAdapter()
+        binding.profileHistory.adapter = recyclerAdapter
     }
 
     private fun setTitle() {

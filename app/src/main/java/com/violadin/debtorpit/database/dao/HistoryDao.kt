@@ -2,6 +2,7 @@ package com.violadin.debtorpit.database.dao
 
 import androidx.room.*
 import com.violadin.debtorpit.database.tables.History
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface HistoryDao {
@@ -12,8 +13,8 @@ interface HistoryDao {
     fun deleteHistory(history: History)
 
     @Query("SELECT * FROM history")
-    fun getAllHistory(): List<History>
+    fun getAllHistory(): Flow<List<History>>
 
     @Query("SELECT * FROM history WHERE id_person = :id")
-    fun getAllHistoryById(id: Int): List<History>
+    fun getAllHistoryById(id: Int): Flow<List<History>>
 }

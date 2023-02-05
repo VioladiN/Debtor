@@ -167,7 +167,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/layout_with_buttons"
-        tools:listitem="@layout/recyclerview_row_hostory_profile" />
+        tools:listitem="@layout/recyclerview_row_history_profile" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_with_buttons"
