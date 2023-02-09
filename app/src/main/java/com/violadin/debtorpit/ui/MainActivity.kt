@@ -1,11 +1,12 @@
 package com.violadin.debtorpit.ui
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.PopupMenu
 import com.violadin.debtorpit.R
 import com.violadin.debtorpit.databinding.ActivityMainBinding
-import com.violadin.debtorpit.databinding.FragmentHeaderBinding
 import com.violadin.debtorpit.navigation.NavigationManager
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -24,6 +25,30 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         navController.initActivityController(this)
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        with(binding) {
+            header.commonButton.setOnClickListener {
+                val popup = PopupMenu(this@MainActivity, header.commonButton)
+                popup.menuInflater
+                    .inflate(R.menu.popup_menu, popup.menu)
+                popup.setOnMenuItemClickListener { item ->
+                    when (item.itemId) {
+                        R.id.history -> {
+                            true
+                        }
+                        R.id.statistics -> {
+                            true
+                        }
+                        else -> false
+                    }
+                }
+                popup.show()
+            }
+        }
     }
 
     fun changeHeader(textId: Int) {

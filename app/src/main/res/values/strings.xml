@@ -92,4 +92,7 @@
     <string name="info_about_my_debt_label">Мой долг</string>
     <string name="multi_debt_label">Распределение долга</string>
     <string name="my_debt_label">Я должен</string>
+
+    <string name="history">История</string>
+    <string name="statistics">Статистика долгов</string>
 </resources>
