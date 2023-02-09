@@ -17,4 +17,7 @@ interface HistoryDao {
 
     @Query("SELECT * FROM history WHERE id_person = :id")
     fun getAllHistoryById(id: Int): Flow<List<History>>
+
+    @Query("DELETE FROM history WHERE id_person = :id")
+    fun  deleteHistoryOfPerson(id: Int)
 }

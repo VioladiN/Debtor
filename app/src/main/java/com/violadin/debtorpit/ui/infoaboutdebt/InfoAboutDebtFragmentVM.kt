@@ -6,12 +6,14 @@ import com.violadin.debtorpit.database.dao.HistoryDao
 import com.violadin.debtorpit.database.dao.PersonDao
 import com.violadin.debtorpit.database.tables.History
 import com.violadin.debtorpit.database.tables.Person
+import com.violadin.debtorpit.enums.HistoryType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import java.util.SplittableRandom
 import javax.inject.Inject
 
 @HiltViewModel
@@ -40,10 +42,26 @@ class InfoAboutDebtFragmentVM @Inject constructor(
         }
     }
 
-    fun changeDebtOfPerson(id: Int, debt: Double) {
+    fun changeDebtOfPerson(
+        id: Int,
+        debt: Double,
+        type: String,
+        amount: Double,
+        description: String,
+        date: String
+    ) {
         viewModelScope.launch(Dispatchers.IO) {
             runCatching {
                 personDao.updatePerson(id, debt)
+                historyDao.insertHistory(
+                    History(
+                        id_person = id,
+                        amount = amount,
+                        description = description,
+                        created_time = date,
+                        type = type,
+                    )
+                )
             }.onSuccess {
                 _updateDebtResult.value = "Хорошо"
             }.onFailure {
@@ -55,6 +73,7 @@ class InfoAboutDebtFragmentVM @Inject constructor(
     fun deletePerson(person: Person) {
         viewModelScope.launch(Dispatchers.IO) {
             runCatching {
+                historyDao.deleteHistoryOfPerson(person.id!!)
                 personDao.deletePerson(person)
             }.onSuccess {
                 _deletePersonResult.value = true

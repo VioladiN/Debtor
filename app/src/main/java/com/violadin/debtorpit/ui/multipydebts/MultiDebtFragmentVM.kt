@@ -2,8 +2,11 @@ package com.violadin.debtorpit.ui.multipydebts
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.violadin.debtorpit.database.dao.HistoryDao
 import com.violadin.debtorpit.database.dao.PersonDao
+import com.violadin.debtorpit.database.tables.History
 import com.violadin.debtorpit.database.tables.Person
+import com.violadin.debtorpit.enums.HistoryType
 import com.violadin.debtorpit.enums.PersonType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -15,7 +18,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MultiDebtFragmentVM @Inject constructor(
-    private val personDao: PersonDao
+    private val personDao: PersonDao,
+    private val historyDao: HistoryDao
 ) : ViewModel() {
 
     private val _persons = MutableStateFlow<List<ChoosePersonModel>>(emptyList())
@@ -34,12 +38,19 @@ class MultiDebtFragmentVM @Inject constructor(
         }
     }
 
-    fun updatePersons(persons: List<ChoosePersonModel>, meToo: Boolean, debt: Int) {
+    fun updatePersons(persons: List<ChoosePersonModel>, meToo: Boolean, debt: Int, date: String, description: String) {
         viewModelScope.launch(Dispatchers.IO) {
             val countPersons = if (meToo) persons.size + 1 else persons.size
             val amount = (debt / countPersons).toDouble()
             persons.filter { it.isChecked }.forEach { person ->
                 personDao.updatePerson(person.person.id!!, (person.person.debt!! + amount))
+                historyDao.insertHistory(History(
+                    id_person = person.person.id,
+                    amount = amount,
+                    description = description,
+                    created_time = date,
+                    type = HistoryType.INCREASE.type
+                ))
             }
         }
     }

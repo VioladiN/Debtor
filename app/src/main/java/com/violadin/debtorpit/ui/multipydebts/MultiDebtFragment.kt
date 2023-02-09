@@ -72,7 +72,9 @@ class MultiDebtFragment : Fragment() {
                                 ).show()
                             } else {
                                 viewModel.updatePersons(
-                                    persons.filter { it.isChecked }, meToo, debtEd.text.toString().toInt()
+                                    persons.filter { it.isChecked }, meToo, debtEd.text.toString().toInt(),
+                                    currentDate.format(DateTimeFormatter.ofPattern("dd.MM.yyyy")),
+                                    descriptionEd.text.toString()
                                 )
                                 navigationManager.bottomBarController?.popBackStack(R.id.multi_debt_fragment, true)
                                 navigationManager.bottomBarController?.navigate(R.id.debt_for_me_nav_graph)

@@ -59,7 +59,8 @@ class CreateDebtFragment : Fragment() {
                             } else {
                                 PersonType.MY_DEBT_PERSON.type
                             }
-                        )
+                        ),
+                        descriptionEd.text.toString()
                     )
                     navigationManager.bottomBarController?.navigateUp()
                 }

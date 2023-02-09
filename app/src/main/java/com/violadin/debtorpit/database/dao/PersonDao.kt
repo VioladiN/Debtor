@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 interface PersonDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertPerson(person: Person)
+    fun insertPerson(person: Person): Long
 
     @Delete
     fun deletePerson(person: Person)

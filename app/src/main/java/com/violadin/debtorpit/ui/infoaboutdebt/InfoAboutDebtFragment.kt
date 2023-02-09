@@ -22,7 +22,9 @@ import com.violadin.debtorpit.ui.MainActivity
 import com.violadin.debtorpit.ui.mydebts.MyDebtAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.IOException
+import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.TimeZone
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -34,6 +36,8 @@ class InfoAboutDebtFragment : Fragment() {
     private lateinit var binding: InfoAboutDebtFragmentBinding
     private var recyclerAdapter: HistoryAdapter? = null
     private val viewModel: InfoAboutDebtFragmentVM by viewModels()
+    private val currentDate = LocalDateTime.now().atZone(TimeZone.getTimeZone("Moscow").toZoneId())
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -98,7 +102,7 @@ class InfoAboutDebtFragment : Fragment() {
             }
             viewLifecycleOwner.lifecycleScope.launchWhenResumed {
                 viewModel.history.collect {
-                    recyclerAdapter?.submitList(it)
+                    recyclerAdapter?.submitList(it.reversed())
                 }
             }
 
@@ -108,14 +112,28 @@ class InfoAboutDebtFragment : Fragment() {
                     if (finalDebt <= 0) {
                         finalDebt = 0.0
                     }
-                    viewModel.changeDebtOfPerson(viewModel.person.value!!.id!!, finalDebt)
+                    viewModel.changeDebtOfPerson(
+                        viewModel.person.value!!.id!!,
+                        finalDebt,
+                        DebtType.DECREASE.type,
+                        debt.toDouble(),
+                        desctription,
+                        currentDate.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"))
+                    )
                 }.show(DebtType.DECREASE.type)
             }
 
             increaseDebtButton.setOnClickListener {
                 ChangeDebtDialog(requireContext()) { debt, desctription ->
                     val finalDebt = viewModel.person.value!!.debt!! + debt
-                    viewModel.changeDebtOfPerson(viewModel.person.value!!.id!!, finalDebt)
+                    viewModel.changeDebtOfPerson(
+                        viewModel.person.value!!.id!!,
+                        finalDebt,
+                        DebtType.INCREASE.type,
+                        debt.toDouble(),
+                        desctription,
+                        currentDate.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"))
+                    )
                 }.show(DebtType.INCREASE.type)
             }
 
