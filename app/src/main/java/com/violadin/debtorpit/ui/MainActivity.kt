@@ -1,7 +1,6 @@
 package com.violadin.debtorpit.ui
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
@@ -15,7 +14,7 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity() {
 
     @Inject
-    lateinit var navController: NavigationManager
+    lateinit var navigationManager: NavigationManager
     private val viewModel: MainActivityVM by viewModels()
     private lateinit var binding: ActivityMainBinding
 
@@ -24,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        navController.initActivityController(this)
+        navigationManager.initActivityController(this)
     }
 
     override fun onResume() {
@@ -38,6 +37,7 @@ class MainActivity : AppCompatActivity() {
                 popup.setOnMenuItemClickListener { item ->
                     when (item.itemId) {
                         R.id.history -> {
+                            navigationManager.mainActivityController?.navigate(R.id.open_history_fragment)
                             true
                         }
                         R.id.statistics -> {
@@ -57,17 +57,17 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    @Deprecated("Deprecated in Java")
-    override fun onBackPressed() {
-        navController.bottomBarController?.let {
-            when (it.currentDestination!!.id) {
-                R.id.debt_for_me_fragment, R.id.my_debt_fragment, R.id.multi_debt_fragment -> {
-                    finish()
-                }
-            }
-        }
-        super.onBackPressed()
-    }
+//    @Deprecated("Deprecated in Java")
+//    override fun onBackPressed() {
+//        navigationManager.bottomBarController?.let {
+//            when (it.currentDestination!!.id) {
+//                R.id.debt_for_me_fragment, R.id.my_debt_fragment, R.id.multi_debt_fragment -> {
+//                    finish()
+//                }
+//            }
+//        }
+//        super.onBackPressed()
+//    }
 
     override fun onDestroy() {
         viewModel.appDataBase.close()

@@ -2,14 +2,12 @@ package com.violadin.debtorpit.ui.debtors
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.violadin.debtorpit.R
 import com.violadin.debtorpit.database.tables.Person
-import com.violadin.debtorpit.databinding.RecyclerviewRowDebtForMeBinding
+import com.violadin.debtorpit.databinding.RecyclerviewRowPersonBinding
 
 class DebtForMeAdapter(
     private val clickListener: (person: Person) -> Unit
@@ -25,7 +23,7 @@ class DebtForMeAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val recyclerviewRowDebtForMeBinding = RecyclerviewRowDebtForMeBinding.inflate(layoutInflater, parent, false)
+        val recyclerviewRowDebtForMeBinding = RecyclerviewRowPersonBinding.inflate(layoutInflater, parent, false)
         return ViewHolder(recyclerviewRowDebtForMeBinding)
     }
 
@@ -34,7 +32,7 @@ class DebtForMeAdapter(
     }
 
     inner class ViewHolder(
-        private val binding: RecyclerviewRowDebtForMeBinding
+        private val binding: RecyclerviewRowPersonBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
         @SuppressLint("SetTextI18n")

@@ -95,4 +95,12 @@
 
     <string name="history">История</string>
     <string name="statistics">Статистика долгов</string>
+
+    <string name="choose_date_from">Статистика долгов</string>
+    <string name="choose_date_to">Статистика долгов</string>
+
+    <string name="show_history_all_time">Посмотреть историю за все время</string>
+
+    <string name="plus">+</string>
+    <string name="minus">-</string>
 </resources>
