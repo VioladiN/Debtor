@@ -10,6 +10,9 @@ import com.violadin.debtorpit.database.tables.History
 import com.violadin.debtorpit.databinding.RecyclerviewRowHistoryProfileBinding
 import com.violadin.debtorpit.enums.HistoryType
 import java.io.IOException
+import java.time.Instant
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 
 class HistoryAdapter :
     ListAdapter<History, HistoryAdapter.ViewHolder>(object : DiffUtil.ItemCallback<History>() {
@@ -40,7 +43,8 @@ class HistoryAdapter :
         fun bind(history: History) {
             with(binding) {
                 debtDescriptionText.text = history.description
-                createdDateText.text = history.created_time.toString()
+                createdDateText.text = Instant.ofEpochMilli(history.createdTime!!).atZone(ZoneId.systemDefault())
+                    .toLocalDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy"))
                 when (history.type) {
                     HistoryType.INCREASE.type -> {
                         imageAmountType.setBackgroundResource(R.drawable.ic_plus_green)

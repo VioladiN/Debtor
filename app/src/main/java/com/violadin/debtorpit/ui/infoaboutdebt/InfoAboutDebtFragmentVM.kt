@@ -13,6 +13,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import java.time.LocalDate
+import java.time.ZonedDateTime
 import java.util.SplittableRandom
 import javax.inject.Inject
 
@@ -48,7 +50,7 @@ class InfoAboutDebtFragmentVM @Inject constructor(
         type: String,
         amount: Double,
         description: String,
-        date: String
+        date: Long
     ) {
         viewModelScope.launch(Dispatchers.IO) {
             runCatching {
@@ -58,7 +60,7 @@ class InfoAboutDebtFragmentVM @Inject constructor(
                         id_person = id,
                         amount = amount,
                         description = description,
-                        created_time = date,
+                        createdTime = date,
                         type = type,
                     )
                 )

@@ -8,6 +8,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.violadin.debtorpit.database.tables.Person
 import com.violadin.debtorpit.databinding.RecyclerviewRowPersonBinding
+import java.time.Instant
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 
 class MyDebtAdapter(
     private val clickListener: (person: Person) -> Unit
@@ -40,7 +43,8 @@ class MyDebtAdapter(
             with(binding) {
                 debtorNameText.text = item.fio
                 debtCount.text = item.debt.toString()
-                debtorDateText.text = item.created_time
+                debtorDateText.text = Instant.ofEpochMilli(item.createdTime!!).atZone(ZoneId.systemDefault())
+                    .toLocalDate().format(DateTimeFormatter.ofPattern("dd MMMM yyyy"))
 
                 root.setOnClickListener {
                     clickListener(item)

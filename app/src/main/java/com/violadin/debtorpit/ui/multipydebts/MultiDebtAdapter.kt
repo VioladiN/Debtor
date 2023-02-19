@@ -6,6 +6,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.violadin.debtorpit.databinding.RecyclerviewRowChoosePersonBinding
+import java.time.Instant
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 
 class MultiDebtAdapter(
     private val personsIdsHashSet: HashSet<Int>
@@ -41,7 +44,8 @@ class MultiDebtAdapter(
             with(binding) {
                 radioSelected.isChecked = person.isChecked
                 debtorNameText.text = person.person.fio
-                debtorDateText.text = person.person.created_time
+                debtorDateText.text = Instant.ofEpochMilli(person.person.createdTime!!).atZone(ZoneId.systemDefault())
+                    .toLocalDate().format(DateTimeFormatter.ofPattern("dd MMMM yyyy"))
                 debtCount.text = person.person.debt.toString()
                 root.setOnClickListener {
                     if (personsIdsHashSet.contains(person.person.id)) {

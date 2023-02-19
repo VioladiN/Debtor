@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import java.time.LocalDate
 import javax.inject.Inject
 
 @HiltViewModel
@@ -38,7 +39,7 @@ class MultiDebtFragmentVM @Inject constructor(
         }
     }
 
-    fun updatePersons(persons: List<ChoosePersonModel>, meToo: Boolean, debt: Int, date: String, description: String) {
+    fun updatePersons(persons: List<ChoosePersonModel>, meToo: Boolean, debt: Int, date: Long, description: String) {
         viewModelScope.launch(Dispatchers.IO) {
             val countPersons = if (meToo) persons.size + 1 else persons.size
             val amount = (debt / countPersons).toDouble()
@@ -48,7 +49,7 @@ class MultiDebtFragmentVM @Inject constructor(
                     id_person = person.person.id,
                     amount = amount,
                     description = description,
-                    created_time = date,
+                    createdTime = date,
                     type = HistoryType.INCREASE.type
                 ))
             }

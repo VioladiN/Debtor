@@ -22,7 +22,9 @@ import com.violadin.debtorpit.ui.MainActivity
 import com.violadin.debtorpit.ui.mydebts.MyDebtAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.IOException
+import java.time.Instant
 import java.time.LocalDateTime
+import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.TimeZone
 import javax.inject.Inject
@@ -59,14 +61,15 @@ class InfoAboutDebtFragment : Fragment() {
             viewLifecycleOwner.lifecycleScope.launchWhenResumed {
                 viewModel.person.collect { person ->
                     person?.let {
-                        if (person.created_time.isNullOrEmpty()) {
+                        if (person.createdTime == null) {
                             createdDate.visibility = View.GONE
                             dateTextview.visibility = View.GONE
                         } else {
                             dateTextview.visibility = View.VISIBLE
                             createdDate.visibility = View.VISIBLE
                             createdDate.text =
-                                person.created_time.format(DateTimeFormatter.ofPattern("dd MMMM yyyy"))
+                                Instant.ofEpochMilli(person.createdTime).atZone(ZoneId.systemDefault())
+                                    .toLocalDate().format(DateTimeFormatter.ofPattern("dd MMMM yyyy"))
                         }
 
                         if (person.fio.isNullOrEmpty()) {
@@ -118,7 +121,7 @@ class InfoAboutDebtFragment : Fragment() {
                         DebtType.DECREASE.type,
                         debt.toDouble(),
                         desctription,
-                        currentDate.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"))
+                        currentDate.toInstant().toEpochMilli()
                     )
                 }.show(DebtType.DECREASE.type)
             }
@@ -132,7 +135,7 @@ class InfoAboutDebtFragment : Fragment() {
                         DebtType.INCREASE.type,
                         debt.toDouble(),
                         desctription,
-                        currentDate.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"))
+                        currentDate.toInstant().toEpochMilli()
                     )
                 }.show(DebtType.INCREASE.type)
             }

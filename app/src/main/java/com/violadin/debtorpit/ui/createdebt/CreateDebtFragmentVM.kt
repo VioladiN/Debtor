@@ -31,7 +31,7 @@ class CreateDebtFragmentVM @Inject constructor(
                     id_person = personId.toInt(),
                     amount = person.debt,
                     description = description,
-                    created_time = person.created_time,
+                    createdTime = person.createdTime,
                     type = DebtType.INCREASE.type,
                 ))
             }

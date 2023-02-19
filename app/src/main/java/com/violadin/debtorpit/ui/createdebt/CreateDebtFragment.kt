@@ -53,7 +53,7 @@ class CreateDebtFragment : Fragment() {
                             debt = if (debtEd.text.isEmpty()) 0.0 else debtEd.text.toString()
                                 .toDouble(),
                             phone = phoneEd.text.toString(),
-                            created_time = currentDate.format(DateTimeFormatter.ofPattern("dd MMMM yyyy")),
+                            createdTime = currentDate.toInstant().toEpochMilli(),
                             type = if (radioDebtForMe.isChecked) {
                                 PersonType.DEBT_FOR_ME_PERSON.type
                             } else {
