@@ -29,7 +29,7 @@ class MultiDebtFragment : Fragment() {
 
     private val viewModel: MultiDebtFragmentVM by viewModels()
     private var meToo: Boolean = false
-    private val currentDate = LocalDateTime.now().atZone(TimeZone.getTimeZone("Moscow").toZoneId())
+    private val currentDate = LocalDateTime.now().atZone(TimeZone.getDefault().toZoneId())
     private lateinit var binding: MultiDebtFragmentBinding
 
 

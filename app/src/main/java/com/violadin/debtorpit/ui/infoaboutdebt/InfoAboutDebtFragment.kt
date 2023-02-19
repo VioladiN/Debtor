@@ -38,7 +38,7 @@ class InfoAboutDebtFragment : Fragment() {
     private lateinit var binding: InfoAboutDebtFragmentBinding
     private var recyclerAdapter: HistoryAdapter? = null
     private val viewModel: InfoAboutDebtFragmentVM by viewModels()
-    private val currentDate = LocalDateTime.now().atZone(TimeZone.getTimeZone("Moscow").toZoneId())
+    private val currentDate = LocalDateTime.now().atZone(TimeZone.getDefault().toZoneId())
 
 
     override fun onCreateView(
@@ -121,7 +121,9 @@ class InfoAboutDebtFragment : Fragment() {
                         DebtType.DECREASE.type,
                         debt.toDouble(),
                         desctription,
-                        currentDate.toInstant().toEpochMilli()
+                        currentDate.toInstant().toEpochMilli(),
+                        viewModel.person.value!!.type!!,
+                        viewModel.person.value!!.fio!!
                     )
                 }.show(DebtType.DECREASE.type)
             }
@@ -135,7 +137,9 @@ class InfoAboutDebtFragment : Fragment() {
                         DebtType.INCREASE.type,
                         debt.toDouble(),
                         desctription,
-                        currentDate.toInstant().toEpochMilli()
+                        currentDate.toInstant().toEpochMilli(),
+                        viewModel.person.value!!.type!!,
+                        viewModel.person.value!!.fio!!
                     )
                 }.show(DebtType.INCREASE.type)
             }
@@ -179,7 +183,7 @@ class InfoAboutDebtFragment : Fragment() {
             PersonType.DEBT_FOR_ME_PERSON.type -> {
                 (activity as MainActivity).changeHeader(R.string.info_about_debt_for_me_label)
             }
-            else -> throw IOException("Illegal state of InfoAboutDebtFragment")
+            else -> throw IllegalStateException("Illegal state of InfoAboutDebtFragment")
         }
     }
 }

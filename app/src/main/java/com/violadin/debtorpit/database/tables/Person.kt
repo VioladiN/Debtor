@@ -14,6 +14,6 @@ data class Person(
     @ColumnInfo(name = "fio") val fio: String? = null,
     @ColumnInfo(name = "debt") val debt: Double? = null,
     @ColumnInfo(name = "phone") val phone: String? = null,
-    @ColumnInfo(name = "created_time") val createdTime: Long? = null,
+    @ColumnInfo(name = "createdTime") val createdTime: Long? = null,
     @ColumnInfo(name = "type") val type: String? = null
 ): Parcelable

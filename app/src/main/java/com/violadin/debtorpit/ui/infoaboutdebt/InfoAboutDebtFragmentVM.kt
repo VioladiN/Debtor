@@ -50,18 +50,22 @@ class InfoAboutDebtFragmentVM @Inject constructor(
         type: String,
         amount: Double,
         description: String,
-        date: Long
+        date: Long,
+        personType: String,
+        personName: String
     ) {
         viewModelScope.launch(Dispatchers.IO) {
             runCatching {
                 personDao.updatePerson(id, debt)
                 historyDao.insertHistory(
                     History(
-                        id_person = id,
+                        personId = id,
                         amount = amount,
                         description = description,
                         createdTime = date,
-                        type = type,
+                        debtType = type,
+                        personType = personType,
+                        personName = personName
                     )
                 )
             }.onSuccess {

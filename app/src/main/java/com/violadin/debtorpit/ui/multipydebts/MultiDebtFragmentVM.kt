@@ -46,11 +46,13 @@ class MultiDebtFragmentVM @Inject constructor(
             persons.filter { it.isChecked }.forEach { person ->
                 personDao.updatePerson(person.person.id!!, (person.person.debt!! + amount))
                 historyDao.insertHistory(History(
-                    id_person = person.person.id,
+                    personId = person.person.id,
                     amount = amount,
                     description = description,
                     createdTime = date,
-                    type = HistoryType.INCREASE.type
+                    debtType = HistoryType.INCREASE.type,
+                    personType = person.person.type,
+                    personName = person.person.fio
                 ))
             }
         }

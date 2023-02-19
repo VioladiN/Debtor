@@ -25,7 +25,7 @@ class CreateDebtFragment : Fragment() {
     @Inject
     lateinit var navigationManager: NavigationManager
     private val viewModel: CreateDebtFragmentVM by viewModels()
-    private val currentDate = LocalDateTime.now().atZone(TimeZone.getTimeZone("Moscow").toZoneId())
+    private val currentDate = LocalDateTime.now().atZone(TimeZone.getDefault().toZoneId())
     private lateinit var binding: CreateDebtFragmentBinding
 
     override fun onCreateView(

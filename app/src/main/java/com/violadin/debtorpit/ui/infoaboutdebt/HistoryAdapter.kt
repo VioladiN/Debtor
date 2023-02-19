@@ -45,14 +45,14 @@ class HistoryAdapter :
                 debtDescriptionText.text = history.description
                 createdDateText.text = Instant.ofEpochMilli(history.createdTime!!).atZone(ZoneId.systemDefault())
                     .toLocalDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy"))
-                when (history.type) {
+                when (history.debtType) {
                     HistoryType.INCREASE.type -> {
                         imageAmountType.setBackgroundResource(R.drawable.ic_plus_green)
                     }
                     HistoryType.DECREASE.type -> {
                         imageAmountType.setBackgroundResource(R.drawable.ic_minus_green)
                     }
-                    else -> throw IOException("Illegal state of HistoryAdapter")
+                    else -> throw IllegalStateException("Illegal state of HistoryAdapter")
                 }
                 debtAmountText.text = history.amount.toString()
             }

@@ -28,11 +28,13 @@ class CreateDebtFragmentVM @Inject constructor(
             val personId = personDao.insertPerson(person)
             if (person.debt!!.toDouble() > 0.0) {
                 historyDao.insertHistory(History(
-                    id_person = personId.toInt(),
+                    personId = personId.toInt(),
                     amount = person.debt,
                     description = description,
                     createdTime = person.createdTime,
-                    type = DebtType.INCREASE.type,
+                    debtType = DebtType.INCREASE.type,
+                    personType = person.type,
+                    personName = person.fio
                 ))
             }
         }

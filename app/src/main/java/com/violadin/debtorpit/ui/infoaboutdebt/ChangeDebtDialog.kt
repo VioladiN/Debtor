@@ -16,7 +16,7 @@ class ChangeDebtDialog(context: Context, val buttonListener: (Int, String) -> Un
 
     private lateinit var binding: DialogChangeDebtBinding
     private var dialogType: String? = null
-    private val currentDate = LocalDateTime.now().atZone(TimeZone.getTimeZone("Moscow").toZoneId())
+    private val currentDate = LocalDateTime.now().atZone(TimeZone.getDefault().toZoneId())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +41,7 @@ class ChangeDebtDialog(context: Context, val buttonListener: (Int, String) -> Un
                     textDateOfDebt.text = context.getText(R.string.date_decreasing_debt)
                     addDebts.text = context.getText(R.string.debt_remove)
                 }
-                else -> throw IOException("Illegal state of ChangeDebtDialog")
+                else -> throw IllegalStateException("Illegal state of ChangeDebtDialog")
             }
 
             dialogClose.setOnClickListener {
