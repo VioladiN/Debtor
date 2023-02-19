@@ -11,11 +11,20 @@
         tools:layout="@layout/bottom_nav_bar_fragment" />
 
     <fragment
+        android:id="@+id/statistics_fragment"
+        android:name="com.violadin.debtorpit.ui.statistics.StatisticsFragment"
+        tools:layout="@layout/history_fragment" />
+
+    <fragment
         android:id="@+id/history_fragment"
         android:name="com.violadin.debtorpit.ui.history.HistoryFragment"
-        tools:layout="@layout/history_fragment" />
+        tools:layout="@layout/statistics_fragment" />
 
     <action
         android:id="@+id/open_history_fragment"
         app:destination="@id/history_fragment" />
+
+    <action
+        android:id="@+id/open_statistics_fragment"
+        app:destination="@id/statistics_fragment" />
 </navigation>

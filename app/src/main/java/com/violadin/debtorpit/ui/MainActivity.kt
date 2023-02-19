@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity() {
                             true
                         }
                         R.id.statistics -> {
+                            navigationManager.mainActivityController?.navigate(R.id.open_statistics_fragment)
                             true
                         }
                         else -> false
