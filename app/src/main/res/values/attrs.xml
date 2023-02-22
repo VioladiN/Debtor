@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SmallCircleDiagramView">
+        <attr name="colorPrimary" format="color" />
+        <attr name="colorSecondary" format="color" />
+        <attr name="strokeWidth" format="dimension" />
+        <attr name="startAngle" format="float" />
+        <attr name="spaceBetweenArcs" format="float" />
+        <attr name="arcProportion" format="float" />
+        <attr name="text" format="string" />
+        <attr name="textColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="LinearDiagramView">
+        <attr name="colorPrimaryColumn" format="color" />
+        <attr name="primaryTitle" format="string" />
+        <attr name="primaryCount" format="float" />
+        <attr name="colorSecondaryColumn" format="color" />
+        <attr name="secondaryTitle" format="string" />
+        <attr name="secondaryCount" format="float" />
+    </declare-styleable>
+
+    <declare-styleable name="CircleDiagramView" >
+        <attr name="colorPrimaryCircle" format="color" />
+        <attr name="colorSecondaryCircle" format="color" />
+        <attr name="internalArcProportion" format="float" />
+        <attr name="externalArcProportion" format="float" />
+        <attr name="textPercent" format="string" />
+    </declare-styleable>
+</resources>

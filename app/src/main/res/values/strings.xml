@@ -105,4 +105,6 @@
     <string name="minus">-</string>
 
     <string name="histories_is_empty">История пуста</string>
+
+    <string name="show_debts_detail">Посмотреть подробно все долги</string>
 </resources>
