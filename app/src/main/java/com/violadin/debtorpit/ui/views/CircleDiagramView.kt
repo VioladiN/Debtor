@@ -134,4 +134,8 @@ class CircleDiagramView @JvmOverloads constructor(
         this.internalArcProportion = arcProportion
         invalidate()
     }
+
+    fun setText(text: String) {
+        this.text = text
+    }
 }

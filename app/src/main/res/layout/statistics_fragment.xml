@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/stats_variant_linear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/stats_variant_circle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -37,6 +37,7 @@
         app:layout_constraintEnd_toEndOf="parent" >
 
         <com.violadin.debtorpit.ui.views.CircleDiagramView
+            android:id="@+id/circle_diagram_view"
             android:layout_width="match_parent"
             android:layout_height="270dp"
             app:colorPrimaryCircle="@color/base_UI"
@@ -75,6 +76,7 @@
                 app:colorPrimary="@color/base_UI"
                 app:colorSecondary="@color/base_UI_mute"
                 app:strokeWidth="5dp"
+                app:text="aaaaa"
                 app:startAngle="90"
                 app:spaceBetweenArcs="15"
                 app:textColor="@color/gray_dark"

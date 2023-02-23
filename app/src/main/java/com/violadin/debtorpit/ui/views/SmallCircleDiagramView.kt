@@ -98,6 +98,7 @@ class SmallCircleDiagramView @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
+        calculateTextSize()
         drawText(canvas)
         drawSecondaryArc(canvas)
         drawPrimaryArc(canvas)
@@ -124,7 +125,6 @@ class SmallCircleDiagramView @JvmOverloads constructor(
     }
 
     private fun drawText(canvas: Canvas) {
-        calculateTextSize()
         canvas.drawText(
             text,
             width / 2f,
@@ -142,7 +142,6 @@ class SmallCircleDiagramView @JvmOverloads constructor(
         } else {
             paintText.textSize = newTextSize
         }
-        invalidate()
     }
 
     fun setText(text: String) {
