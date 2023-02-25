@@ -3,8 +3,6 @@ package com.violadin.debtorpit.database.tables
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.time.LocalDate
-import java.util.Date
 
 @Entity(tableName = "history")
 data class History(

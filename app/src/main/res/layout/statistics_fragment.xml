@@ -76,7 +76,6 @@
                 app:colorPrimary="@color/base_UI"
                 app:colorSecondary="@color/base_UI_mute"
                 app:strokeWidth="5dp"
-                app:text="aaaaa"
                 app:startAngle="90"
                 app:spaceBetweenArcs="15"
                 app:textColor="@color/gray_dark"

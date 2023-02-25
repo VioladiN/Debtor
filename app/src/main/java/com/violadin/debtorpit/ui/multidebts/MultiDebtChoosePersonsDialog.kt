@@ -1,4 +1,4 @@
-package com.violadin.debtorpit.ui.multipydebts
+package com.violadin.debtorpit.ui.multidebts
 
 import android.os.Bundle
 import android.view.LayoutInflater

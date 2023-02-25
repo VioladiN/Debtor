@@ -5,7 +5,10 @@ import android.content.Context
 import android.os.Bundle
 import com.violadin.debtorpit.databinding.DialogDeletePersonBinding
 
-class DeletePersonDialog(context: Context, val buttonListener: () -> Unit) : Dialog(context) {
+class DeletePersonDialog(
+    context: Context,
+    val buttonListener: () -> Unit
+) : Dialog(context) {
 
     private lateinit var binding: DialogDeletePersonBinding
 

@@ -13,10 +13,10 @@ import com.violadin.debtorpit.databinding.CreateDebtFragmentBinding
 import com.violadin.debtorpit.enums.PersonType
 import com.violadin.debtorpit.navigation.NavigationManager
 import com.violadin.debtorpit.ui.MainActivity
+import com.violadin.debtorpit.utils.DAY_MONTH_YEAR_PATTERN
+import com.violadin.debtorpit.utils.longCurrentTime
+import com.violadin.debtorpit.utils.stringCurrentTime
 import dagger.hilt.android.AndroidEntryPoint
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import java.util.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -25,7 +25,6 @@ class CreateDebtFragment : Fragment() {
     @Inject
     lateinit var navigationManager: NavigationManager
     private val viewModel: CreateDebtFragmentVM by viewModels()
-    private val currentDate = LocalDateTime.now().atZone(TimeZone.getDefault().toZoneId())
     private lateinit var binding: CreateDebtFragmentBinding
 
     override fun onCreateView(
@@ -37,12 +36,16 @@ class CreateDebtFragment : Fragment() {
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).changeHeader(R.string.create_debt_label)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as MainActivity).changeHeader(R.string.create_debt_label)
 
         with(binding) {
-            textPeekDate.text = currentDate.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"))
+            textPeekDate.text = stringCurrentTime(DAY_MONTH_YEAR_PATTERN)
             initRadioButtons()
 
             addDebtor.setOnClickListener {
@@ -53,7 +56,7 @@ class CreateDebtFragment : Fragment() {
                             debt = if (debtEd.text.isEmpty()) 0.0 else debtEd.text.toString()
                                 .toDouble(),
                             phone = phoneEd.text.toString(),
-                            createdTime = currentDate.toInstant().toEpochMilli(),
+                            createdTime = longCurrentTime(),
                             type = if (radioDebtForMe.isChecked) {
                                 PersonType.DEBT_FOR_ME_PERSON.type
                             } else {
@@ -71,11 +74,13 @@ class CreateDebtFragment : Fragment() {
     private fun checkEditTextFields(): Boolean {
         with(binding) {
             if (!radioDebtForMe.isChecked && !radioMyDebt.isChecked) {
-                Toast.makeText(requireContext(), R.string.missing_person_type,Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), R.string.missing_person_type, Toast.LENGTH_SHORT)
+                    .show()
                 return false
             }
             if (fioEd.text.isEmpty()) {
-                Toast.makeText(requireContext(), R.string.empty_field_fio, Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), R.string.empty_field_fio, Toast.LENGTH_SHORT)
+                    .show()
                 return false
             }
             return true

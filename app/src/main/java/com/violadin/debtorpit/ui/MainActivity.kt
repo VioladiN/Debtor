@@ -58,18 +58,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-//    @Deprecated("Deprecated in Java")
-//    override fun onBackPressed() {
-//        navigationManager.bottomBarController?.let {
-//            when (it.currentDestination!!.id) {
-//                R.id.debt_for_me_fragment, R.id.my_debt_fragment, R.id.multi_debt_fragment -> {
-//                    finish()
-//                }
-//            }
-//        }
-//        super.onBackPressed()
-//    }
-
     override fun onDestroy() {
         viewModel.appDataBase.close()
         super.onDestroy()

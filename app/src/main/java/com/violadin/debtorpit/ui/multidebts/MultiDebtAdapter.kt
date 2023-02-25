@@ -1,4 +1,4 @@
-package com.violadin.debtorpit.ui.multipydebts
+package com.violadin.debtorpit.ui.multidebts
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.violadin.debtorpit.databinding.RecyclerviewRowChoosePersonBinding
+import com.violadin.debtorpit.utils.longTimeToString
 import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
@@ -28,7 +29,8 @@ class MultiDebtAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val recyclerviewRowChoosePersonBinding = RecyclerviewRowChoosePersonBinding.inflate(layoutInflater, parent, false)
+        val recyclerviewRowChoosePersonBinding =
+            RecyclerviewRowChoosePersonBinding.inflate(layoutInflater, parent, false)
         return ViewHolder(recyclerviewRowChoosePersonBinding)
     }
 
@@ -44,8 +46,9 @@ class MultiDebtAdapter(
             with(binding) {
                 radioSelected.isChecked = person.isChecked
                 debtorNameText.text = person.person.fio
-                debtorDateText.text = Instant.ofEpochMilli(person.person.createdTime!!).atZone(ZoneId.systemDefault())
-                    .toLocalDate().format(DateTimeFormatter.ofPattern("dd MMMM yyyy"))
+                person.person.createdTime?.let {
+                    debtorDateText.text = longTimeToString(it)
+                }
                 debtCount.text = person.person.debt.toString()
                 root.setOnClickListener {
                     if (personsIdsHashSet.contains(person.person.id)) {

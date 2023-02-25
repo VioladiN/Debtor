@@ -1,19 +1,25 @@
 package com.violadin.debtorpit.ui.history
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.violadin.debtorpit.R
 import com.violadin.debtorpit.database.tables.History
 import com.violadin.debtorpit.databinding.RecyclerRowHistoryBinding
 import com.violadin.debtorpit.enums.HistoryType
+import com.violadin.debtorpit.utils.DAY_MONTH_YEAR_PATTERN
+import com.violadin.debtorpit.utils.longTimeToString
 import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 
-class HistoryAdapter :
+class HistoryAdapter(
+    private val context: Context
+) :
     ListAdapter<History, HistoryAdapter.ViewHolder>(object : DiffUtil.ItemCallback<History>() {
         override fun areItemsTheSame(oldItem: History, newItem: History): Boolean {
             return oldItem.id == newItem.id
@@ -44,18 +50,21 @@ class HistoryAdapter :
                 nameDebtText.text = item.personName
                 when (item.debtType) {
                     HistoryType.INCREASE.type -> {
-                        debtAmountText.text = "+${item.amount}"
+                        debtAmountText.text =
+                            StringBuilder().append(context.getString(R.string.plus))
+                                .append(item.amount)
                     }
                     HistoryType.DECREASE.type -> {
-                        debtAmountText.text = "-${item.amount}"
+                        debtAmountText.text =
+                            StringBuilder().append(context.getString(R.string.minus))
+                                .append(item.amount)
                     }
                     else -> throw IllegalStateException("Illegal state of HistoryAdapter")
                 }
-                createdDateText.text =
-                    Instant.ofEpochMilli(item.createdTime!!).atZone(ZoneId.systemDefault())
-                        .toLocalDate().format(
-                        DateTimeFormatter.ofPattern("dd.MM.yyyy")
-                    )
+                item.createdTime?.let {
+                    createdDateText.text =
+                        longTimeToString(item.createdTime, DAY_MONTH_YEAR_PATTERN)
+                }
             }
         }
     }

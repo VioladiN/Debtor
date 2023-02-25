@@ -1,4 +1,4 @@
-package com.violadin.debtorpit.ui.multipydebts
+package com.violadin.debtorpit.ui.multidebts
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,12 +13,12 @@ import com.violadin.debtorpit.R
 import com.violadin.debtorpit.databinding.MultiDebtFragmentBinding
 import com.violadin.debtorpit.navigation.NavigationManager
 import com.violadin.debtorpit.ui.MainActivity
+import com.violadin.debtorpit.utils.DAY_MONTH_YEAR_PATTERN
+import com.violadin.debtorpit.utils.longCurrentTime
+import com.violadin.debtorpit.utils.stringCurrentTime
 import com.violadin.debtorpit.utils.pluralTextFrom
 import dagger.hilt.android.AndroidEntryPoint
 import java.lang.StringBuilder
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import java.util.TimeZone
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -29,9 +29,7 @@ class MultiDebtFragment : Fragment() {
 
     private val viewModel: MultiDebtFragmentVM by viewModels()
     private var meToo: Boolean = false
-    private val currentDate = LocalDateTime.now().atZone(TimeZone.getDefault().toZoneId())
     private lateinit var binding: MultiDebtFragmentBinding
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -40,12 +38,16 @@ class MultiDebtFragment : Fragment() {
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).changeHeader(R.string.multi_debt_label)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as MainActivity).changeHeader(R.string.multi_debt_label)
 
         with(binding) {
-            textPeekDate.text = currentDate.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"))
+            textPeekDate.text = stringCurrentTime(DAY_MONTH_YEAR_PATTERN)
             handleSelectedPersons()
 
             viewLifecycleOwner.lifecycleScope.launchWhenCreated {
@@ -68,15 +70,22 @@ class MultiDebtFragment : Fragment() {
                         } else {
                             if (persons.none { it.isChecked }) {
                                 Toast.makeText(
-                                    requireContext(), R.string.empty_count_of_debtors, Toast.LENGTH_LONG
+                                    requireContext(),
+                                    R.string.empty_count_of_debtors,
+                                    Toast.LENGTH_LONG
                                 ).show()
                             } else {
                                 viewModel.updatePersons(
-                                    persons.filter { it.isChecked }, meToo, debtEd.text.toString().toInt(),
-                                    currentDate.toInstant().toEpochMilli(),
+                                    persons.filter { it.isChecked },
+                                    meToo,
+                                    debtEd.text.toString().toInt(),
+                                    longCurrentTime(),
                                     descriptionEd.text.toString()
                                 )
-                                navigationManager.bottomBarController?.popBackStack(R.id.multi_debt_fragment, true)
+                                navigationManager.bottomBarController?.popBackStack(
+                                    R.id.multi_debt_fragment,
+                                    true
+                                )
                                 navigationManager.bottomBarController?.navigate(R.id.debt_for_me_nav_graph)
                             }
                         }
@@ -84,9 +93,15 @@ class MultiDebtFragment : Fragment() {
 
                     textAddDebtors.setOnClickListener {
                         val bundle = Bundle().apply {
-                            putParcelableArrayList("persons", persons as ArrayList<ChoosePersonModel>)
+                            putParcelableArrayList(
+                                "persons",
+                                persons as ArrayList<ChoosePersonModel>
+                            )
                         }
-                        findNavController().navigate(R.id.multi_debt_to_choose_persons_dialog, bundle)
+                        findNavController().navigate(
+                            R.id.multi_debt_to_choose_persons_dialog,
+                            bundle
+                        )
                     }
                 }
             }

@@ -9,6 +9,7 @@ import com.violadin.debtorpit.database.tables.Person
 import com.violadin.debtorpit.enums.HistoryType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collect
@@ -24,11 +25,8 @@ class InfoAboutDebtFragmentVM @Inject constructor(
     private val historyDao: HistoryDao
 ) : ViewModel() {
 
-    private val _person = MutableStateFlow<Person?>(null)
+    private val _person = MutableStateFlow(Person())
     val person = _person.asStateFlow()
-
-    private val _updateDebtResult = MutableStateFlow("")
-    val updateDebtResult = _updateDebtResult.asStateFlow()
 
     private val _deletePersonResult = MutableStateFlow(false)
     val deletePersonResult = _deletePersonResult.asStateFlow()
@@ -68,20 +66,19 @@ class InfoAboutDebtFragmentVM @Inject constructor(
                         personName = personName
                     )
                 )
-            }.onSuccess {
-                _updateDebtResult.value = "Хорошо"
-            }.onFailure {
-                _updateDebtResult.value = "Плохо"
             }
         }
     }
 
-    fun deletePerson(person: Person) {
+    fun deletePerson(person: Person, job: Job?) {
         viewModelScope.launch(Dispatchers.IO) {
             runCatching {
                 historyDao.deleteHistoryOfPerson(person.id!!)
                 personDao.deletePerson(person)
             }.onSuccess {
+                job?.let {
+                    job.cancel()
+                }
                 _deletePersonResult.value = true
             }
         }

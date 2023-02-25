@@ -41,9 +41,13 @@ class StatisticsFragment : Fragment() {
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).changeHeader(R.string.statistics)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as MainActivity).changeHeader(R.string.statistics)
 
         with(binding) {
             changeStateOfDiagrams(statsVariantCircle, statsVariantLinear)

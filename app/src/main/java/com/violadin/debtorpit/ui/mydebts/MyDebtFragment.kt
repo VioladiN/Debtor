@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.violadin.debtorpit.R
 import com.violadin.debtorpit.databinding.MyDebtFragmentBinding
-import com.violadin.debtorpit.enums.DebtType
 import com.violadin.debtorpit.enums.PersonType
 import com.violadin.debtorpit.navigation.NavigationManager
 import com.violadin.debtorpit.ui.MainActivity
@@ -40,9 +39,13 @@ class MyDebtFragment : Fragment() {
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).changeHeader(R.string.my_debt_label)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as MainActivity).changeHeader(R.string.my_debt_label)
 
         with(binding) {
             viewLifecycleOwner.lifecycleScope.launchWhenCreated {

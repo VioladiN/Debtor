@@ -7,16 +7,16 @@ import android.widget.Toast
 import com.violadin.debtorpit.R
 import com.violadin.debtorpit.databinding.DialogChangeDebtBinding
 import com.violadin.debtorpit.enums.DebtType
-import java.io.IOException
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import java.util.TimeZone
+import com.violadin.debtorpit.utils.DAY_MONTH_YEAR_PATTERN
+import com.violadin.debtorpit.utils.stringCurrentTime
 
-class ChangeDebtDialog(context: Context, val buttonListener: (Int, String) -> Unit) : Dialog(context) {
+class ChangeDebtDialog(
+    context: Context,
+    val buttonListener: (Int, String) -> Unit
+) : Dialog(context) {
 
     private lateinit var binding: DialogChangeDebtBinding
     private var dialogType: String? = null
-    private val currentDate = LocalDateTime.now().atZone(TimeZone.getDefault().toZoneId())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +28,7 @@ class ChangeDebtDialog(context: Context, val buttonListener: (Int, String) -> Un
 
     private fun initDialog(type: String?) {
         with(binding) {
-            textPeekDate.text = currentDate.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"))
+            textPeekDate.text = stringCurrentTime(DAY_MONTH_YEAR_PATTERN)
 
             when (type) {
                 DebtType.INCREASE.type -> {

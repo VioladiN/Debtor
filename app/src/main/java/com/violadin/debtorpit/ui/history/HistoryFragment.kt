@@ -16,6 +16,9 @@ import com.violadin.debtorpit.R
 import com.violadin.debtorpit.databinding.HistoryFragmentBinding
 import com.violadin.debtorpit.navigation.NavigationManager
 import com.violadin.debtorpit.ui.MainActivity
+import com.violadin.debtorpit.utils.DAY_MONTH_YEAR_PATTERN
+import com.violadin.debtorpit.utils.currentTime
+import com.violadin.debtorpit.utils.stringCurrentTime
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.Instant
 import java.time.LocalDate
@@ -34,7 +37,6 @@ class HistoryFragment : Fragment() {
 
     private lateinit var binding: HistoryFragmentBinding
     private var allHistory = false
-    private val currentDate = LocalDateTime.now().atZone(TimeZone.getDefault().toZoneId())
     private val viewModel: HistoryFragmentVM by viewModels()
     private var recyclerAdapter: HistoryAdapter? = null
 
@@ -48,16 +50,19 @@ class HistoryFragment : Fragment() {
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).changeHeader(R.string.history)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as MainActivity).changeHeader(R.string.history)
-
 
         with(binding) {
             edPeekDateFrom.setText(
-                currentDate.minusMonths(1).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"))
+                currentTime.minusMonths(1).format(DateTimeFormatter.ofPattern(DAY_MONTH_YEAR_PATTERN))
             )
-            edPeekDateTo.setText(currentDate.format(DateTimeFormatter.ofPattern("dd.MM.yyyy")))
+            edPeekDateTo.setText(stringCurrentTime(DAY_MONTH_YEAR_PATTERN))
 
             viewModel.getHistoriesByDates(
                 edPeekDateFrom.text.toString(),
@@ -122,14 +127,15 @@ class HistoryFragment : Fragment() {
     private fun initRecyclerList() {
         with(binding) {
             recyclerHistory.layoutManager = LinearLayoutManager(requireContext())
-            recyclerAdapter = HistoryAdapter()
+            recyclerAdapter = HistoryAdapter(requireContext())
             recyclerHistory.adapter = recyclerAdapter
         }
     }
 
     @SuppressLint("SetTextI18n")
     private fun showDatePickerDialog(startView: EditText) {
-        val date = LocalDate.parse(startView.text, DateTimeFormatter.ofPattern("dd.MM.yyyy"))
+        val date = LocalDate.parse(startView.text, DateTimeFormatter.ofPattern(
+            DAY_MONTH_YEAR_PATTERN))
 
         DatePickerDialog(
             requireContext(),

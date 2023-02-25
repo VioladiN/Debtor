@@ -26,8 +26,8 @@ class MyDebtFragmentVM @Inject constructor(
 
     private fun getMyDebtPersons() {
         viewModelScope.launch(Dispatchers.IO) {
-            personDao.getAllPersons().collect { persons ->
-                _persons.value = persons.filter { it.type == PersonType.MY_DEBT_PERSON.type }
+            personDao.getPersonsByType(PersonType.MY_DEBT_PERSON.type).collect { persons ->
+                _persons.value = persons
             }
         }
     }

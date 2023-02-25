@@ -20,7 +20,10 @@ import com.violadin.debtorpit.enums.PersonType
 import com.violadin.debtorpit.navigation.NavigationManager
 import com.violadin.debtorpit.ui.MainActivity
 import com.violadin.debtorpit.ui.mydebts.MyDebtAdapter
+import com.violadin.debtorpit.utils.longCurrentTime
+import com.violadin.debtorpit.utils.longTimeToString
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Job
 import java.io.IOException
 import java.time.Instant
 import java.time.LocalDateTime
@@ -38,8 +41,7 @@ class InfoAboutDebtFragment : Fragment() {
     private lateinit var binding: InfoAboutDebtFragmentBinding
     private var recyclerAdapter: HistoryAdapter? = null
     private val viewModel: InfoAboutDebtFragmentVM by viewModels()
-    private val currentDate = LocalDateTime.now().atZone(TimeZone.getDefault().toZoneId())
-
+    private var personJob: Job? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,25 +53,27 @@ class InfoAboutDebtFragment : Fragment() {
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        setTitle()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setTitle()
         viewModel.getPersonById(requireArguments().getInt("id"))
         viewModel.getHistory(requireArguments().getInt("id"))
 
         with(binding) {
-            viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+            personJob = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
                 viewModel.person.collect { person ->
-                    person?.let {
+                    person.id?.let {
                         if (person.createdTime == null) {
                             createdDate.visibility = View.GONE
                             dateTextview.visibility = View.GONE
                         } else {
                             dateTextview.visibility = View.VISIBLE
                             createdDate.visibility = View.VISIBLE
-                            createdDate.text =
-                                Instant.ofEpochMilli(person.createdTime).atZone(ZoneId.systemDefault())
-                                    .toLocalDate().format(DateTimeFormatter.ofPattern("dd MMMM yyyy"))
+                            createdDate.text = longTimeToString(person.createdTime)
                         }
 
                         if (person.fio.isNullOrEmpty()) {
@@ -90,12 +94,7 @@ class InfoAboutDebtFragment : Fragment() {
                     }
                 }
             }
-            viewLifecycleOwner.lifecycleScope.launchWhenResumed {
-                viewModel.updateDebtResult.collect {
-                    if (it.isNotEmpty())
-                        Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
-                }
-            }
+
             viewLifecycleOwner.lifecycleScope.launchWhenResumed {
                 viewModel.deletePersonResult.collect {
                     if (it) {
@@ -111,60 +110,62 @@ class InfoAboutDebtFragment : Fragment() {
 
             decreaseDebtButton.setOnClickListener {
                 ChangeDebtDialog(requireContext()) { debt, desctription ->
-                    var finalDebt = viewModel.person.value!!.debt!! - debt
+                    var finalDebt = viewModel.person.value.debt!! - debt
                     if (finalDebt <= 0) {
                         finalDebt = 0.0
                     }
                     viewModel.changeDebtOfPerson(
-                        viewModel.person.value!!.id!!,
+                        viewModel.person.value.id!!,
                         finalDebt,
                         DebtType.DECREASE.type,
                         debt.toDouble(),
                         desctription,
-                        currentDate.toInstant().toEpochMilli(),
-                        viewModel.person.value!!.type!!,
-                        viewModel.person.value!!.fio!!
+                        longCurrentTime(),
+                        viewModel.person.value.type!!,
+                        viewModel.person.value.fio!!
                     )
                 }.show(DebtType.DECREASE.type)
             }
 
             increaseDebtButton.setOnClickListener {
                 ChangeDebtDialog(requireContext()) { debt, desctription ->
-                    val finalDebt = viewModel.person.value!!.debt!! + debt
+                    val finalDebt = viewModel.person.value.debt!! + debt
                     viewModel.changeDebtOfPerson(
-                        viewModel.person.value!!.id!!,
+                        viewModel.person.value.id!!,
                         finalDebt,
                         DebtType.INCREASE.type,
                         debt.toDouble(),
                         desctription,
-                        currentDate.toInstant().toEpochMilli(),
-                        viewModel.person.value!!.type!!,
-                        viewModel.person.value!!.fio!!
+                        longCurrentTime(),
+                        viewModel.person.value.type!!,
+                        viewModel.person.value.fio!!
                     )
                 }.show(DebtType.INCREASE.type)
             }
 
             deleteDebtorButton.setOnClickListener {
                 DeletePersonDialog(requireContext()) {
-                    viewModel.deletePerson(viewModel.person.value!!)
+                    viewModel.deletePerson(viewModel.person.value, personJob)
                 }.show()
             }
 
             imageviewEdit.setOnClickListener {
                 UpdatePersonInfoDialog(requireContext()) { fio, phone ->
                     viewModel.updatePersonInfo(
-                        viewModel.person.value!!.id!!,
+                        viewModel.person.value.id!!,
                         fio,
                         phone
                     )
-                }.show(viewModel.person.value!!.fio!!, viewModel.person.value!!.phone!!)
+                }.show(viewModel.person.value.fio!!, viewModel.person.value.phone!!)
             }
 
             imageviewCall.setOnClickListener {
-                val uri = "tel:" + viewModel.person.value!!.phone!!.trim()
-                val intent = Intent(Intent.ACTION_DIAL)
-                intent.data = Uri.parse(uri)
-                startActivity(intent)
+                viewModel.person.value.phone?.let { phone ->
+                    val uri = "tel:" + phone.trim()
+                    val intent = Intent(Intent.ACTION_DIAL)
+                    intent.data = Uri.parse(uri)
+                    startActivity(intent)
+                }
             }
         }
     }

@@ -1,6 +1,10 @@
 package com.violadin.debtorpit.database.dao
 
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
 import com.violadin.debtorpit.database.tables.Person
 import kotlinx.coroutines.flow.Flow
 
@@ -13,8 +17,8 @@ interface PersonDao {
     @Delete
     fun deletePerson(person: Person)
 
-    @Query("SELECT * FROM persons")
-    fun getAllPersons(): Flow<List<Person>>
+    @Query("SELECT * FROM persons WHERE type = :type ORDER BY fio")
+    fun getPersonsByType(type: String): Flow<List<Person>>
 
     @Query("SELECT * FROM persons WHERE id = :id")
     fun findById(id: Int): Flow<Person>

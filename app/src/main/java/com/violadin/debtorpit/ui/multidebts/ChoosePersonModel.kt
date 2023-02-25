@@ -1,4 +1,4 @@
-package com.violadin.debtorpit.ui.multipydebts
+package com.violadin.debtorpit.ui.multidebts
 
 import android.os.Parcelable
 import com.violadin.debtorpit.database.tables.Person

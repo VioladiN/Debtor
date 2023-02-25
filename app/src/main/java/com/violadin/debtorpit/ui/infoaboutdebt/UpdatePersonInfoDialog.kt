@@ -5,7 +5,10 @@ import android.content.Context
 import android.os.Bundle
 import com.violadin.debtorpit.databinding.DialogUpdatePersonInfoBinding
 
-class UpdatePersonInfoDialog(context: Context, val buttonListener: (String, String) -> Unit) : Dialog(context) {
+class UpdatePersonInfoDialog(
+    context: Context,
+    val buttonListener: (String, String) -> Unit
+) : Dialog(context) {
 
     private lateinit var binding: DialogUpdatePersonInfoBinding
     private var fio: String? = null

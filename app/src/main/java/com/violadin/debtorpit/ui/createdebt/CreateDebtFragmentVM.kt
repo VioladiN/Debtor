@@ -10,6 +10,7 @@ import com.violadin.debtorpit.enums.DebtType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -26,6 +27,7 @@ class CreateDebtFragmentVM @Inject constructor(
     fun createPerson(person: Person, description: String) {
         viewModelScope.launch(Dispatchers.IO) {
             val personId = personDao.insertPerson(person)
+
             if (person.debt!!.toDouble() > 0.0) {
                 historyDao.insertHistory(History(
                     personId = personId.toInt(),
