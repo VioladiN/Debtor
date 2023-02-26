@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main_header_info_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:elevation="5dp"
+        android:background="@drawable/background_bottom_left_right_5dp_corners"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="13dp"
+            tools:layout_editor_absoluteY="0dp"
+            tools:layout_editor_absoluteX="13dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="13dp"
+            tools:layout_editor_absoluteY="0dp"
+            tools:layout_editor_absoluteX="13dp" />
+
+        <TextView
+            android:id="@+id/date_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:text="@string/debt_date"
+            android:textColor="@color/gray_dark"
+            android:fontFamily="@font/roboto_100"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/guideline_left"
+            tools:ignore="SmallSp" />
+
+        <TextView
+            android:id="@+id/created_date"
+            android:textColor="@color/gray_dark"
+            android:layout_marginStart="6dp"
+            android:fontFamily="@font/roboto_300"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/date_textview"
+            app:layout_constraintStart_toEndOf="@id/guideline_left"/>
+
+        <TextView
+            android:id="@+id/debt_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:text="@string/global_debt_amount"
+            android:textColor="@color/gray_dark"
+            android:fontFamily="@font/roboto_100"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/guideline_right"
+            tools:ignore="SmallSp" />
+
+        <TextView
+            android:id="@+id/debt_count"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/background_10dp_rectangle"
+            android:backgroundTint="@color/base_UI_mute"
+            android:gravity="center"
+            android:textColor="@color/base_text_two"
+            android:textSize="16sp"
+            android:fontFamily="@font/roboto_300"
+            android:paddingHorizontal="11dp"
+            app:layout_constraintEnd_toStartOf="@id/guideline_right"
+            app:layout_constraintTop_toBottomOf="@id/debt_textview" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/icon_border_card_view"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:cardCornerRadius="30dp"
+            android:layout_marginTop="10dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="?attr/colorSecondaryVariant"
+            android:layout_marginBottom="14dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <ImageView
+                android:id="@+id/icon_person"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_person"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/debtor_name_text"
+            android:textSize="22sp"
+            android:textColor="@color/base_text"
+            android:fontFamily="@font/roboto_400"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/icon_border_card_view"
+            app:layout_constraintStart_toStartOf="@id/icon_border_card_view"
+            app:layout_constraintEnd_toEndOf="@id/icon_border_card_view" />
+
+        <ImageView
+            android:id="@+id/imageview_call"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:src="@drawable/ic_call_phone"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/imageview_edit"
+            app:layout_constraintEnd_toStartOf="@id/imageview_edit"
+            app:layout_constraintTop_toTopOf="@id/imageview_edit" />
+
+        <ImageView
+            android:id="@+id/imageview_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:src="@drawable/ic_edit"
+            android:layout_marginBottom="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imageview_call"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/debtor_name_text" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/text_history_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/debts_history"
+        android:textColor="@color/base_text"
+        android:fontFamily="@font/roboto_300"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/main_header_info_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/profile_history"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/text_history_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/layout_with_buttons"
+        tools:listitem="@layout/recyclerview_row_history_profile" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_with_buttons"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <Button
+            android:id="@+id/decrease_debt_button"
+            android:layout_width="157dp"
+            android:layout_height="40dp"
+            android:background="@drawable/background_button_10dp"
+            android:text="@string/decrease_debt_text"
+            android:paddingTop="2dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/roboto_300"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:stateListAnimator="@null"
+            android:layout_marginStart="16dp"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintEnd_toStartOf="@id/increase_debt_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/increase_debt_button"
+            android:layout_width="157dp"
+            android:layout_height="40dp"
+            android:background="@drawable/background_button_10dp"
+            android:text="@string/increase_debt_text"
+            android:paddingTop="2dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/roboto_300"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:layout_marginEnd="16dp"
+            android:stateListAnimator="@null"
+            app:layout_constraintStart_toEndOf="@id/decrease_debt_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/delete_debtor_button"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="19dp"
+            android:background="@drawable/backgroud_button_10dp_borders"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="29dp"
+            android:stateListAnimator="@null"
+            android:src="@drawable/ic_trash"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/increase_debt_button"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

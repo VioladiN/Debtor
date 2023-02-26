@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/multi_debt_nav_graph"
+    app:startDestination="@id/multi_debt_fragment">
+
+    <fragment
+        android:id="@+id/multi_debt_fragment"
+        android:name="com.violadin.debtorpit.ui.multidebts.MultiDebtFragment"
+        tools:layout="@layout/multi_debt_fragment" >
+        <action
+            android:id="@+id/multi_debt_to_choose_persons_dialog"
+            app:destination="@id/bottom_sheet_dialog" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/bottom_sheet_dialog"
+        android:name="com.violadin.debtorpit.ui.multidebts.MultiDebtChoosePersonsDialog"
+        tools:layout="@layout/choose_persons_dialog_fragment" />
+
+</navigation>

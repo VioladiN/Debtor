@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/debt_for_me_nav_graph"
+    app:startDestination="@id/debt_for_me_fragment">
+
+    <fragment
+        android:id="@+id/debt_for_me_fragment"
+        android:name="com.violadin.debtorpit.ui.debtors.DebtForMeFragment"
+        tools:layout="@layout/debt_for_me_fragment">
+        <action
+            android:id="@+id/debt_for_me_fragment_to_info_about_debtor_fragment"
+            app:destination="@id/info_about_debtor_fragment">
+            <argument
+                android:name="type"
+                android:defaultValue=""
+                app:argType="string" />
+        </action>
+        <action
+            android:id="@+id/debt_for_me_fragment_to_create_debt_fragment"
+            app:destination="@id/create_debt_fragment">
+            <argument
+                android:name="type"
+                android:defaultValue=""
+                app:argType="string" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/create_debt_fragment"
+        android:name="com.violadin.debtorpit.ui.createdebt.CreateDebtFragment"
+        tools:layout="@layout/create_debt_fragment" />
+
+    <fragment
+        android:id="@+id/info_about_debtor_fragment"
+        android:name="com.violadin.debtorpit.ui.infoaboutdebt.InfoAboutDebtFragment"
+        tools:layout="@layout/info_about_debt_fragment" />
+
+</navigation>

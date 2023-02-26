@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minWidth="320dp"
+    android:background="@drawable/background_10dp_rectangle">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="16dp"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="16dp"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <TextView
+        android:id="@+id/title_text"
+        android:text="@string/editing"
+        android:textSize="20sp"
+        android:textColor="@color/base_text"
+        android:fontFamily="@font/roboto_400"
+        android:layout_marginTop="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/guideline_left"
+        app:layout_constraintEnd_toStartOf="@id/guideline_right" />
+
+    <ImageView
+        android:id="@+id/image_view_accept"
+        android:src="@drawable/ic_accept"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="9dp"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/title_text"
+        app:layout_constraintStart_toEndOf="@id/title_text"
+        app:layout_constraintBottom_toBottomOf="@id/title_text" />
+
+    <ImageView
+        android:id="@+id/dialog_close"
+        android:src="@drawable/ic_cross"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginStart="11dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/title_text"
+        app:layout_constraintEnd_toStartOf="@id/title_text"
+        app:layout_constraintBottom_toBottomOf="@id/title_text" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/icon_border_card_view"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:cardCornerRadius="30dp"
+        android:layout_marginTop="10dp"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="?attr/colorSecondaryVariant"
+        android:layout_marginBottom="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_text">
+        <ImageView
+            android:id="@+id/icon_person"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_person"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.cardview.widget.CardView>
+
+    <EditText
+        android:id="@+id/fio_ed"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/fio_hint"
+        android:textSize="18sp"
+        android:maxLength="10"
+        android:paddingHorizontal="25dp"
+        android:fontFamily="@font/roboto_300"
+        android:paddingVertical="12dp"
+        android:textColorHint="@color/base_UI_mute"
+        android:background="@drawable/background_10dp_rectangle_coloronprimary"
+        android:inputType="text"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toStartOf="@id/guideline_right"
+        app:layout_constraintTop_toBottomOf="@id/icon_border_card_view"
+        app:layout_constraintStart_toEndOf="@id/guideline_left" />
+
+    <EditText
+        android:id="@+id/phone_ed"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:hint="@string/phone_hint"
+        android:textSize="18sp"
+        android:paddingHorizontal="25dp"
+        android:fontFamily="@font/roboto_300"
+        android:paddingVertical="12dp"
+        android:textColorHint="@color/base_UI_mute"
+        android:background="@drawable/background_10dp_rectangle_coloronprimary"
+        android:layout_marginTop="20dp"
+        android:inputType="phone"
+        app:layout_constraintEnd_toStartOf="@id/guideline_right"
+        app:layout_constraintTop_toBottomOf="@id/fio_ed"
+        app:layout_constraintStart_toEndOf="@id/guideline_left" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/change_info_button"
+        android:background="@drawable/button_background_10dp_gradient"
+        android:textAllCaps="false"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="25dp"
+        android:textColor="?attr/colorOnPrimary"
+        android:text="@string/change"
+        android:textSize="22sp"
+        android:letterSpacing="0.0"
+        android:fontFamily="@font/roboto_500"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/phone_ed" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

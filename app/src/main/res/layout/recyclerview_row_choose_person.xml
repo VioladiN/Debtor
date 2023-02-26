@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="?attr/colorOnPrimary"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/icon_border_card_view"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:cardCornerRadius="25dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginVertical="15dp"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="?attr/colorSecondaryVariant"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <ImageView
+            android:id="@+id/icon_person"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:src="@drawable/ic_person"
+            android:layout_gravity="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/debtor_name_text"
+        android:textSize="16sp"
+        android:textColor="@color/base_text"
+        android:fontFamily="@font/roboto_400"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="15dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toStartOf="@id/debt_count"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/icon_border_card_view"/>
+
+    <TextView
+        android:id="@+id/debtor_date_text"
+        android:textColor="@color/gray_dark"
+        android:layout_marginStart="15dp"
+        android:fontFamily="@font/roboto_300"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toStartOf="@id/debt_count"
+        app:layout_constraintTop_toBottomOf="@id/debtor_name_text"
+        app:layout_constraintStart_toEndOf="@id/icon_border_card_view"/>
+
+    <TextView
+        android:id="@+id/debt_count"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/background_10dp_rectangle"
+        android:backgroundTint="@color/base_UI_mute"
+        android:gravity="center"
+        android:layout_marginVertical="13dp"
+        android:maxWidth="130dp"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:paddingHorizontal="11dp"
+        app:layout_constraintTop_toTopOf="@id/radio_selected"
+        app:layout_constraintBottom_toBottomOf="@id/radio_selected"
+        app:layout_constraintEnd_toStartOf="@id/radio_selected"
+        app:layout_constraintTop_toBottomOf="@id/debtor_name_text"/>
+
+    <RadioButton
+        android:id="@+id/radio_selected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:textSize="16sp"
+        android:layout_marginEnd="30dp"
+        android:buttonTint="@color/base_UI"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

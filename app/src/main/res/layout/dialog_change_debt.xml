@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minWidth="320dp"
+    android:background="@drawable/background_10dp_rectangle">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="16dp"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="16dp"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <TextView
+        android:id="@+id/title_text"
+        android:text="@string/increase_debt_title"
+        android:textSize="20sp"
+        android:textColor="@color/base_text"
+        android:fontFamily="@font/roboto_400"
+        android:layout_marginTop="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/guideline_left"
+        app:layout_constraintEnd_toStartOf="@id/guideline_right" />
+
+    <ImageView
+        android:id="@+id/dialog_close"
+        android:src="@drawable/ic_cross"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="11dp"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/title_text"
+        app:layout_constraintStart_toEndOf="@id/title_text"
+        app:layout_constraintBottom_toBottomOf="@id/title_text" />
+
+    <TextView
+        android:id="@+id/text_date_of_debt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:textSize="10sp"
+        android:fontFamily="@font/roboto_300"
+        android:text="@string/date_adding_debt"
+        android:textColor="@color/gray_dark"
+        app:layout_constraintStart_toEndOf="@id/guideline_left"
+        app:layout_constraintEnd_toStartOf="@id/guideline_right"
+        app:layout_constraintTop_toBottomOf="@id/title_text"
+        tools:ignore="SmallSp" />
+
+    <TextView
+        android:id="@+id/text_peek_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:fontFamily="@font/roboto_300"
+        android:textColor="@color/base_UI"
+        android:drawablePadding="10dp"
+        app:layout_constraintStart_toEndOf="@id/guideline_left"
+        app:layout_constraintEnd_toStartOf="@id/guideline_right"
+        app:layout_constraintTop_toBottomOf="@id/text_date_of_debt"
+        app:drawableLeftCompat="@drawable/ic_peek_date" />
+
+    <EditText
+        android:id="@+id/debt_ed"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/debt_hint"
+        android:textSize="18sp"
+        android:maxLength="10"
+        android:paddingHorizontal="25dp"
+        android:fontFamily="@font/roboto_300"
+        android:paddingVertical="12dp"
+        android:textColorHint="@color/base_UI_mute"
+        android:background="@drawable/background_10dp_rectangle_coloronprimary"
+        android:inputType="number"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toStartOf="@id/text_currency"
+        app:layout_constraintTop_toBottomOf="@id/text_peek_date"
+        app:layout_constraintStart_toEndOf="@id/guideline_left" />
+
+    <TextView
+        android:id="@+id/text_currency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:fontFamily="@font/roboto_300"
+        android:text="RUB"
+        android:textColor="@color/gray_dark"
+        android:layout_marginHorizontal="20dp"
+        app:layout_constraintStart_toEndOf="@id/debt_ed"
+        app:layout_constraintEnd_toStartOf="@id/guideline_right"
+        app:layout_constraintTop_toTopOf="@id/debt_ed"
+        app:layout_constraintBottom_toBottomOf="@id/debt_ed" />
+
+    <EditText
+        android:id="@+id/description_ed"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:hint="@string/description_debt_hint"
+        android:textSize="18sp"
+        android:paddingHorizontal="25dp"
+        android:fontFamily="@font/roboto_300"
+        android:paddingVertical="12dp"
+        android:textColorHint="@color/base_UI_mute"
+        android:background="@drawable/background_10dp_rectangle_coloronprimary"
+        android:layout_marginTop="20dp"
+        android:inputType="text"
+        app:layout_constraintEnd_toStartOf="@id/guideline_right"
+        app:layout_constraintTop_toBottomOf="@id/debt_ed"
+        app:layout_constraintStart_toEndOf="@id/guideline_left" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/add_debts"
+        android:background="@drawable/button_background_10dp_gradient"
+        android:textAllCaps="false"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="25dp"
+        android:textColor="?attr/colorOnPrimary"
+        android:text="@string/debt_add"
+        android:textSize="22sp"
+        android:letterSpacing="0.0"
+        android:fontFamily="@font/roboto_500"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/description_ed" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

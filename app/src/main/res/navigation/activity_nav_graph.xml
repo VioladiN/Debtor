@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/bottom_nav_fragment">
+
+    <fragment
+        android:id="@+id/bottom_nav_fragment"
+        android:name="com.violadin.debtorpit.ui.bottombar.BottomBarFragment"
+        tools:layout="@layout/bottom_nav_bar_fragment" />
+
+    <fragment
+        android:id="@+id/statistics_fragment"
+        android:name="com.violadin.debtorpit.ui.statistics.StatisticsFragment"
+        tools:layout="@layout/history_fragment" />
+
+    <fragment
+        android:id="@+id/history_fragment"
+        android:name="com.violadin.debtorpit.ui.history.HistoryFragment"
+        tools:layout="@layout/statistics_fragment" />
+
+    <action
+        android:id="@+id/open_history_fragment"
+        app:destination="@id/history_fragment"
+        app:popUpTo="@id/bottom_nav_fragment"
+        app:popUpToInclusive="false" />
+
+    <action
+        android:id="@+id/open_statistics_fragment"
+        app:destination="@id/statistics_fragment"
+        app:popUpTo="@id/bottom_nav_fragment"
+        app:popUpToInclusive="false" />
+</navigation>

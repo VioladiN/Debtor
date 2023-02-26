@@ -1,45 +1,34 @@
 package com.violadin.debtorpit.database.dao
 
-import androidx.room.*
-import com.violadin.debtorpit.domain.model.MyDebtPerson
-import com.violadin.debtorpit.domain.model.Person
-import io.reactivex.Flowable
-
+import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+import com.violadin.debtorpit.database.tables.Person
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface PersonDao {
 
-    @Insert
-    fun insertAllPersons(persons: List<Person>)
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertPerson(person: Person)
+    fun insertPerson(person: Person): Long
 
     @Delete
     fun deletePerson(person: Person)
 
-    @Query("SELECT * FROM persons")
-    fun getAllPersons(): Flowable<List<Person>>
-
-    @Query("SELECT * FROM persons WHERE first_name LIKE :first AND last_name LIKE :last")
-    fun findByName(first: String, last: String): Person
+    @Query("SELECT * FROM persons WHERE type = :type ORDER BY fio")
+    fun getPersonsByType(type: String): Flow<List<Person>>
 
     @Query("SELECT * FROM persons WHERE id = :id")
-    fun findById(id: Int): Person
+    fun findById(id: Int): Flow<Person>
 
     @Query("UPDATE persons SET debt = :debt WHERE id = :id")
     fun updatePerson(id: Int, debt: Double)
 
+    @Query("UPDATE persons SET fio = :fio, phone = :phone WHERE id = :id")
+    fun updatePersonInfo(id: Int, fio: String, phone: String)
 
-    @Query("SELECT * FROM my_debts")
-    fun getAllPersonsMyDebt(): Flowable<List<MyDebtPerson>>
-
-    @Query("UPDATE my_debts SET debt = :debt WHERE id = :id")
-    fun updatePersonMyDebt(id: Int, debt: Double)
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertPersonMyDebt(person: MyDebtPerson)
-
-    @Delete
-    fun deletePersonMyDebt(person: MyDebtPerson)
+    @Query("SELECT SUM(debt) FROM persons WHERE type = :type")
+    fun getTotalDebtsByType(type: String): Double
 }
