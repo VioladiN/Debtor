@@ -1,8 +1,6 @@
 <resources>
     <string name="app_name">Debtor</string>
 
-    <string name="rybl">\u20bd</string>
-
     <string name="debt_for_me">Мне\nдолжны</string>
     <string name="debt_for_me_one_line">Мне должны</string>
     <string name="my_debt">Я должен</string>
@@ -12,28 +10,13 @@
 
     <string name="editing">Редактирование</string>
     <string name="change">Изменить</string>
-    <string name="debt">Долг</string>
     <string name="phone">Телефон</string>
 
-    <string name="check">Check(rubles):</string>
-    <string name="checkbox">Распределить на меня</string>
     <string name="adding_debts">Распределить</string>
-
-    <string name="first_page">Должники</string>
-    <string name="second_page">Распределение долга</string>
-    <string name="third_page">Мои долги</string>
-    <string name="add_debtor">Добавить должника</string>
 
     <string name="debtors_empty">Список должников пуст</string>
     <string name="my_debt_empty">Список долгов пуст</string>
 
-    <string name="add_person">Добавить должника</string>
-    <string name="add_person_my_debt">Добавить займодателя</string>
-    <string name="edit_debt">Изменить долг</string>
-    <string name="drop_debt">Сбросить долг</string>
-
-    <string name="first_name_hint">Иван</string>
-    <string name="last_name_hint">Иванов</string>
     <string name="debt_hint">Сумма долга</string>
     <string name="debt_hint_two">Сумма</string>
     <string name="fio_hint">ФИО</string>
@@ -41,19 +24,10 @@
     <string name="description_debt_hint_two">Описание</string>
     <string name="phone_hint">+79995555555</string>
 
-    <string name="empty_field_first_name">Поле "Имя" должно быть заполнено</string>
     <string name="empty_field_fio">Заполните поле "ФИО"</string>
     <string name="missing_person_type">Выберите тип долга</string>
     <string name="wrong_filed_debt">Заполните поле "Сумма"</string>
     <string name="empty_count_of_debtors">Выберите должников</string>
-    <string name="wrong_filed_debt_count">Поле "Размер Долга" должно быть заполнено</string>
-
-    <string name="person_added">Должник добавлен</string>
-    <string name="person_deleted">Должник удален</string>
-    <string name="debt_changed">Долг изменен</string>
-    <string name="debts_changed">Долги распределены</string>
-
-    <string name="add">Готово</string>
 
     <string name="deleting_message">Вы действительно хотите удалить должника?</string>
     <string name="cancel">Закрыть</string>
@@ -62,16 +36,11 @@
     <string name="debt_add">Добавить</string>
     <string name="debt_remove">Списать</string>
 
-    <string name="change_debt_title">Изменение долга</string>
-
     <string name="date_setting_debt">дата распределения долга</string>
     <string name="date_adding_debt">дата добавления долга</string>
     <string name="date_decreasing_debt">дата списания долга</string>
     <string name="debt_on_me">Распределить на меня</string>
     <string name="add_debtors">Добавить должников</string>
-
-    <string name="new_debtor">Новый должник</string>
-    <string name="new_debt">Новый долг</string>
 
     <string name="debt_date">Дата создания контакта</string>
     <string name="global_debt_amount">Общая сумма долга</string>
