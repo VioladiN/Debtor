@@ -22,9 +22,13 @@
 
     <action
         android:id="@+id/open_history_fragment"
-        app:destination="@id/history_fragment" />
+        app:destination="@id/history_fragment"
+        app:popUpTo="@id/bottom_nav_fragment"
+        app:popUpToInclusive="false" />
 
     <action
         android:id="@+id/open_statistics_fragment"
-        app:destination="@id/statistics_fragment" />
+        app:destination="@id/statistics_fragment"
+        app:popUpTo="@id/bottom_nav_fragment"
+        app:popUpToInclusive="false" />
 </navigation>

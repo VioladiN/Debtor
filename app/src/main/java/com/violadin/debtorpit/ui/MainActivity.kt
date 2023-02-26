@@ -1,9 +1,12 @@
 package com.violadin.debtorpit.ui
 
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
+import androidx.navigation.NavController
 import com.violadin.debtorpit.R
 import com.violadin.debtorpit.databinding.ActivityMainBinding
 import com.violadin.debtorpit.navigation.NavigationManager
@@ -16,7 +19,7 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var navigationManager: NavigationManager
     private val viewModel: MainActivityVM by viewModels()
-    private lateinit var binding: ActivityMainBinding
+    lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_Debtorpit)
@@ -28,6 +31,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+
+        val fragmentContainer = supportFragmentManager.findFragmentById(R.id.activity_container)
+        fragmentContainer?.childFragmentManager?.addOnBackStackChangedListener {
+            backButtonVisibility(
+                fragmentContainer.childFragmentManager.backStackEntryCount,
+                navigationManager.mainActivityController
+            )
+        }
 
         with(binding) {
             header.commonButton.setOnClickListener {
@@ -49,6 +60,19 @@ class MainActivity : AppCompatActivity() {
                 }
                 popup.show()
             }
+
+            header.imageBack.setOnClickListener {
+                navigationManager.activeMavController?.navigateUp()
+            }
+        }
+    }
+
+    fun backButtonVisibility(backStackCount: Int, activeNavController: NavController?) {
+        navigationManager.activeMavController = activeNavController
+        if (backStackCount > 0) {
+            binding.header.imageBack.visibility = View.VISIBLE
+        } else {
+            binding.header.imageBack.visibility = View.INVISIBLE
         }
     }
 

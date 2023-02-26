@@ -14,6 +14,7 @@ class NavigationManager {
 
     var mainActivityController: NavController? = null
     var bottomBarController: NavController? = null
+    var activeMavController: NavController? = null
 
     fun initActivityController(activity: Activity) {
         mainActivity = activity
