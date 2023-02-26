@@ -7,9 +7,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.violadin.debtorpit.databinding.RecyclerviewRowChoosePersonBinding
 import com.violadin.debtorpit.utils.longTimeToString
-import java.time.Instant
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
 
 class MultiDebtAdapter(
     private val personsIdsHashSet: HashSet<Int>

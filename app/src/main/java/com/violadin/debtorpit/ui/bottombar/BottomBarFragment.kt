@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.NavigationUiSaveStateControl
-import androidx.navigation.ui.setupWithNavController
 import com.violadin.debtorpit.R
 import com.violadin.debtorpit.databinding.BottomNavBarFragmentBinding
 import com.violadin.debtorpit.navigation.NavigationManager

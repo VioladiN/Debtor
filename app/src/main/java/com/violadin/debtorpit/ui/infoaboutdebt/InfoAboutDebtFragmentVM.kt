@@ -6,17 +6,12 @@ import com.violadin.debtorpit.database.dao.HistoryDao
 import com.violadin.debtorpit.database.dao.PersonDao
 import com.violadin.debtorpit.database.tables.History
 import com.violadin.debtorpit.database.tables.Person
-import com.violadin.debtorpit.enums.HistoryType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import java.time.LocalDate
-import java.time.ZonedDateTime
-import java.util.SplittableRandom
 import javax.inject.Inject
 
 @HiltViewModel

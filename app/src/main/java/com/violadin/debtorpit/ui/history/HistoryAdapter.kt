@@ -12,10 +12,6 @@ import com.violadin.debtorpit.databinding.RecyclerRowHistoryBinding
 import com.violadin.debtorpit.enums.HistoryType
 import com.violadin.debtorpit.utils.DAY_MONTH_YEAR_PATTERN
 import com.violadin.debtorpit.utils.longTimeToString
-import java.time.Instant
-import java.time.LocalDate
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
 
 class HistoryAdapter(
     private val context: Context

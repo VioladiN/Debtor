@@ -11,10 +11,6 @@ import com.violadin.debtorpit.databinding.RecyclerviewRowHistoryProfileBinding
 import com.violadin.debtorpit.enums.HistoryType
 import com.violadin.debtorpit.utils.DAY_MONTH_YEAR_PATTERN
 import com.violadin.debtorpit.utils.longTimeToString
-import java.io.IOException
-import java.time.Instant
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
 
 class HistoryAdapter :
     ListAdapter<History, HistoryAdapter.ViewHolder>(object : DiffUtil.ItemCallback<History>() {

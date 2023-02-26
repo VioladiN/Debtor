@@ -2,7 +2,6 @@ package com.violadin.debtorpit.ui.statistics
 
 import android.graphics.BlendMode
 import android.graphics.BlendModeColorFilter
-import android.graphics.ColorFilter
 import android.graphics.PorterDuff
 import android.os.Build
 import android.os.Bundle
@@ -10,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.core.graphics.drawable.DrawableCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -19,7 +17,6 @@ import com.violadin.debtorpit.databinding.StatisticsFragmentBinding
 import com.violadin.debtorpit.navigation.NavigationManager
 import com.violadin.debtorpit.ui.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
 import kotlin.math.max
 import kotlin.math.roundToInt

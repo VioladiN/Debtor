@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -20,13 +19,8 @@ import com.violadin.debtorpit.utils.DAY_MONTH_YEAR_PATTERN
 import com.violadin.debtorpit.utils.currentTime
 import com.violadin.debtorpit.utils.stringCurrentTime
 import dagger.hilt.android.AndroidEntryPoint
-import java.time.Instant
 import java.time.LocalDate
-import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import java.time.temporal.TemporalField
-import java.util.Calendar
-import java.util.TimeZone
 import javax.inject.Inject
 
 @AndroidEntryPoint

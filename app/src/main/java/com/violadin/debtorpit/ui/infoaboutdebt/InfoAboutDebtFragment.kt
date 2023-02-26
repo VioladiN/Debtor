@@ -6,30 +6,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.violadin.debtorpit.R
-import com.violadin.debtorpit.database.tables.History
 import com.violadin.debtorpit.databinding.InfoAboutDebtFragmentBinding
 import com.violadin.debtorpit.enums.DebtType
 import com.violadin.debtorpit.enums.PersonType
 import com.violadin.debtorpit.navigation.NavigationManager
 import com.violadin.debtorpit.ui.MainActivity
-import com.violadin.debtorpit.ui.mydebts.MyDebtAdapter
 import com.violadin.debtorpit.utils.longCurrentTime
 import com.violadin.debtorpit.utils.longTimeToString
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
-import java.io.IOException
-import java.time.Instant
-import java.time.LocalDateTime
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
-import java.util.TimeZone
 import javax.inject.Inject
 
 @AndroidEntryPoint
